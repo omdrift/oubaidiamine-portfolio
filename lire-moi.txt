@@ -1,0 +1,36 @@
+PORTFOLIO AMINE OUBAIDI — HEBERGEMENT
+
+Le dossier amine-portfolio contient le site complet : textes FR/EN, photos,
+GIF, vidéo, diaporamas et rapports PDF. Le site est statique et prêt à publier.
+
+DEPLOYER SUR NETLIFY
+1. Décompresse cette archive sur ton ordinateur.
+2. Connecte-toi à ton compte Netlify : https://app.netlify.com/login
+3. Ouvre https://app.netlify.com/drop
+4. Glisse le dossier amine-portfolio dans la zone de dépôt.
+   Ce dossier contient directement index.html, data.js, studies.js,
+   images/ et documents/. Garde tous ces fichiers et dossiers ensemble.
+5. Netlify affiche une adresse se terminant par netlify.app.
+6. Pour partager le portfolio, vérifie la visibilité du projet et règle-la
+   sur public si ton compte utilise la visibilité privée par défaut.
+
+Pour mettre à jour le même projet Netlify, utilise la zone de dépôt située
+sous Production deploys dans le tableau de bord de ce projet.
+
+Documentation officielle :
+https://docs.netlify.com/start/quickstarts/netlify-drop-quickstart/
+
+AUTRE HEBERGEUR STATIQUE OU HEBERGEMENT AVEC FTP
+Publie tout le CONTENU du dossier amine-portfolio à la racine web de ton site.
+Le fichier index.html doit se trouver à cette racine.
+Aucune compilation et aucune base de données ne sont nécessaires.
+
+CONTENUS
+- data.js : projets, expérience, formation, compétences et textes FR/EN.
+- studies.js : étapes des projets, médias et annexes FR/EN.
+- images/ : images, animations et extrait vidéo.
+- documents/ : rapports, diaporamas et lettre de recommandation.
+- index.html, style.css, app.js, case-studies.js : affichage et navigation.
+
+Ces fichiers incluent les contenus présentés sur le portfolio. Les modèles
+et datasets d'entraînement complets restent dans les dépôts des projets.
