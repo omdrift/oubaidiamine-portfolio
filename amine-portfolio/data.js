@@ -329,37 +329,218 @@ window.portfolio={
       ],
       "year": "2026",
       "context": [
-        "Projet personnel · MVP local",
-        "Personal project · Local MVP"
+        "Projet personnel · Assistant IA en développement",
+        "Personal project · AI assistant in development"
       ],
       "title": [
         "CareerPilot · CV Matcher",
         "CareerPilot · CV Matcher"
       ],
       "summary": [
-        "Comparer un profil aux offres, préparer des brouillons de candidature et suivre les réponses dans un dashboard.",
-        "Match a candidate profile to job offers, prepare application drafts and track responses in one dashboard."
+        "Un assistant IA pour centraliser la recherche d’emploi : collecte d’offres, matching expliqué, RAG, CV/lettres personnalisés et suivi des candidatures.",
+        "An AI assistant that brings job collection, explainable matching, RAG, tailored CV/letter drafts and application tracking into one workflow."
       ],
       "contribution": [
-        "Développement d’un assistant de recherche d’emploi avec interface React et API FastAPI : import de CV PDF et d’offres, scoring lexical explicable, recherche de preuves dans le profil et génération de brouillons avec validation utilisateur.",
-        "Development of a job-search assistant with a React interface and FastAPI API: PDF CV and job imports, explainable lexical scoring, profile-evidence retrieval and draft generation with user review."
+        "Conception et développement d’une application React/TypeScript et d’un backend FastAPI en couches : contrats Pydantic, domaine, services, repositories et intégrations. Construction du parcours profil → offres → preuves → documents versionnés → validation → candidature → réponses, avec comptes et données privées.",
+        "Design and development of a React/TypeScript application and a layered FastAPI backend: Pydantic contracts, domain, services, repositories and integrations. Building the profile → jobs → evidence → versioned documents → review → application → responses workflow, with accounts and private data."
       ],
       "detail": [
-        "LangChain et LangGraph pour la génération, Ollama en option et mode démo sans clé API. Qdrant optionnel avec une baseline de vecteurs par hachage de tokens. Persistance SQLAlchemy, migrations Alembic, Docker Compose et tests pytest. MVP mono-utilisateur local ; intégrations réelles et déploiement public à valider.",
-        "LangChain and LangGraph for generation, optional Ollama and an API-key-free demo mode. Optional Qdrant with a token-hash vector baseline. SQLAlchemy persistence, Alembic migrations, Docker Compose and pytest tests. Local single-user MVP; real integrations and public deployment still need validation."
+        "Le socle fonctionnel comprend la collecte observable, un matching lexical, un RAG de profil, la génération locale optionnelle avec Ollama, la gestion des versions et des tentatives de soumission. Le plan produit étend ce socle à une bibliothèque documentaire, un chatbot sourcé, l’édition HTML/PDF et une orchestration durable.",
+        "The functional foundation includes observable collection, lexical matching, profile RAG, optional local generation with Ollama, document versions and submission-attempt handling. The product plan extends it with a document library, a source-grounded chatbot, HTML/PDF editing and durable orchestration."
       ],
       "stack": [
-        "React",
-        "FastAPI",
-        "LangChain",
-        "LangGraph",
-        "Ollama",
-        "Qdrant",
-        "PostgreSQL",
-        "Docker",
-        "pytest"
+        "Python",
+        "React · TypeScript",
+        "FastAPI · Pydantic",
+        "LangChain · LangGraph",
+        "Ollama · Llama 3.2",
+        "Qdrant · RAG",
+        "PostgreSQL · SQLAlchemy",
+        "Alembic",
+        "JobSpy · Adzuna",
+        "Docker Compose",
+        "pytest · Playwright",
+        "GitHub Actions"
       ],
-      "repo": "https://github.com/omdrift/cv-matcher"
+      "repo": "https://github.com/omdrift/cv-matcher/tree/feature/production-onboarding",
+      "highlights": [
+        [
+          "Collecte multi-source & matching expliqué",
+          "Multi-source collection & explainable matching"
+        ],
+        [
+          "RAG de profil & génération locale",
+          "Profile RAG & local generation"
+        ],
+        [
+          "Comptes privés, versions & suivi",
+          "Private accounts, versions & tracking"
+        ]
+      ],
+      "sections": [
+        {
+          "title": [
+            "Fonctionnalités développées",
+            "Implemented functionality"
+          ],
+          "status": [
+            "Implémenté",
+            "Implemented"
+          ],
+          "items": [
+            [
+              "Comptes email/mot de passe, profil éditable, extraction de CV PDF avec revue et onboarding guidé depuis un compte vide.",
+              "Email/password accounts, editable profile, reviewed PDF CV extraction and guided onboarding from an empty account."
+            ],
+            [
+              "Imports CSV/manuels, Adzuna et JobSpy en modes export/live explicites ; diagnostics par source, résultats partiels et historique privé des collectes. Le live reste expérimental.",
+              "CSV/manual imports, Adzuna and explicit JobSpy export/live modes; per-source diagnostics, partial results and private collection history. Live collection remains experimental."
+            ],
+            [
+              "Classement lexical explicable, compétences communes, filtres et favoris. RAG sur les preuves approuvées du profil, avec citations et isolation par compte, document et révision.",
+              "Explainable lexical ranking, shared skills, filters and saved jobs. RAG over approved profile evidence, with citations and account/document/revision isolation."
+            ],
+            [
+              "Brouillons de CV et lettres ciblés, versions persistées et téléchargement texte. Préparation, relecture et approbation de la version exacte associée à une candidature.",
+              "Tailored CV and cover-letter drafts, persisted versions and text downloads. Preparation, review and approval of the exact document version attached to an application."
+            ],
+            [
+              "Suivi manuel ou endpoint API générique ; historique des tentatives et vérification des résultats incertains. Réponses manuelles/IMAP en lecture seule, classification par règles, corrections et évolution des statuts.",
+              "Manual tracking or a generic API endpoint; attempt history and verification of uncertain outcomes. Manual/read-only IMAP responses, rule-based classification, corrections and status updates."
+            ]
+          ]
+        },
+        {
+          "title": [
+            "Architecture & rôle des technologies",
+            "Architecture & technology roles"
+          ],
+          "status": [
+            "Socle développé",
+            "Implemented foundation"
+          ],
+          "items": [
+            [
+              "React, TypeScript et Vite : dashboard responsive, recherche temporisée/annulable, imports en onglets et dialogues accessibles au clavier.",
+              "React, TypeScript and Vite: responsive dashboard, debounced/cancellable search, tabbed imports and keyboard-accessible dialogs."
+            ],
+            [
+              "Python, FastAPI et Pydantic : API REST, DTO typés, services métier injectables et domaine indépendant du transport et de la persistance. L’API et le worker partagent les mêmes services.",
+              "Python, FastAPI and Pydantic: REST API, typed DTOs, injectable business services and a domain independent of transport and persistence. API and worker share the same services."
+            ],
+            [
+              "SQLAlchemy, PostgreSQL/SQLite et Alembic : données persistées, migrations, transactions et contrôle de concurrence par révision.",
+              "SQLAlchemy, PostgreSQL/SQLite and Alembic: persisted data, migrations, transactions and revision-based concurrency control."
+            ],
+            [
+              "LangChain prépare les prompts ; LangGraph orchestre actuellement la génération dans un graphe à un nœud. Ollama exécute le LLM local optionnel (Llama 3.2 3B), avec repli déterministe.",
+              "LangChain formats prompts; LangGraph currently orchestrates generation in a single-node graph. Ollama runs the optional local LLM (Llama 3.2 3B), with a deterministic fallback."
+            ],
+            [
+              "Qdrant fournit un index optionnel de preuves filtrées ; la baseline actuelle utilise des vecteurs par hachage de tokens, pas encore des embeddings sémantiques appris. PyMuPDF assure l’extraction PDF.",
+              "Qdrant provides an optional filtered evidence index; the current baseline uses token-hash vectors rather than learned semantic embeddings. PyMuPDF handles PDF extraction."
+            ],
+            [
+              "Docker Compose et Nginx pour le packaging ; pytest/Ruff, Playwright/Chromium et GitHub Actions pour les régressions, les parcours navigateur et les builds.",
+              "Docker Compose and Nginx for packaging; pytest/Ruff, Playwright/Chromium and GitHub Actions for regressions, browser journeys and builds."
+            ]
+          ]
+        },
+        {
+          "title": [
+            "Fiabilité & validations consignées",
+            "Reliability & documented validation"
+          ],
+          "status": [
+            "Validé localement",
+            "Locally validated"
+          ],
+          "items": [
+            [
+              "Isolation des ressources privées côté serveur ; mots de passe Argon2id, sessions révocables, cookies HttpOnly, protection CSRF et contrôle d’origine.",
+              "Server-side private-resource isolation; Argon2id passwords, revocable sessions, HttpOnly cookies, CSRF protection and origin checks."
+            ],
+            [
+              "Préparation idempotente et réservation avant appel externe. Un résultat de soumission inconnu bloque le renvoi ; la réconciliation vérifie le fournisseur en GET sans soumettre de nouveau.",
+              "Idempotent preparation and reservation before external calls. An unknown submission outcome blocks resubmission; reconciliation checks the provider with GET without sending again."
+            ],
+            [
+              "Au 8 octobre 2026, le plan consigne 232 tests backend sur SQLite, 266 avec les cas PostgreSQL, 91,69 % de couverture et six parcours Chromium. Ces résultats sont ceux du dépôt, non relancés pour cette fiche.",
+              "As of 8 October 2026, the plan records 232 backend tests on SQLite, 266 with PostgreSQL cases, 91.69% coverage and six Chromium journeys. These are documented repository results, not rerun for this project page."
+            ],
+            [
+              "Migrations et persistance vérifiées localement ; intégrations externes simulées dans les parcours. Déploiement public, collecte JobSpy réelle, messagerie et ATS réels restent à valider.",
+              "Migrations and persistence verified locally; external integrations simulated in the journeys. Public deployment, live JobSpy collection, real mailboxes and real ATS providers still need validation."
+            ]
+          ]
+        },
+        {
+          "title": [
+            "Vision produit & prochaines étapes",
+            "Product vision & next steps"
+          ],
+          "status": [
+            "Planifié · à développer",
+            "Planned · to implement"
+          ],
+          "items": [
+            [
+              "Bibliothèque documentaire privée : conserver et versionner les sources, étendre le RAG aux documents/offres et choisir des embeddings FR/EN évalués pour la recherche et le matching sémantique.",
+              "Private document library: retain and version sources, extend RAG to documents/jobs and select evaluated FR/EN embeddings for retrieval and semantic matching."
+            ],
+            [
+              "Chatbot sourcé : comparer des offres, expliquer un score, discuter du profil et proposer des modifications de documents via les mêmes services métier. Conversations privées, outils typés, streaming et citations.",
+              "Source-grounded chatbot: compare jobs, explain scores, discuss the profile and propose document edits through the same business services. Private conversations, typed tools, streaming and citations."
+            ],
+            [
+              "CV et lettres HTML → PDF : templates, aperçu, édition et versions téléchargeables ; relier les fichiers exacts à l’approbation et à la candidature.",
+              "HTML → PDF CVs and letters: templates, preview, editing and downloadable versions; link the exact files to approval and the application."
+            ],
+            [
+              "Workflow LangGraph complet : retrieval → génération → vérification → rendu → revue → soumission, avec checkpoints, tâches durables, reprises et erreurs visibles. Automatisation activable selon les règles du candidat.",
+              "Complete LangGraph workflow: retrieval → generation → verification → rendering → review → submission, with checkpoints, durable tasks, recovery and visible errors. Opt-in automation governed by candidate rules."
+            ],
+            [
+              "Connecteurs personnels JobSpy/messagerie et premier ATS réel ; enrichissement et provenance des offres. Première livraison via un pilote Docker/PostgreSQL avec HTTPS, sauvegarde/restauration et supervision.",
+              "Personal JobSpy/mailbox connections and a first real ATS adapter; richer job data and provenance. First release through a Docker/PostgreSQL pilot with HTTPS, backup/restore and monitoring."
+            ]
+          ]
+        }
+      ],
+      "links": [
+        {
+          "label": [
+            "README · fonctionnalités",
+            "README · functionality"
+          ],
+          "href": "https://github.com/omdrift/cv-matcher/blob/feature/production-onboarding/README.md"
+        },
+        {
+          "label": [
+            "Plan produit complet",
+            "Full product plan"
+          ],
+          "href": "https://github.com/omdrift/cv-matcher/blob/feature/production-onboarding/docs/PLAN_PROJET.md"
+        },
+        {
+          "label": [
+            "Architecture backend",
+            "Backend architecture"
+          ],
+          "href": "https://github.com/omdrift/cv-matcher/blob/feature/production-onboarding/backend/README.md"
+        },
+        {
+          "label": [
+            "Plan du premier déploiement",
+            "First deployment plan"
+          ],
+          "href": "https://github.com/omdrift/cv-matcher/blob/feature/production-onboarding/docs/PLAN_PREMIER_DEPLOIEMENT.md"
+        }
+      ],
+      "vision": [
+        "Vision produit · planifiée : chatbot sourcé, bibliothèque documentaire, CV/lettres HTML-PDF et workflow LangGraph complet.",
+        "Product vision · planned: source-grounded chatbot, document library, HTML/PDF CVs and letters, and a complete LangGraph workflow."
+      ]
     },
     {
       "id": "process",

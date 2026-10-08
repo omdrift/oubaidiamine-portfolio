@@ -94,3 +94,20 @@ body.study-open{overflow:hidden}
 .annex-links a>span{flex-shrink:0;font-size:18px;color:var(--violet)}
 @media(max-width:850px){.study-dialog{width:calc(100% - 32px);max-height:94dvh}.study-shell{padding:24px}.study-layout{grid-template-columns:1fr;gap:22px}.study-step-nav{flex-direction:row;overflow-x:auto;position:static;padding:0 0 10px;scrollbar-width:thin}.study-step-nav button{flex:0 0 auto;max-width:190px;padding:10px 12px}.study-header{gap:18px}.study-step h3{scroll-margin-top:20px}.study-stats{margin-bottom:22px}}
 @media(max-width:580px){.study-dialog{width:calc(100% - 16px);border-radius:16px}.study-shell{padding:20px 16px}.study-header{gap:12px}.study-header h2{font-size:25px}.study-header p:not(.kicker){font-size:14px}.study-close{width:36px;height:36px}.study-stats{gap:8px}.study-stats>div{padding:11px 10px}.study-stats dd{font-size:17px}.study-stats dt{font-size:11px}.study-step h3{font-size:22px}.study-media-grid{gap:18px 10px}.study-media-frame{padding:5px;border-radius:9px}.study-media-grid.sequence-media{grid-template-columns:repeat(3,minmax(0,1fr));gap:15px 7px}.study-figure figcaption{font-size:12px}.method-blocks{grid-template-columns:repeat(2,minmax(0,1fr))}.study-paging .button{padding:10px;font-size:12px}.study-paging{gap:8px}.annex-links{grid-template-columns:1fr}.timeline-item .preview-frame{height:190px}.preview-frame{height:170px}}
+
+/* CareerPilot: project highlights, technical sections and delivery status. */
+.project-highlights{list-style:none;padding:0;margin:0 0 20px;display:grid;gap:8px}
+.project-highlights li{border-left:2px solid var(--accent);padding:3px 0 3px 11px;font-size:13px;line-height:1.6;color:var(--text)}
+.project-sections{display:grid;gap:12px;margin-top:20px}
+.project-card .project-section{margin:0;padding:14px;border:1px solid var(--border);border-radius:10px;background:var(--bg)}
+.project-card .project-section summary{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:8px;line-height:1.5;font-size:13px}
+.project-card .project-section summary:after{display:none}
+.project-section summary>span:first-child{flex:1 1 140px;font-weight:600}
+.project-status{font:10px/1.6 var(--mono);padding:3px 7px;border:1px solid var(--border);border-radius:5px;color:var(--blue);overflow-wrap:anywhere}
+.project-section:last-child .project-status{color:var(--violet)}
+.project-section ul{padding-left:17px;margin:16px 0 0;display:grid;gap:13px;color:var(--muted);font-size:13px;line-height:1.8}
+.project-section li{padding-left:3px;overflow-wrap:anywhere}
+.project-source-links{display:flex;flex-direction:column;gap:9px;border-top:1px solid var(--border);margin-top:20px;padding-top:16px;font-size:12px;line-height:1.6;color:var(--blue)}
+.project-source-links a:hover{text-decoration:underline}
+
+.project-card .project-vision{font-size:13px;line-height:1.7;margin:0 0 20px;padding:12px 14px;border:1px dashed var(--border);border-radius:9px;color:var(--violet);background:var(--bg)}
