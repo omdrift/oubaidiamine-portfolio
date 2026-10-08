@@ -2,33 +2,33 @@ window.portfolio={
   "fr": {
     "nav": [
       "Projets",
-      "Expertise",
-      "Expérience",
+      "Compétences",
+      "Parcours",
       "Contact"
     ],
     "role": "Ingénieur IA · Data Scientist",
     "availability": "CDI / Doctorat · Île-de-France",
-    "hero": "Comprendre les données.<br><em>Apprendre les dynamiques.</em>",
-    "intro": "Je suis Amine Oubaidi, diplômé d’un Master Informatique. Mon travail relie Deep Learning, vision, multimodal et ingénierie des données — de l’expérimentation aux outils métier.",
+    "hero": "Deep Learning.<br>Ingénierie IA.<br><em>Applications concrètes.</em>",
+    "intro": "Amine Oubaidi — diplômé d’un Master Informatique, parcours Ingénierie des Données. J’associe modélisation, expérimentation et développement logiciel pour traiter des problèmes de vision, de séquences et d’IA générative.",
     "explore": "Explorer les projets",
     "github": "Mon GitHub",
-    "focus": "PROJET À EXPLORER",
-    "focusTitle": "Modéliser les panaches industriels",
-    "focusBody": "Données, matting, VQGAN et dynamique temporelle : les étapes et les résultats du projet.",
+    "focus": "FOCUS RECHERCHE",
+    "focusTitle": "Apprendre la dynamique d’un panache.",
+    "focusBody": "De la préparation des vidéos au modèle génératif : VQGAN, Flow Matching et génération dans l’espace latent.",
     "focusInput": "Image de contexte",
     "focusLatent": "Espace latent",
     "focusOutput": "Images futures",
     "focusLink": "Voir les étapes",
     "ribbon": [
-      "Deep Learning",
+      "PyTorch",
       "Computer Vision",
-      "Multimodal",
-      "Modélisation temporelle",
-      "MLOps"
+      "RAG & LLM",
+      "FastAPI",
+      "MLOps & AWS S3"
     ],
     "projectKicker": "LES PROJETS",
-    "projectTitle": "Une question. Un modèle.<br>Une mise en œuvre.",
-    "projectIntro": "Projets académiques, personnels et logiciels : explorez les sujets par domaine et consultez mes contributions.",
+    "projectTitle": "Les projets, dans le détail.",
+    "projectIntro": "Le problème, les données, l’approche technique et ma contribution. Les résultats visuels et documents permettent d’aller au-delà du résumé.",
     "searchLabel": "Rechercher un projet",
     "searchPlaceholder": "Projet, outil, domaine…",
     "filters": [
@@ -43,12 +43,12 @@ window.portfolio={
     "count": "projets",
     "empty": "Aucun projet ne correspond à cette recherche.",
     "reset": "Effacer les filtres",
-    "details": "Contributions & approche",
+    "details": "Explorer le projet",
     "contribution": "Ma contribution",
-    "tools": "Outils",
+    "tools": "Stack technique",
     "experienceDetails": "Réalisations & outils",
     "documents": "Documents",
-    "mediaTitle": "Résultats en images",
+    "mediaTitle": "Résultats & ressources",
     "mediaMore": "Voir les autres visuels",
     "mediaOpen": "Ouvrir le visuel",
     "mediaCount": "visuels",
@@ -59,19 +59,19 @@ window.portfolio={
     },
     "repo": "Code sur GitHub",
     "report": "Rapport sur GitHub",
-    "skillsKicker": "EXPERTISE",
-    "skillsTitle": "Du modèle au système.",
-    "skillsIntro": "L’ensemble des compétences de mon CV, avec les outils et méthodes employés dans mes projets.",
+    "skillsKicker": "COMPÉTENCES",
+    "skillsTitle": "Un socle ML.<br>Une approche ingénieur.",
+    "skillsIntro": "Des compétences organisées par usage : apprendre des représentations, exploiter les données et construire les services qui les rendent utiles.",
     "experienceKicker": "LE PARCOURS",
-    "experienceTitle": "Expérience<br>professionnelle.",
-    "experienceIntro": "Deux stages de recherche au L3i et un stage de fin d’études dans la cellule Pilotage d’Activité d’Enedis.",
+    "experienceTitle": "Recherche & industrie.",
+    "experienceIntro": "Du laboratoire L3i aux outils métier chez Enedis : recherche appliquée, expérimentation et automatisation.",
     "educationTitle": "Formation",
     "certTitle": "Certifications",
     "languagesTitle": "Langues",
     "languageBody": "Français bilingue · Anglais C1",
     "contactKicker": "LA SUITE",
-    "contactTitle": "Une équipe à rejoindre.<br>Une question à explorer.",
-    "contactBody": "Je recherche un CDI junior en Data Science, ML Engineering ou Computer Vision, ou un doctorat en Deep Learning en Île-de-France.",
+    "contactTitle": "Construire une IA utile.<br>Avec la bonne équipe.",
+    "contactBody": "Disponible pour un CDI junior en Data Science, ML Engineering ou Computer Vision, ou un doctorat en Deep Learning, en Île-de-France.",
     "emailButton": "Écrivez-moi",
     "backTop": "Retour en haut",
     "switchTheme": "Changer le thème",
@@ -129,46 +129,59 @@ window.portfolio={
       "Analyse des erreurs",
       "Documentation des limites"
     ],
-    "studyOpen": "Voir les étapes",
+    "studyOpen": "Données, méthodes & médias",
     "studyClose": "Fermer",
     "studyPrevious": "Précédente",
     "studyNext": "Suivante",
-    "studyAnnex": "Algorithmes & annexes",
+    "studyAnnex": "Code & ressources",
     "studyStep": "Étape",
     "studyZoom": "Ouvrir le visuel",
     "focusReal": "Frame source",
-    "focusReconstruction": "Reconstruction VQGAN"
+    "focusReconstruction": "Reconstruction VQGAN",
+    "skillsEvidence": "Voir en contexte",
+    "projectOverview": "Le problème",
+    "projectApproach": "Mon approche",
+    "projectClose": "Fermer le projet",
+    "deployment": "Déploiement bientôt",
+    "filterReset": "Tout afficher",
+    "heroEyebrow": "AMINE OUBAIDI / IA & DATA",
+    "projectMore": "Approche, architecture & ressources",
+    "heroFacts": [
+      "Master Informatique",
+      "Recherche & industrie",
+      "Île-de-France"
+    ]
   },
   "en": {
     "nav": [
       "Projects",
-      "Expertise",
+      "Skills",
       "Experience",
       "Contact"
     ],
     "role": "AI Engineer · Data Scientist",
     "availability": "Full-time / PhD · Île-de-France",
-    "hero": "Understand the data.<br><em>Learn the dynamics.</em>",
-    "intro": "I’m Amine Oubaidi, a Computer Science Master’s graduate. My work connects Deep Learning, vision, multimodal learning and data engineering — from experiments to practical tools.",
+    "hero": "Deep Learning.<br>AI Engineering.<br><em>Practical applications.</em>",
+    "intro": "Amine Oubaidi — MSc Computer Science graduate, specialising in Data Engineering. I combine modelling, experimentation and software development to solve computer vision, sequence and generative AI problems.",
     "explore": "Explore projects",
     "github": "My GitHub",
-    "focus": "PROJECT TO EXPLORE",
-    "focusTitle": "Modelling industrial smoke plumes",
-    "focusBody": "Data, matting, VQGAN and temporal dynamics: the project’s steps and results.",
+    "focus": "RESEARCH FOCUS",
+    "focusTitle": "Learning a plume’s dynamics.",
+    "focusBody": "From video preparation to a generative model: VQGAN, Flow Matching and generation in latent space.",
     "focusInput": "Context image",
     "focusLatent": "Latent space",
     "focusOutput": "Future images",
     "focusLink": "View the steps",
     "ribbon": [
-      "Deep Learning",
+      "PyTorch",
       "Computer Vision",
-      "Multimodal",
-      "Temporal modelling",
-      "MLOps"
+      "RAG & LLM",
+      "FastAPI",
+      "MLOps & AWS S3"
     ],
     "projectKicker": "THE PROJECTS",
-    "projectTitle": "A question. A model.<br>An implementation.",
-    "projectIntro": "Academic, personal and software projects: explore by domain and read about my contributions.",
+    "projectTitle": "A closer look at the work.",
+    "projectIntro": "The problem, the data, the technical approach and my contribution. Visual results and supporting documents go beyond the overview.",
     "searchLabel": "Search projects",
     "searchPlaceholder": "Project, tool, topic…",
     "filters": [
@@ -183,12 +196,12 @@ window.portfolio={
     "count": "projects",
     "empty": "No projects match this search.",
     "reset": "Clear filters",
-    "details": "Contributions & approach",
+    "details": "Explore the project",
     "contribution": "My contribution",
-    "tools": "Tools",
+    "tools": "Technical stack",
     "experienceDetails": "Achievements & tools",
     "documents": "Documents",
-    "mediaTitle": "Results in images",
+    "mediaTitle": "Results & resources",
     "mediaMore": "View more images",
     "mediaOpen": "Open image",
     "mediaCount": "images",
@@ -199,19 +212,19 @@ window.portfolio={
     },
     "repo": "Code on GitHub",
     "report": "Report on GitHub",
-    "skillsKicker": "EXPERTISE",
-    "skillsTitle": "From model to system.",
-    "skillsIntro": "The complete skills from my CV, including the tools and methods used across my projects.",
+    "skillsKicker": "SKILLS",
+    "skillsTitle": "ML foundations.<br>An engineering approach.",
+    "skillsIntro": "Skills organised around their purpose: learning representations, working with data and building services that make them useful.",
     "experienceKicker": "CAREER",
-    "experienceTitle": "Professional<br>experience.",
-    "experienceIntro": "Two research internships at L3i and a final-year internship with Enedis’s Activity Management team.",
+    "experienceTitle": "Research & industry.",
+    "experienceIntro": "From L3i research to business tools at Enedis: applied research, experimentation and automation.",
     "educationTitle": "Education",
     "certTitle": "Certifications",
     "languagesTitle": "Languages",
     "languageBody": "Bilingual French · C1 English",
     "contactKicker": "WHAT’S NEXT",
-    "contactTitle": "A team to join.<br>A question to explore.",
-    "contactBody": "I’m seeking a junior full-time role in Data Science, ML Engineering or Computer Vision, or a Deep Learning PhD in Île-de-France.",
+    "contactTitle": "Build useful AI.<br>With the right team.",
+    "contactBody": "Available for a junior full-time role in Data Science, ML Engineering or Computer Vision, or a Deep Learning PhD, in Île-de-France.",
     "emailButton": "Get in touch",
     "backTop": "Back to top",
     "switchTheme": "Toggle theme",
@@ -269,15 +282,28 @@ window.portfolio={
       "Error analysis",
       "Documenting limitations"
     ],
-    "studyOpen": "View the steps",
+    "studyOpen": "Data, methods & media",
     "studyClose": "Close",
     "studyPrevious": "Previous",
     "studyNext": "Next",
-    "studyAnnex": "Algorithms & appendices",
+    "studyAnnex": "Code & resources",
     "studyStep": "Step",
     "studyZoom": "Open image",
     "focusReal": "Source frame",
-    "focusReconstruction": "VQGAN reconstruction"
+    "focusReconstruction": "VQGAN reconstruction",
+    "skillsEvidence": "See it in context",
+    "projectOverview": "The problem",
+    "projectApproach": "My approach",
+    "projectClose": "Close project",
+    "deployment": "Deployment coming soon",
+    "filterReset": "Show all",
+    "heroEyebrow": "AMINE OUBAIDI / AI & DATA",
+    "projectMore": "Approach, architecture & resources",
+    "heroFacts": [
+      "MSc Computer Science",
+      "Research & industry",
+      "Île-de-France"
+    ]
   },
   "projects": [
     {
@@ -316,7 +342,76 @@ window.portfolio={
         "Weights & Biases",
         "PSNR / SSIM / FVD"
       ],
-      "repo": "https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching"
+      "repo": "https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching",
+      "problem": [
+        "Comment représenter et générer l’évolution d’un panache industriel à partir de vidéos, en séparant la fumée du décor ?",
+        "How can industrial plume evolution be represented and generated from video while separating smoke from the scene?"
+      ],
+      "sections": [
+        {
+          "title": [
+            "Méthode & expérimentation",
+            "Method & experimentation"
+          ],
+          "items": [
+            [
+              "Données — Sélection de clips annotés de fumée industrielle issus de Project RISE. Les vidéos servent à préparer des séquences et des ensembles d’entraînement, de validation et de test.",
+              "Data — Selected annotated industrial smoke clips from Project RISE. Videos are used to prepare sequences and training, validation and test sets."
+            ],
+            [
+              "Isoler la fumée — Extraction des frames, estimation du fond puis matting : l’objectif est de séparer le panache du décor fixe avant l’apprentissage.",
+              "Isolating smoke — Frame extraction, background estimation and matting separate the plume from the static scene before training."
+            ],
+            [
+              "Encoder avec VQGAN — Le modèle compresse les images en latents puis apprend à les reconstruire. L’exemple montre ce que la représentation conserve et les détails qui se perdent.",
+              "Encoding with VQGAN — The model compresses images into latents and learns to reconstruct them. This example shows what the representation retains and which details are lost."
+            ],
+            [
+              "Apprendre la dynamique — À l’entraînement, une frame cible, sa référence précédente et un contexte antérieur sont échantillonnés dans la séquence. Flow Matching apprend le champ de vitesses dans l’espace latent ; une ODE permet ensuite de générer les latents futurs.",
+              "Learning the dynamics — Training samples a target frame, its preceding reference and an earlier context from a sequence. Flow Matching learns a velocity field in latent space; an ODE then generates future latents."
+            ],
+            [
+              "Comparer les sorties — Les latents sont décodés en images puis comparés aux frames réelles. Ici, les panaches restent reconnaissables, avec des écarts de forme et de texture : l’inspection visuelle complète PSNR, SSIM et FVD.",
+              "Comparing outputs — Latents are decoded into images and compared with real frames. Plumes remain recognisable here, with differences in shape and texture: visual inspection complements PSNR, SSIM and FVD."
+            ]
+          ]
+        },
+        {
+          "title": [
+            "Livrable & lecture du résultat",
+            "Deliverable & interpreting the result"
+          ],
+          "items": [
+            [
+              "Comparaison des reconstructions et générations aux frames réelles. PSNR, SSIM et FVD complétés par l’inspection des écarts de forme et de texture.",
+              "Compare reconstructions and generations with real frames. PSNR, SSIM and FVD complemented by inspection of shape and texture differences."
+            ]
+          ]
+        }
+      ],
+      "facts": [
+        {
+          "value": "Project RISE",
+          "label": [
+            "Corpus source",
+            "Source corpus"
+          ]
+        },
+        {
+          "value": "64 × 64",
+          "label": [
+            "Images du modèle",
+            "Model images"
+          ]
+        },
+        {
+          "value": "8 × 8 × 256",
+          "label": [
+            "Représentation latente",
+            "Latent representation"
+          ]
+        }
+      ]
     },
     {
       "id": "cv-matcher",
@@ -329,217 +424,125 @@ window.portfolio={
       ],
       "year": "2026",
       "context": [
-        "Projet personnel · Assistant IA en développement",
-        "Personal project · AI assistant in development"
+        "Projet personnel · AI Engineering",
+        "Personal project · AI Engineering"
       ],
       "title": [
         "CareerPilot · CV Matcher",
         "CareerPilot · CV Matcher"
       ],
       "summary": [
-        "Un assistant IA pour centraliser la recherche d’emploi : collecte d’offres, matching expliqué, RAG, CV/lettres personnalisés et suivi des candidatures.",
-        "An AI assistant that brings job collection, explainable matching, RAG, tailored CV/letter drafts and application tracking into one workflow."
+        "Un copilote de candidature conçu pour réunir recherche d’offres, matching, chatbot sourcé, documents personnalisés et suivi dans un espace privé.",
+        "An application copilot designed to unite job discovery, matching, a source-grounded chatbot, tailored documents and tracking in one private workspace."
       ],
       "contribution": [
-        "Conception et développement d’une application React/TypeScript et d’un backend FastAPI en couches : contrats Pydantic, domaine, services, repositories et intégrations. Construction du parcours profil → offres → preuves → documents versionnés → validation → candidature → réponses, avec comptes et données privées.",
-        "Design and development of a React/TypeScript application and a layered FastAPI backend: Pydantic contracts, domain, services, repositories and integrations. Building the profile → jobs → evidence → versioned documents → review → application → responses workflow, with accounts and private data."
+        "Conception du produit et de son architecture full-stack : React/TypeScript, API FastAPI, services métier, domaine, repositories et intégrations. Le parcours relie profil, offres, preuves, documents versionnés, validation et suivi.",
+        "Product and full-stack architecture design: React/TypeScript, FastAPI API, business services, domain, repositories and integrations. The workflow connects profile, jobs, evidence, versioned documents, review and tracking."
       ],
       "detail": [
-        "Le socle fonctionnel comprend la collecte observable, un matching lexical, un RAG de profil, la génération locale optionnelle avec Ollama, la gestion des versions et des tentatives de soumission. Le plan produit étend ce socle à une bibliothèque documentaire, un chatbot sourcé, l’édition HTML/PDF et une orchestration durable.",
-        "The functional foundation includes observable collection, lexical matching, profile RAG, optional local generation with Ollama, document versions and submission-attempt handling. The product plan extends it with a document library, a source-grounded chatbot, HTML/PDF editing and durable orchestration."
+        "L’objectif du produit est de combiner une recherche explicable, des documents adaptés au parcours réel du candidat et un suivi traçable. La validation utilisateur et l’isolation des données structurent l’ensemble du parcours.",
+        "The product aims to combine explainable discovery, documents tailored to the candidate’s actual background and traceable tracking. User review and data isolation shape the entire workflow."
       ],
       "stack": [
         "Python",
-        "React · TypeScript",
-        "FastAPI · Pydantic",
-        "LangChain · LangGraph",
-        "Ollama · Llama 3.2",
-        "Qdrant · RAG",
-        "PostgreSQL · SQLAlchemy",
-        "Alembic",
-        "JobSpy · Adzuna",
+        "React / TypeScript",
+        "FastAPI / Pydantic",
+        "LangChain / LangGraph",
+        "Ollama",
+        "Qdrant / RAG",
+        "PostgreSQL / SQLAlchemy",
         "Docker Compose",
-        "pytest · Playwright",
-        "GitHub Actions"
-      ],
-      "repo": "https://github.com/omdrift/cv-matcher/tree/feature/production-onboarding",
-      "highlights": [
-        [
-          "Collecte multi-source & matching expliqué",
-          "Multi-source collection & explainable matching"
-        ],
-        [
-          "RAG de profil & génération locale",
-          "Profile RAG & local generation"
-        ],
-        [
-          "Comptes privés, versions & suivi",
-          "Private accounts, versions & tracking"
-        ]
+        "pytest / Playwright"
       ],
       "sections": [
         {
           "title": [
-            "Fonctionnalités développées",
-            "Implemented functionality"
-          ],
-          "status": [
-            "Implémenté",
-            "Implemented"
+            "Recherche d’offres & matching",
+            "Job discovery & matching"
           ],
           "items": [
             [
-              "Comptes email/mot de passe, profil éditable, extraction de CV PDF avec revue et onboarding guidé depuis un compte vide.",
-              "Email/password accounts, editable profile, reviewed PDF CV extraction and guided onboarding from an empty account."
+              "Collecte multi-source avec JobSpy, Adzuna et imports directs ; recherche par métier et localisation, filtres, favoris et provenance des offres.",
+              "Multi-source collection through JobSpy, Adzuna and direct imports; role/location search, filters, saved jobs and source provenance."
             ],
             [
-              "Imports CSV/manuels, Adzuna et JobSpy en modes export/live explicites ; diagnostics par source, résultats partiels et historique privé des collectes. Le live reste expérimental.",
-              "CSV/manual imports, Adzuna and explicit JobSpy export/live modes; per-source diagnostics, partial results and private collection history. Live collection remains experimental."
-            ],
-            [
-              "Classement lexical explicable, compétences communes, filtres et favoris. RAG sur les preuves approuvées du profil, avec citations et isolation par compte, document et révision.",
-              "Explainable lexical ranking, shared skills, filters and saved jobs. RAG over approved profile evidence, with citations and account/document/revision isolation."
-            ],
-            [
-              "Brouillons de CV et lettres ciblés, versions persistées et téléchargement texte. Préparation, relecture et approbation de la version exacte associée à une candidature.",
-              "Tailored CV and cover-letter drafts, persisted versions and text downloads. Preparation, review and approval of the exact document version attached to an application."
-            ],
-            [
-              "Suivi manuel ou endpoint API générique ; historique des tentatives et vérification des résultats incertains. Réponses manuelles/IMAP en lecture seule, classification par règles, corrections et évolution des statuts.",
-              "Manual tracking or a generic API endpoint; attempt history and verification of uncertain outcomes. Manual/read-only IMAP responses, rule-based classification, corrections and status updates."
+              "Un classement expliqué : compétences communes, écarts avec le profil et critères de pertinence, pour aider le candidat à choisir les offres à approfondir.",
+              "Explainable ranking: shared skills, profile gaps and relevance criteria that help candidates choose which jobs to explore."
             ]
           ]
         },
         {
           "title": [
-            "Architecture & rôle des technologies",
-            "Architecture & technology roles"
-          ],
-          "status": [
-            "Socle développé",
-            "Implemented foundation"
+            "Chatbot, RAG & documents du candidat",
+            "Chatbot, RAG & candidate documents"
           ],
           "items": [
             [
-              "React, TypeScript et Vite : dashboard responsive, recherche temporisée/annulable, imports en onglets et dialogues accessibles au clavier.",
-              "React, TypeScript and Vite: responsive dashboard, debounced/cancellable search, tabbed imports and keyboard-accessible dialogs."
+              "Un espace conversationnel pour comparer des offres, comprendre leur adéquation au profil et préparer une candidature à partir des documents autorisés.",
+              "A conversational workspace for comparing offers, understanding profile fit and preparing applications from authorised documents."
             ],
             [
-              "Python, FastAPI et Pydantic : API REST, DTO typés, services métier injectables et domaine indépendant du transport et de la persistance. L’API et le worker partagent les mêmes services.",
-              "Python, FastAPI and Pydantic: REST API, typed DTOs, injectable business services and a domain independent of transport and persistence. API and worker share the same services."
-            ],
-            [
-              "SQLAlchemy, PostgreSQL/SQLite et Alembic : données persistées, migrations, transactions et contrôle de concurrence par révision.",
-              "SQLAlchemy, PostgreSQL/SQLite and Alembic: persisted data, migrations, transactions and revision-based concurrency control."
-            ],
-            [
-              "LangChain prépare les prompts ; LangGraph orchestre actuellement la génération dans un graphe à un nœud. Ollama exécute le LLM local optionnel (Llama 3.2 3B), avec repli déterministe.",
-              "LangChain formats prompts; LangGraph currently orchestrates generation in a single-node graph. Ollama runs the optional local LLM (Llama 3.2 3B), with a deterministic fallback."
-            ],
-            [
-              "Qdrant fournit un index optionnel de preuves filtrées ; la baseline actuelle utilise des vecteurs par hachage de tokens, pas encore des embeddings sémantiques appris. PyMuPDF assure l’extraction PDF.",
-              "Qdrant provides an optional filtered evidence index; the current baseline uses token-hash vectors rather than learned semantic embeddings. PyMuPDF handles PDF extraction."
-            ],
-            [
-              "Docker Compose et Nginx pour le packaging ; pytest/Ruff, Playwright/Chromium et GitHub Actions pour les régressions, les parcours navigateur et les builds.",
-              "Docker Compose and Nginx for packaging; pytest/Ruff, Playwright/Chromium and GitHub Actions for regressions, browser journeys and builds."
+              "Bibliothèque documentaire privée, extraction, chunks et recherche vectorielle ; citations vers les passages utilisés. Les outils de consultation et d’action passent par les mêmes services métier que le dashboard.",
+              "Private document library, extraction, chunks and vector retrieval; citations to the source passages. Read/action tools use the same business services as the dashboard."
             ]
           ]
         },
         {
           "title": [
-            "Fiabilité & validations consignées",
-            "Reliability & documented validation"
-          ],
-          "status": [
-            "Validé localement",
-            "Locally validated"
+            "CV & lettres personnalisés",
+            "Tailored CVs & cover letters"
           ],
           "items": [
             [
-              "Isolation des ressources privées côté serveur ; mots de passe Argon2id, sessions révocables, cookies HttpOnly, protection CSRF et contrôle d’origine.",
-              "Server-side private-resource isolation; Argon2id passwords, revocable sessions, HttpOnly cookies, CSRF protection and origin checks."
+              "Contenu adapté à l’offre et fondé sur le parcours du candidat : génération, correction, aperçu HTML et rendu PDF à partir de templates.",
+              "Content tailored to the offer and grounded in the candidate’s background: generation, editing, HTML preview and template-based PDF rendering."
             ],
             [
-              "Préparation idempotente et réservation avant appel externe. Un résultat de soumission inconnu bloque le renvoi ; la réconciliation vérifie le fournisseur en GET sans soumettre de nouveau.",
-              "Idempotent preparation and reservation before external calls. An unknown submission outcome blocks resubmission; reconciliation checks the provider with GET without sending again."
-            ],
-            [
-              "Au 8 octobre 2026, le plan consigne 232 tests backend sur SQLite, 266 avec les cas PostgreSQL, 91,69 % de couverture et six parcours Chromium. Ces résultats sont ceux du dépôt, non relancés pour cette fiche.",
-              "As of 8 October 2026, the plan records 232 backend tests on SQLite, 266 with PostgreSQL cases, 91.69% coverage and six Chromium journeys. These are documented repository results, not rerun for this project page."
-            ],
-            [
-              "Migrations et persistance vérifiées localement ; intégrations externes simulées dans les parcours. Déploiement public, collecte JobSpy réelle, messagerie et ATS réels restent à valider.",
-              "Migrations and persistence verified locally; external integrations simulated in the journeys. Public deployment, live JobSpy collection, real mailboxes and real ATS providers still need validation."
+              "Versions identifiables des documents, historique et téléchargement ; l’approbation porte sur les artefacts exacts associés à la candidature.",
+              "Identifiable document versions, history and downloads; approval refers to the exact artefacts attached to the application."
             ]
           ]
         },
         {
           "title": [
-            "Vision produit & prochaines étapes",
-            "Product vision & next steps"
-          ],
-          "status": [
-            "Planifié · à développer",
-            "Planned · to implement"
+            "Candidatures, réponses & automatisation",
+            "Applications, responses & automation"
           ],
           "items": [
             [
-              "Bibliothèque documentaire privée : conserver et versionner les sources, étendre le RAG aux documents/offres et choisir des embeddings FR/EN évalués pour la recherche et le matching sémantique.",
-              "Private document library: retain and version sources, extend RAG to documents/jobs and select evaluated FR/EN embeddings for retrieval and semantic matching."
+              "Un parcours de candidature avec validation, modes de remise explicites, historique des tentatives et gestion des résultats incertains.",
+              "An application workflow with review, explicit delivery modes, attempt history and uncertain-outcome handling."
             ],
             [
-              "Chatbot sourcé : comparer des offres, expliquer un score, discuter du profil et proposer des modifications de documents via les mêmes services métier. Conversations privées, outils typés, streaming et citations.",
-              "Source-grounded chatbot: compare jobs, explain scores, discuss the profile and propose document edits through the same business services. Private conversations, typed tools, streaming and citations."
+              "Association des réponses aux candidatures, classification, correction manuelle et suivi des entretiens. Orchestration LangGraph, tâches persistées et règles d’automatisation définies par le candidat.",
+              "Response-to-application linking, classification, manual correction and interview tracking. LangGraph orchestration, persisted tasks and candidate-defined automation rules."
+            ]
+          ]
+        },
+        {
+          "title": [
+            "Architecture & stratégie de déploiement",
+            "Architecture & deployment strategy"
+          ],
+          "items": [
+            [
+              "React/TypeScript pour l’interface ; FastAPI/Pydantic pour les contrats REST ; SQLAlchemy, PostgreSQL et Alembic pour la persistance. LangChain/LangGraph, Qdrant et Ollama structurent la couche IA.",
+              "React/TypeScript for the interface; FastAPI/Pydantic for REST contracts; SQLAlchemy, PostgreSQL and Alembic for persistence. LangChain/LangGraph, Qdrant and Ollama form the AI layer."
             ],
             [
-              "CV et lettres HTML → PDF : templates, aperçu, édition et versions téléchargeables ; relier les fichiers exacts à l’approbation et à la candidature.",
-              "HTML → PDF CVs and letters: templates, preview, editing and downloadable versions; link the exact files to approval and the application."
-            ],
-            [
-              "Workflow LangGraph complet : retrieval → génération → vérification → rendu → revue → soumission, avec checkpoints, tâches durables, reprises et erreurs visibles. Automatisation activable selon les règles du candidat.",
-              "Complete LangGraph workflow: retrieval → generation → verification → rendering → review → submission, with checkpoints, durable tasks, recovery and visible errors. Opt-in automation governed by candidate rules."
-            ],
-            [
-              "Connecteurs personnels JobSpy/messagerie et premier ATS réel ; enrichissement et provenance des offres. Première livraison via un pilote Docker/PostgreSQL avec HTTPS, sauvegarde/restauration et supervision.",
-              "Personal JobSpy/mailbox connections and a first real ATS adapter; richer job data and provenance. First release through a Docker/PostgreSQL pilot with HTTPS, backup/restore and monitoring."
+              "Déploiement bientôt : pilote conteneurisé avec Docker Compose, frontend Nginx et API sous HTTPS, PostgreSQL persistant, sauvegardes externalisées et vérifications après publication. Services IA privés et capacité LLM ajustée aux ressources de l’hôte.",
+              "Deployment coming soon: Docker Compose pilot, Nginx frontend and API behind HTTPS, persistent PostgreSQL, external backups and post-release checks. Private AI services and LLM capacity matched to host resources."
             ]
           ]
         }
       ],
-      "links": [
-        {
-          "label": [
-            "README · fonctionnalités",
-            "README · functionality"
-          ],
-          "href": "https://github.com/omdrift/cv-matcher/blob/feature/production-onboarding/README.md"
-        },
-        {
-          "label": [
-            "Plan produit complet",
-            "Full product plan"
-          ],
-          "href": "https://github.com/omdrift/cv-matcher/blob/feature/production-onboarding/docs/PLAN_PROJET.md"
-        },
-        {
-          "label": [
-            "Architecture backend",
-            "Backend architecture"
-          ],
-          "href": "https://github.com/omdrift/cv-matcher/blob/feature/production-onboarding/backend/README.md"
-        },
-        {
-          "label": [
-            "Plan du premier déploiement",
-            "First deployment plan"
-          ],
-          "href": "https://github.com/omdrift/cv-matcher/blob/feature/production-onboarding/docs/PLAN_PREMIER_DEPLOIEMENT.md"
-        }
+      "problem": [
+        "Concevoir un parcours cohérent de recherche d’emploi, depuis les documents du candidat jusqu’aux réponses des recruteurs, avec les mêmes données et règles métier dans chaque écran.",
+        "Design a coherent job-search workflow, from candidate documents to recruiter responses, with shared data and business rules across every interface."
       ],
-      "vision": [
-        "Vision produit · planifiée : chatbot sourcé, bibliothèque documentaire, CV/lettres HTML-PDF et workflow LangGraph complet.",
-        "Product vision · planned: source-grounded chatbot, document library, HTML/PDF CVs and letters, and a complete LangGraph workflow."
+      "deployment": [
+        "Déploiement bientôt",
+        "Deployment coming soon"
       ]
     },
     {
@@ -603,6 +606,71 @@ window.portfolio={
         "AdamW",
         "Focal Loss",
         "Optuna"
+      ],
+      "problem": [
+        "Anticiper la prochaine interaction d’un étudiant sur Moodle à partir de son historique d’événements, malgré un fort déséquilibre entre classes.",
+        "Predict a student’s next Moodle interaction from their event history despite strong class imbalance."
+      ],
+      "sections": [
+        {
+          "title": [
+            "Méthode & expérimentation",
+            "Method & experimentation"
+          ],
+          "items": [
+            [
+              "Comprendre les logs — Le CSV contient UserID, Timestamp et StudentEvent. L’exploration montre une forte concentration des interactions sur quelques événements, dont la consultation des cours.",
+              "Understanding the logs — The CSV contains UserID, Timestamp and StudentEvent. Exploration shows that interactions concentrate on a few events, including course views."
+            ],
+            [
+              "Construire les séquences — Tri par utilisateur et horodatage, puis encodage des événements. On crée des paires historique / prochain événement et on masque le padding pour préserver le contexte utile.",
+              "Building sequences — Sort by user and timestamp, then encode events. History / next-event pairs are created, with padding masked to retain useful context."
+            ],
+            [
+              "Adapter BERT — BertForSequenceClassification reçoit la séquence et son masque d’attention. Une tête de classification prédit une probabilité pour chacun des 38 événements possibles.",
+              "Adapting BERT — BertForSequenceClassification receives the sequence and its attention mask. A classification head predicts a probability for each of the 38 possible events."
+            ],
+            [
+              "Entraîner & évaluer — Fine-tuning avec AdamW, régularisation et Focal Loss pour les classes déséquilibrées ; réglage avec Optuna. Les pertes et les métriques par classe montrent aussi les difficultés sur les événements rares.",
+              "Training & evaluation — Fine-tuning with AdamW, regularisation and Focal Loss for class imbalance, with Optuna tuning. Losses and per-class metrics also reveal difficulties with rare events."
+            ]
+          ]
+        },
+        {
+          "title": [
+            "Livrable & lecture du résultat",
+            "Deliverable & interpreting the result"
+          ],
+          "items": [
+            [
+              "Modèle de classification du prochain événement ; analyse des courbes et des métriques par classe, notamment sur les événements rares.",
+              "Next-event classification model; learning-curve and per-class metric analysis, particularly for rare events."
+            ]
+          ]
+        }
+      ],
+      "facts": [
+        {
+          "value": "30 688",
+          "label": [
+            "Événements",
+            "Events"
+          ]
+        },
+        {
+          "value": "274",
+          "label": [
+            "Utilisateurs",
+            "Users"
+          ]
+        },
+        {
+          "value": "38",
+          "label": [
+            "Types d’événements",
+            "Event types"
+          ]
+        }
       ]
     },
     {
@@ -654,7 +722,80 @@ window.portfolio={
         "pytest",
         "GitHub Actions"
       ],
-      "repo": "https://github.com/omdrift/mlops_face_attribute_classification"
+      "repo": "https://github.com/omdrift/mlops_face_attribute_classification",
+      "problem": [
+        "Prédire plusieurs attributs d’un visage avec un modèle partagé, puis organiser son entraînement et son utilisation dans un pipeline reproductible.",
+        "Predict several facial attributes with a shared model, then organise training and inference in a reproducible pipeline."
+      ],
+      "sections": [
+        {
+          "title": [
+            "Méthode & expérimentation",
+            "Method & experimentation"
+          ],
+          "items": [
+            [
+              "Préparer les données — Les images alimentent cinq tâches : barbe, moustache, lunettes, longueur et couleur des cheveux. DVC suit les données et les étapes de préparation.",
+              "Preparing data — Images support five tasks: beard, moustache, glasses, hair length and hair colour. DVC tracks data and preparation stages."
+            ],
+            [
+              "Partager les features — Un backbone convolutif extrait les caractéristiques communes. Cinq têtes spécialisées produisent les prédictions binaires ou multiclasses.",
+              "Sharing features — A convolutional backbone extracts shared features. Five specialised heads produce binary or multiclass predictions."
+            ],
+            [
+              "Entraîner le modèle — Entraînement multi-tâches avec AdamW, early stopping et scheduler. Hyperopt explore les hyperparamètres ; l’évaluation reste séparée pour chaque attribut.",
+              "Training the model — Multi-task training uses AdamW, early stopping and a scheduler. Hyperopt explores hyperparameters; evaluation remains separate for each attribute."
+            ],
+            [
+              "Suivre les expériences — MLflow centralise les paramètres, les courbes et les versions des modèles pour comparer les essais.",
+              "Tracking experiments — MLflow centralises parameters, curves and model versions to compare experiments."
+            ],
+            [
+              "Orchestrer le pipeline — DVC décrit les dépendances entre préparation, recherche d’hyperparamètres, entraînement et évaluation. Airflow orchestre l’exécution et les notifications.",
+              "Orchestrating the pipeline — DVC describes dependencies between preparation, hyperparameter search, training and evaluation. Airflow orchestrates execution and notifications."
+            ],
+            [
+              "Servir les prédictions — Le service FastAPI et l’application sont conteneurisés avec Docker. L’interface donne accès aux attributs prédits et aux filtres.",
+              "Serving predictions — The FastAPI service and application are containerised with Docker. The interface exposes predicted attributes and filters."
+            ]
+          ]
+        },
+        {
+          "title": [
+            "Livrable & lecture du résultat",
+            "Deliverable & interpreting the result"
+          ],
+          "items": [
+            [
+              "Pipeline multi-tâches : préparation, entraînement, suivi, orchestration et API. Les performances sont examinées séparément pour chaque attribut.",
+              "Multi-task pipeline: preparation, training, tracking, orchestration and API. Performance is examined separately for each attribute."
+            ]
+          ]
+        }
+      ],
+      "facts": [
+        {
+          "value": "≈ 15 890",
+          "label": [
+            "Images",
+            "Images"
+          ]
+        },
+        {
+          "value": "5",
+          "label": [
+            "Attributs prédits",
+            "Predicted attributes"
+          ]
+        },
+        {
+          "value": "3 + 2",
+          "label": [
+            "Tâches binaires + multiclasses",
+            "Binary + multiclass tasks"
+          ]
+        }
+      ]
     },
     {
       "id": "rag",
@@ -694,6 +835,24 @@ window.portfolio={
         "Vector DB",
         "FastAPI",
         "AWS S3"
+      ],
+      "problem": [
+        "Rendre un corpus de documents interrogeable et exploitable par recherche, résumé et classification, avec une interface API.",
+        "Make a document corpus usable through retrieval, summarisation and classification behind an API."
+      ],
+      "sections": [
+        {
+          "title": [
+            "Livrable & lecture du résultat",
+            "Deliverable & interpreting the result"
+          ],
+          "items": [
+            [
+              "Service documentaire FastAPI : upload, classification, mise à jour de l’index et stockage AWS S3.",
+              "FastAPI document service: upload, classification, index updates and AWS S3 storage."
+            ]
+          ]
+        }
       ]
     },
     {
@@ -731,6 +890,24 @@ window.portfolio={
         "INT8",
         "Pruning",
         "Raspberry Pi"
+      ],
+      "problem": [
+        "Estimer les mouvements d’une caméra en environnement maritime en combinant information vidéo et mesures inertielles, sous contraintes de calcul embarqué.",
+        "Estimate camera motion in a maritime environment by combining video and inertial measurements under embedded compute constraints."
+      ],
+      "sections": [
+        {
+          "title": [
+            "Livrable & lecture du résultat",
+            "Deliverable & interpreting the result"
+          ],
+          "items": [
+            [
+              "Architecture légère associant Motion CNN, IMU et LSTM. Quantification INT8 et pruning pour répondre aux contraintes Raspberry Pi.",
+              "Lightweight architecture combining Motion CNN, IMU and LSTM. INT8 quantisation and pruning address Raspberry Pi constraints."
+            ]
+          ]
+        }
       ]
     },
     {
@@ -773,6 +950,24 @@ window.portfolio={
         "PyMuPDF",
         "OpenCV",
         "XML"
+      ],
+      "problem": [
+        "Interpréter des documents techniques mêlant texte, éléments visuels et annotations, puis restituer les informations dans un format structuré.",
+        "Interpret technical documents combining text, visual elements and annotations, then return structured information."
+      ],
+      "sections": [
+        {
+          "title": [
+            "Livrable & lecture du résultat",
+            "Deliverable & interpreting the result"
+          ],
+          "items": [
+            [
+              "Sorties XML structurées à partir des éléments extraits ; comparaison de modèles Qwen, Llama, Mistral et Phi dans le pipeline.",
+              "Structured XML outputs from extracted elements; experiments with Qwen, Llama, Mistral and Phi in the pipeline."
+            ]
+          ]
+        }
       ]
     },
     {
@@ -808,6 +1003,24 @@ window.portfolio={
         "JSON",
         "CSV",
         "PDF"
+      ],
+      "problem": [
+        "Passer d’annotations dispersées dans un PDF à des informations structurées et réutilisables sans perdre leur contexte.",
+        "Turn scattered PDF annotations into structured, reusable information without losing their context."
+      ],
+      "sections": [
+        {
+          "title": [
+            "Livrable & lecture du résultat",
+            "Deliverable & interpreting the result"
+          ],
+          "items": [
+            [
+              "Exports JSON/CSV conservant le type d’annotation et son contexte dans le document ; traitement multi-page.",
+              "JSON/CSV exports retaining annotation type and document context; multi-page processing."
+            ]
+          ]
+        }
       ]
     },
     {
@@ -845,6 +1058,71 @@ window.portfolio={
         "API REST",
         "PostgreSQL",
         "Docker Compose"
+      ],
+      "problem": [
+        "Gérer les prêts de matériel dans une application web avec rôles, règles métier, persistance et notifications.",
+        "Manage equipment loans in a web application with roles, business rules, persistence and notifications."
+      ],
+      "sections": [
+        {
+          "title": [
+            "Méthode & expérimentation",
+            "Method & experimentation"
+          ],
+          "items": [
+            [
+              "Séparer les couches — Les contrôleurs reçoivent les requêtes REST, les services appliquent la logique métier et les repositories gèrent la persistance.",
+              "Separating layers — Controllers receive REST requests, services apply business logic and repositories handle persistence."
+            ],
+            [
+              "Modéliser les prêts — Les prêts relient les utilisateurs et les matériels. Les modèles de matériel, départements et statuts structurent les opérations et les règles de gestion.",
+              "Modelling loans — Loans link users and equipment. Equipment models, departments and statuses structure operations and business rules."
+            ],
+            [
+              "Sécuriser les opérations — JWT porte l’authentification ; les rôles distinguent les opérations d’administration des actions des étudiants. Les services déclenchent aussi les mails de notification.",
+              "Securing operations — JWT supports authentication; roles separate administration operations from student actions. Services also trigger notification emails."
+            ],
+            [
+              "Assembler l’application — L’interface React échange avec l’API Spring Boot. Docker Compose réunit le frontend, le backend, PostgreSQL et l’outil d’administration de la base.",
+              "Assembling the application — The React interface communicates with the Spring Boot API. Docker Compose brings together the frontend, backend, PostgreSQL and database administration tool."
+            ]
+          ]
+        },
+        {
+          "title": [
+            "Livrable & lecture du résultat",
+            "Deliverable & interpreting the result"
+          ],
+          "items": [
+            [
+              "Application React/Spring Boot, persistance PostgreSQL, authentification JWT et assemblage Docker Compose.",
+              "React/Spring Boot application, PostgreSQL persistence, JWT authentication and Docker Compose packaging."
+            ]
+          ]
+        }
+      ],
+      "facts": [
+        {
+          "value": "Spring Boot",
+          "label": [
+            "API et services",
+            "API and services"
+          ]
+        },
+        {
+          "value": "PostgreSQL",
+          "label": [
+            "Persistance",
+            "Persistence"
+          ]
+        },
+        {
+          "value": "JWT",
+          "label": [
+            "Authentification",
+            "Authentication"
+          ]
+        }
       ]
     },
     {
@@ -880,6 +1158,24 @@ window.portfolio={
         "Node.js",
         "MongoDB",
         "Docker"
+      ],
+      "problem": [
+        "Rendre compréhensibles les relations et la provenance d’événements complexes au sein d’une application web.",
+        "Make the relationships and provenance of complex events understandable in a web application."
+      ],
+      "sections": [
+        {
+          "title": [
+            "Livrable & lecture du résultat",
+            "Deliverable & interpreting the result"
+          ],
+          "items": [
+            [
+              "Interface de visualisation React/TypeScript avec backend Node.js, MongoDB et conteneurisation Docker.",
+              "React/TypeScript visualisation interface with Node.js backend, MongoDB and Docker packaging."
+            ]
+          ]
+        }
       ]
     }
   ],
@@ -1146,71 +1442,83 @@ window.portfolio={
   "skills": [
     {
       "title": [
-        "Deep Learning & Machine Learning",
-        "Deep Learning & Machine Learning"
+        "Machine Learning & Deep Learning",
+        "Machine Learning & Deep Learning"
       ],
       "note": [
-        "Modèles et entraînement",
-        "Models and training"
+        "Concevoir, entraîner et évaluer des modèles ; analyser les erreurs et ajuster le protocole expérimental.",
+        "Design, train and evaluate models; analyse errors and refine the experimental protocol."
       ],
       "items": [
+        "Python",
         "PyTorch",
-        "TensorFlow / Keras",
         "Scikit-learn",
-        "Transformers",
-        "Hugging Face",
-        "CNN",
-        "LSTM / BiLSTM",
-        "Attention",
-        "Transfer learning",
+        "TensorFlow / Keras",
+        "CNN · RNN · Transformers",
         "Fine-tuning",
-        "Sequence modeling"
+        [
+          "Optimisation & régularisation",
+          "Optimisation & regularisation"
+        ]
+      ],
+      "projects": [
+        "flow",
+        "face",
+        "process"
       ]
     },
     {
       "title": [
-        "Multimodal & génératif",
-        "Multimodal & generative"
+        "Computer Vision & multimodal",
+        "Computer Vision & multimodal"
       ],
       "note": [
-        "Représentations et génération",
-        "Representations and generation"
+        "Détection, segmentation, estimation de pose et suivi ; fusion de données visuelles et temporelles.",
+        "Detection, segmentation, pose estimation and tracking; visual and temporal data fusion."
       ],
       "items": [
-        "Cross-modal retrieval",
-        "Embeddings",
-        "VLM / LLM",
-        "RAG",
-        "Prompt engineering",
-        "Few-shot learning",
-        "VAE",
-        "VQ-VAE",
-        "VQGAN",
-        "Flow Matching",
-        "Diffusion"
-      ]
-    },
-    {
-      "title": [
-        "Computer Vision",
-        "Computer Vision"
-      ],
-      "note": [
-        "Images, vidéo et documents",
-        "Images, video and documents"
-      ],
-      "items": [
-        "Keypoint R-CNN",
-        "ResNet / FPN",
-        "YOLOv8",
-        "SAM",
-        "OCR / TrOCR",
+        "CNN / R-CNN",
         "OpenCV",
-        "Optical flow / RAFT",
-        "Segmentation",
-        "Tracking",
-        "GroundingDINO",
-        "Autodistill"
+        [
+          "Détection & segmentation",
+          "Detection & segmentation"
+        ],
+        "Pose estimation & tracking",
+        "OCR",
+        "Fusion multimodale",
+        [
+          "Quantification & pruning",
+          "Quantisation & pruning"
+        ]
+      ],
+      "projects": [
+        "maritime",
+        "hackathon",
+        "face"
+      ]
+    },
+    {
+      "title": [
+        "GenAI, NLP & RAG",
+        "GenAI, NLP & RAG"
+      ],
+      "note": [
+        "Représentations, retrieval et génération conditionnée ; relier les réponses à leurs sources.",
+        "Representations, retrieval and conditional generation; connect answers to their sources."
+      ],
+      "items": [
+        "LLM / VLM",
+        "Hugging Face",
+        "Embeddings & vector search",
+        "LangChain / LangGraph",
+        "Qdrant",
+        "Prompt engineering",
+        "VQGAN / Flow Matching"
+      ],
+      "projects": [
+        "cv-matcher",
+        "rag",
+        "flow"
       ]
     },
     {
@@ -1219,112 +1527,82 @@ window.portfolio={
         "Data Science & evaluation"
       ],
       "note": [
-        "Données, métriques et optimisation",
-        "Data, metrics and optimisation"
+        "Préparer des données fiables, construire les features et choisir des métriques adaptées au problème.",
+        "Prepare reliable data, engineer features and choose metrics that fit the problem."
       ],
       "items": [
-        "Pandas",
-        "NumPy",
-        "Spark",
-        "Statistiques / Statistics",
-        "mAP",
-        "Precision / Recall / F1",
-        "PSNR / SSIM / FVD",
-        "Class imbalance",
-        "Focal Loss",
-        "Optuna",
-        "Hyperopt",
-        "PM4Py"
-      ]
-    },
-    {
-      "title": [
-        "MLOps & expérimentation",
-        "MLOps & experimentation"
-      ],
-      "note": [
-        "Reproductibilité et cycle ML",
-        "Reproducibility and ML lifecycle"
-      ],
-      "items": [
-        "DVC",
-        "MLflow",
-        "Airflow",
-        "Weights & Biases",
-        "Git / GitHub",
-        "Docker",
-        "GitHub Actions",
-        "pytest",
-        "Experiment tracking"
-      ]
-    },
-    {
-      "title": [
-        "Backend, software & données",
-        "Backend, software & data"
-      ],
-      "note": [
-        "Services, interfaces et stockage",
-        "Services, interfaces and storage"
-      ],
-      "items": [
-        "Python",
         "SQL",
-        "FastAPI",
-        "Streamlit",
-        "Java / Spring Boot",
-        "TypeScript / React",
-        "Node.js",
-        "PostgreSQL",
-        "MySQL",
-        "MongoDB",
-        "Vector DB",
-        "LangChain",
-        "LangGraph",
+        "Pandas / NumPy",
+        [
+          "Statistiques",
+          "Statistics"
+        ],
+        [
+          "Prétraitement & qualité",
+          "Preprocessing & quality"
+        ],
+        "Precision / Recall / F1 / mAP",
+        "Optuna / Hyperopt",
+        "Power BI / DAX"
+      ],
+      "projects": [
+        "process",
+        "face",
+        "pdf"
+      ]
+    },
+    {
+      "title": [
+        "MLOps, cloud & reproductibilité",
+        "MLOps, cloud & reproducibility"
+      ],
+      "note": [
+        "Versionner données et modèles, suivre les expériences et assembler des pipelines reproductibles.",
+        "Version data and models, track experiments and assemble reproducible pipelines."
+      ],
+      "items": [
+        "Docker / Docker Compose",
         "AWS S3",
+        "MLflow / Weights & Biases",
+        "DVC",
+        "Airflow",
+        "GitHub Actions / CI-CD",
+        "Git / Linux"
+      ],
+      "projects": [
+        "face",
+        "rag",
+        "flow"
+      ]
+    },
+    {
+      "title": [
+        "Software Engineering pour l’IA",
+        "Software Engineering for AI"
+      ],
+      "note": [
+        "Structurer les services, exposer les modèles par API et tester les comportements métier.",
+        "Structure services, expose models through APIs and test business behaviour."
+      ],
+      "items": [
+        "FastAPI / Pydantic",
         "API REST",
-        "PyQt5"
-      ]
-    },
-    {
-      "title": [
-        "Pilotage & automatisation",
-        "Reporting & automation"
+        "SQLAlchemy / PostgreSQL",
+        [
+          "Architecture en couches",
+          "Layered architecture"
+        ],
+        "pytest / Playwright",
+        "React / TypeScript",
+        [
+          "Automatisation Python",
+          "Python automation"
+        ]
       ],
-      "note": [
-        "Applications métier",
-        "Business applications"
-      ],
-      "items": [
-        "Power BI",
-        "DAX",
-        "Power Query",
-        "Excel",
-        "RPA / PyAutoGUI",
-        "QR / pyzbar",
-        "PyMuPDF",
-        "GeoPandas",
-        "NetworkX",
-        "Data quality"
-      ]
-    },
-    {
-      "title": [
-        "Temporalité & embarqué",
-        "Temporal modelling & embedded"
-      ],
-      "note": [
-        "Séquences et contraintes de calcul",
-        "Sequences and compute constraints"
-      ],
-      "items": [
-        "Motion CNN",
-        "IMU",
-        "MobileNetV3",
-        "Quantification INT8 / INT8 quantisation",
-        "Pruning",
-        "Raspberry Pi",
-        "Linux / HPC"
+      "projects": [
+        "cv-matcher",
+        "loan",
+        "xiatech"
       ]
     }
   ],

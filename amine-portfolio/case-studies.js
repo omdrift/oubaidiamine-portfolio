@@ -84,5 +84,5 @@
     document.body.classList.remove('study-open');
     if (viewer.trigger?.isConnected) viewer.trigger.focus({ preventScroll: true });
   });
-  window.caseStudies = { preview, refresh: () => { if (dialog.open) renderViewer(); } };
+  window.caseStudies = { preview, open, refresh: () => { if (dialog.open) renderViewer(); } };
 })();
