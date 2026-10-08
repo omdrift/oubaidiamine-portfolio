@@ -319,6 +319,49 @@ window.portfolio={
       "repo": "https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching"
     },
     {
+      "id": "cv-matcher",
+      "documents": [],
+      "cats": [
+        1,
+        3,
+        5,
+        6
+      ],
+      "year": "2026",
+      "context": [
+        "Projet personnel · MVP local",
+        "Personal project · Local MVP"
+      ],
+      "title": [
+        "CareerPilot · CV Matcher",
+        "CareerPilot · CV Matcher"
+      ],
+      "summary": [
+        "Comparer un profil aux offres, préparer des brouillons de candidature et suivre les réponses dans un dashboard.",
+        "Match a candidate profile to job offers, prepare application drafts and track responses in one dashboard."
+      ],
+      "contribution": [
+        "Développement d’un assistant de recherche d’emploi avec interface React et API FastAPI : import de CV PDF et d’offres, scoring lexical explicable, recherche de preuves dans le profil et génération de brouillons avec validation utilisateur.",
+        "Development of a job-search assistant with a React interface and FastAPI API: PDF CV and job imports, explainable lexical scoring, profile-evidence retrieval and draft generation with user review."
+      ],
+      "detail": [
+        "LangChain et LangGraph pour la génération, Ollama en option et mode démo sans clé API. Qdrant optionnel avec une baseline de vecteurs par hachage de tokens. Persistance SQLAlchemy, migrations Alembic, Docker Compose et tests pytest. MVP mono-utilisateur local ; intégrations réelles et déploiement public à valider.",
+        "LangChain and LangGraph for generation, optional Ollama and an API-key-free demo mode. Optional Qdrant with a token-hash vector baseline. SQLAlchemy persistence, Alembic migrations, Docker Compose and pytest tests. Local single-user MVP; real integrations and public deployment still need validation."
+      ],
+      "stack": [
+        "React",
+        "FastAPI",
+        "LangChain",
+        "LangGraph",
+        "Ollama",
+        "Qdrant",
+        "PostgreSQL",
+        "Docker",
+        "pytest"
+      ],
+      "repo": "https://github.com/omdrift/cv-matcher"
+    },
+    {
       "id": "process",
       "documents": [
         {
