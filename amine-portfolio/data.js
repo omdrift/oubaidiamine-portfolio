@@ -1184,6 +1184,153 @@ window.portfolio={
       ]
     },
     {
+      "id": "multi-object-tracking",
+      "cats": [
+        2
+      ],
+      "year": "Master",
+      "context": [
+        "Projet académique · Computer Vision",
+        "Academic project · Computer Vision"
+      ],
+      "summary": [
+        "Détecter les objets en mouvement et leur associer des identifiants avec un fond adaptatif, un filtre de Kalman et l’algorithme hongrois. Projet documenté par une présentation et une image de sortie.",
+        "Detect moving objects and assign identities using an adaptive background, a Kalman filter and Hungarian assignment. Documented through presentation slides and one output image."
+      ],
+      "problem": [
+        "Dans un flux vidéo, localiser plusieurs objets et relier leurs détections d’une image à l’autre malgré les pertes temporaires et les chevauchements.",
+        "Locate multiple objects in a video stream and associate their detections across frames despite temporary missed detections and overlaps."
+      ],
+      "contribution": [
+        "Réalisation d’un pipeline de traitement d’image et de suivi : estimation du fond, extraction du premier plan, nettoyage des détections, prédiction du mouvement et association des pistes.",
+        "Implemented an image-processing and tracking pipeline: background estimation, foreground extraction, detection cleanup, motion prediction and track association."
+      ],
+      "detail": [
+        "Projet de master présenté dans un support de 13 pages. La fiche reprend la méthode décrite et l’image de résultat conservée. Le code, la vidéo complète et des mesures de performance ne sont pas disponibles dans les ressources publiées.",
+        "Master’s project documented in a 13-page presentation. This case study covers the described method and the retained output image. Source code, the full video and performance measurements are not available among the published resources."
+      ],
+      "deployment": [
+        "Projet académique · présentation disponible",
+        "Academic project · presentation available"
+      ],
+      "stack": [
+        [
+          "Fond adaptatif · médiane / EMA",
+          "Adaptive background · median / EMA"
+        ],
+        [
+          "Morphologie mathématique",
+          "Mathematical morphology"
+        ],
+        [
+          "Filtre de Kalman",
+          "Kalman filter"
+        ],
+        [
+          "Algorithme hongrois",
+          "Hungarian algorithm"
+        ],
+        [
+          "Histogrammes HSV",
+          "HSV histograms"
+        ],
+        [
+          "Intersection sur union · IoU",
+          "Intersection over Union · IoU"
+        ]
+      ],
+      "cardTags": [
+        "Computer Vision",
+        "Kalman",
+        "Hungarian"
+      ],
+      "documents": [
+        {
+          "kind": "presentation",
+          "href": "documents/presentation-master-multi-object-tracking.pdf",
+          "format": "PDF",
+          "label": [
+            "Présentation du projet",
+            "Project presentation"
+          ],
+          "caption": [
+            "Support original · 13 pages · en français",
+            "Original slides · 13 pages · in French"
+          ]
+        }
+      ],
+      "proof": [
+        "Présentation originale, description du pipeline et image de sortie avec boîtes et identifiants.",
+        "Original slides, pipeline description and output image with bounding boxes and IDs."
+      ],
+      "sections": [
+        {
+          "title": [
+            "1. Séparer les objets du fond",
+            "1. Separate objects from the background"
+          ],
+          "items": [
+            [
+              "Initialiser le fond par la médiane des premières images, puis le mettre à jour par moyenne exponentielle sur les pixels autorisés. Les masques de mouvement et de détections externes limitent l’intégration des objets au fond.",
+              "Initialise the background with the median of the first frames, then update eligible pixels with an exponential moving average. Motion and external-detection masks limit the incorporation of objects into the background."
+            ],
+            [
+              "Extraire le premier plan par différence avec le fond et seuillage. Appliquer un filtre médian, une ouverture et une fermeture morphologiques, puis éliminer les petites régions avant de construire les boîtes.",
+              "Extract the foreground through background differencing and thresholding. Apply median filtering, morphological opening and closing, then remove small regions before building bounding boxes."
+            ]
+          ]
+        },
+        {
+          "title": [
+            "2. Relier les détections au fil des images",
+            "2. Associate detections across frames"
+          ],
+          "items": [
+            [
+              "Le filtre de Kalman prédit le centre, la taille et les vitesses de chaque boîte. La mesure de la nouvelle détection corrige ensuite l’état prédit.",
+              "The Kalman filter predicts each box’s centre, dimensions and velocities. A new detection measurement then corrects the predicted state."
+            ],
+            [
+              "L’algorithme hongrois associe pistes et détections à partir d’un coût combinant distance d’apparence et 1 − IoU. Des seuils écartent les associations incompatibles ; les pistes perdues restent disponibles pendant un nombre limité d’images.",
+              "Hungarian assignment matches tracks to detections using a cost combining appearance distance and 1 − IoU. Thresholds reject incompatible matches; lost tracks remain available for a limited number of frames."
+            ]
+          ]
+        },
+        {
+          "title": [
+            "3. Lire le résultat avec ses limites",
+            "3. Read the result and its limitations"
+          ],
+          "items": [
+            [
+              "La sortie illustrée dans la présentation montre des boîtes et des identifiants sur plusieurs objets. Cette image statique ne démontre pas la stabilité des identités dans le temps ni la qualité du suivi pendant les occlusions.",
+              "The output shown in the slides displays boxes and IDs on multiple objects. This static image does not demonstrate identity stability over time or tracking quality during occlusions."
+            ],
+            [
+              "Limite explicitement relevée : un objet immobile pendant l’initialisation peut être intégré au fond. Des chevauchements et plusieurs boîtes proches sont également visibles dans l’exemple ; aucun benchmark chiffré n’est fourni.",
+              "An explicitly noted limitation: an object that remains still during initialisation can become part of the background. Overlaps and several nearby boxes are also visible in the example; no quantitative benchmark is provided."
+            ]
+          ]
+        },
+        {
+          "title": [
+            "Pistes d’amélioration proposées",
+            "Proposed improvements"
+          ],
+          "items": [
+            [
+              "La présentation propose des caractéristiques d’apparence apprises pour la ré-identification, un fond MOG2 et une fusion avec le flot optique. Il s’agit de pistes, sans résultat présenté pour ces variantes.",
+              "The slides propose learned appearance features for re-identification, MOG2 background modelling and optical-flow fusion. These are proposed directions, with no results presented for those variants."
+            ]
+          ]
+        }
+      ],
+      "title": [
+        "Suivi multi-objets en vidéo",
+        "Multi-object video tracking"
+      ]
+    },
+    {
       "id": "hackathon",
       "documents": [],
       "cats": [

@@ -1204,5 +1204,153 @@ window.portfolioStudies={
         "href": "images/loan/backend-source.jpeg"
       }
     ]
+  },
+  "multi-object-tracking": {
+    "title": [
+      "Suivi multi-objets : méthode et résultat illustré",
+      "Multi-object tracking: method and illustrated output"
+    ],
+    "intro": [
+      "Projet de master de vision classique. Trois étapes pour comprendre le pipeline décrit dans la présentation, puis lire son résultat sans confondre illustration et évaluation.",
+      "A classical computer-vision master’s project. Three steps explain the pipeline described in the slides and distinguish an illustrated output from an evaluation."
+    ],
+    "cover": {
+      "src": "images/multi-object-tracking/tracking-result.jpeg",
+      "width": 1335,
+      "height": 386,
+      "caption": [
+        "Image extraite de la page 11 : boîtes et identifiants affichés. Exemple qualitatif, sans mesure de performance.",
+        "Image extracted from page 11: displayed boxes and IDs. Qualitative example, without performance measurements."
+      ],
+      "alt": [
+        "Image de sortie du projet de master montrant plusieurs objets encadrés en bleu avec des identifiants, et des boîtes superposées.",
+        "Master’s project output showing multiple objects with blue bounding boxes and IDs, including overlapping boxes."
+      ]
+    },
+    "stats": [
+      {
+        "value": "Médiane + EMA",
+        "label": [
+          "Estimation du fond",
+          "Background estimation"
+        ]
+      },
+      {
+        "value": "Kalman + Hungarian",
+        "label": [
+          "Prédiction et association",
+          "Prediction and assignment"
+        ]
+      },
+      {
+        "value": "PDF · 13 pages",
+        "label": [
+          "Ressource disponible",
+          "Available resource"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": [
+          "Fond adaptatif & détection",
+          "Adaptive background & detection"
+        ],
+        "body": [
+          "Initialiser le fond par la médiane des premières images, puis le mettre à jour par moyenne exponentielle sur les pixels autorisés. Les masques de mouvement et de détections externes limitent l’intégration des objets au fond.",
+          "Initialise the background with the median of the first frames, then update eligible pixels with an exponential moving average. Motion and external-detection masks limit the incorporation of objects into the background."
+        ],
+        "blocks": [
+          [
+            "Médiane initiale",
+            "Initial median"
+          ],
+          [
+            "Mise à jour EMA masquée",
+            "Masked EMA update"
+          ],
+          [
+            "Différence & seuillage",
+            "Difference & threshold"
+          ],
+          [
+            "Morphologie & boîtes",
+            "Morphology & boxes"
+          ]
+        ],
+        "media": []
+      },
+      {
+        "title": [
+          "Prédiction & association",
+          "Prediction & assignment"
+        ],
+        "body": [
+          "À chaque image, prédire les pistes avec Kalman, extraire les détections, calculer le coût apparence / IoU, puis effectuer l’association hongroise et corriger les états. Conserver temporairement les pistes non associées pour gérer les pertes de détection.",
+          "For each frame, predict tracks with Kalman, extract detections, calculate the appearance / IoU cost, perform Hungarian assignment and correct states. Retain unmatched tracks temporarily to handle missed detections."
+        ],
+        "blocks": [
+          [
+            "Prédire",
+            "Predict"
+          ],
+          [
+            "Détecter",
+            "Detect"
+          ],
+          [
+            "Associer",
+            "Assign"
+          ],
+          [
+            "Corriger",
+            "Update"
+          ]
+        ],
+        "media": []
+      },
+      {
+        "title": [
+          "Résultat illustré & limites",
+          "Illustrated output & limitations"
+        ],
+        "body": [
+          "La présentation conserve cette image avec boîtes et identifiants. Elle illustre la sortie du pipeline, mais ne permet pas de mesurer la continuité des identités. Un objet immobile peut être absorbé dans le fond pendant l’initialisation ; des boîtes proches ou superposées restent visibles. Ressources disponibles : la présentation et cet exemple statique, sans code, vidéo complète ni benchmark chiffré.",
+          "The slides retain this image with boxes and IDs. It illustrates the pipeline output but cannot measure identity continuity. A stationary object can be absorbed into the background during initialisation; nearby or overlapping boxes remain visible. Available resources are the slides and this static example, without code, the full video or a quantitative benchmark."
+        ],
+        "blocks": [],
+        "media": [
+          {
+            "src": "images/multi-object-tracking/tracking-result.jpeg",
+            "width": 1335,
+            "height": 386,
+            "caption": [
+              "Image extraite de la page 11 : boîtes et identifiants affichés. Exemple qualitatif, sans mesure de performance.",
+              "Image extracted from page 11: displayed boxes and IDs. Qualitative example, without performance measurements."
+            ],
+            "alt": [
+              "Image de sortie du projet de master montrant plusieurs objets encadrés en bleu avec des identifiants, et des boîtes superposées.",
+              "Master’s project output showing multiple objects with blue bounding boxes and IDs, including overlapping boxes."
+            ]
+          }
+        ]
+      }
+    ],
+    "annex": [
+      {
+        "label": [
+          "Présentation complète · 13 pages",
+          "Full presentation · 13 pages"
+        ],
+        "href": "documents/presentation-master-multi-object-tracking.pdf"
+      },
+      {
+        "label": [
+          "Résultat illustré · page 11",
+          "Illustrated output · page 11"
+        ],
+        "href": "documents/presentation-master-multi-object-tracking.pdf#page=11"
+      }
+    ]
   }
 };
