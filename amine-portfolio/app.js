@@ -3,7 +3,7 @@
   const $ = id => document.getElementById(id);
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const normalise = value => String(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-  const state = {lang:'fr', category:0, query:'', project:null, trigger:null, dark:false};
+  const state = {lang:'fr', category:0, query:'', project:null, trigger:null, dark:false, showAll:false};
   try {state.lang=localStorage.getItem('ao-lang')==='en'?'en':'fr';state.dark=localStorage.getItem('ao-theme')==='dark';} catch {}
   const i = () => state.lang==='fr'?0:1;
   const t = () => data[state.lang];
@@ -27,18 +27,28 @@
     return `<div class="project-graphic"><span class="graphic-caption">${esc(p.id==='cv-matcher'?'CAREERPILOT':'SYSTEM / '+p.id.toUpperCase())}</span><div class="graphic-nodes">${(labels[p.id]||[['API'],['Services'],['Data']]).map((x,n)=>`<span class="graphic-node ${n===1?'node-accent':''}">${esc(x[i()]||x[0])}</span>`).join('')}</div></div>`;
   }
   function card(p) {
-    return `<article class="project-card" id="project-${esc(p.id)}" data-id="${esc(p.id)}"><button class="project-cover" data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog" aria-label="${esc(t().details+' : '+text(p.title))}">${graphic(p)}</button><div class="project-card-body"><div class="project-meta"><span>${esc(text(p.context))}</span><span>${esc(p.year)}</span></div><p class="project-kind">${esc(t().filters[p.cats[0]])}</p><h3><button data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(text(p.title))}</button></h3><p class="project-summary">${esc(text(p.summary))}</p>${p.deployment?`<p class="deployment-chip"><span class="status-dot"></span>${esc(text(p.deployment))}</p>`:facts(p.facts?.slice(0,3))}${tags(p.stack.slice(0,6))}<div class="project-actions"><button class="text-button" data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(t().details)} <span aria-hidden="true">↗</span></button>${window.portfolioStudies[p.id]?`<button class="text-button subdued" data-study="${esc(p.id)}" aria-haspopup="dialog" aria-controls="study-dialog">${state.lang==='fr'?'Médias & documents':'Media & documents'}</button>`:''}</div></div></article>`;
+    const featured = data.featuredProjects.includes(p.id);
+    const code = p.repo ? `<a class="text-button" href="${esc(p.repo)}" target="_blank" rel="noopener">${esc(t().codeLink)} ↗</a>` : '';
+    return `<article class="project-card" id="project-${esc(p.id)}" data-id="${esc(p.id)}"><button class="project-cover" data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog" aria-label="${esc(t().details+' : '+text(p.title))}">${graphic(p)}</button><div class="project-card-body"><div class="project-meta"><span>${esc(text(p.context))}</span><span>${esc(p.year)}</span></div><p class="project-kind">${esc(featured ? t().featuredLabel+' · '+t().filters[p.cats[0]] : t().filters[p.cats[0]])}</p><h3><button data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(text(p.title))}</button></h3><p class="project-summary">${esc(text(p.summary))}</p>${p.proof?`<p class="project-evidence"><strong>${esc(t().proofLabel)}</strong>${esc(text(p.proof))}</p>`:''}${p.deployment?`<p class="deployment-chip"><span class="status-dot"></span>${esc(text(p.deployment))}</p>`:facts(p.facts?.slice(0,3))}${tags(p.stack.slice(0,6))}<div class="project-actions"><button class="text-button" data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(t().details)} <span aria-hidden="true">↗</span></button>${window.portfolioStudies[p.id]?`<button class="text-button subdued" data-study="${esc(p.id)}" aria-haspopup="dialog" aria-controls="study-dialog">${esc(t().resourcesLink)}</button>`:''}${code}</div></div></article>`;
   }
   function filterProjects() {
-    const query=normalise(state.query.trim());let count=0;
+    const query=normalise(state.query.trim());
+    const filtering=Boolean(state.category||query);
+    let count=0;
     for(const p of data.projects){
       const corpus=normalise([p.title,p.summary,p.problem,p.contribution,p.detail,p.stack,p.context,...(p.sections||[]).flatMap(s=>[s.title,...s.items])].flat(Infinity).join(' '));
-      const show=(!state.category||p.cats.includes(state.category))&&(!query||corpus.includes(query));
-      $('project-'+p.id).hidden=!show;if(show)count++;
+      const match=(!state.category||p.cats.includes(state.category))&&(!query||corpus.includes(query));
+      const show=match&&(filtering||state.showAll||data.featuredProjects.includes(p.id));
+      $('project-'+p.id).hidden=!show;
+      if(show)count++;
     }
+    $('project-grid').classList.toggle('featured-view',!filtering&&!state.showAll);
     $('result-count').textContent=`${count} / ${data.projects.length} ${t().count}`;
     $('empty').hidden=count>0;
-    $('reset').hidden=!state.category&&!state.query;
+    $('reset').hidden=!filtering;
+    $('show-projects').hidden=filtering;
+    $('show-projects').setAttribute('aria-expanded',String(state.showAll));
+    $('show-projects').textContent=state.showAll?t().showFeaturedProjects:t().showAllProjects;
     document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.filter)===state.category)));
   }
   function renderProjectDialog() {
@@ -60,11 +70,11 @@
     document.querySelector('meta[name="theme-color"]').content=state.dark?'#101b2b':'#f6f7fa';
   }
   function render() {
-    document.documentElement.lang=state.lang;document.title='Amine Oubaidi — '+(state.lang==='fr'?'Ingénieur IA & Data Scientist':'AI Engineer & Data Scientist');
+    document.documentElement.lang=state.lang;document.title='Amine Oubaidi — '+(state.lang==='fr'?'Ingénieur IA junior · Deep Learning':'Junior AI Engineer · Deep Learning');
     document.querySelectorAll('[data-t]').forEach(el=>el.textContent=t()[el.dataset.t]);
     document.querySelectorAll('[data-html]').forEach(el=>el.innerHTML=t()[el.dataset.html]);
     ['fr','en'].forEach(l=>$(l).setAttribute('aria-pressed',String(l===state.lang)));
-    const nav=['projects','expertise','experience','contact'].map((id,n)=>`<a href="#${id}" data-section="${id}">${esc(t().nav[n])}</a>`).join('');document.querySelector('.nav').innerHTML=nav;$('mobile-nav').innerHTML=nav;
+    const nav=['projects','expertise','experience','contact'].map((id,n)=>`<a href="#${id}" data-section="${id}">${esc(t().nav[n])}</a>`).join('');const cvLink=`<a href="documents/CV_Amine_Oubaidi.pdf" download="CV_Amine_Oubaidi.pdf">${esc(t().cvNav)}</a>`;document.querySelector('.nav').innerHTML=nav+cvLink;$('mobile-nav').innerHTML=nav+cvLink;
     $('menu').setAttribute('aria-label',t().menu);$('search').placeholder=t().searchPlaceholder;
     $('filters').setAttribute('aria-label',state.lang==='fr'?'Filtrer les projets':'Filter projects');$('filters').innerHTML=t().filters.map((label,n)=>`<button data-filter="${n}" aria-pressed="${n===state.category}">${esc(label)}</button>`).join('');
     $('hero-facts').innerHTML=t().heroFacts.map(x=>`<span>${esc(x)}</span>`).join('');$('ribbon').innerHTML=t().ribbon.map(x=>`<span>${esc(x)}</span>`).join('');
@@ -85,6 +95,7 @@
   });
   $('project-dialog').addEventListener('close',()=>{document.body.classList.remove('project-open');if(state.trigger?.isConnected)state.trigger.focus({preventScroll:true});});
   $('project-dialog').addEventListener('click',event=>{if(event.target===$('project-dialog')){const r=$('project-dialog').getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)$('project-dialog').close();}});
+  $('show-projects').addEventListener('click',()=>{state.showAll=!state.showAll;filterProjects();});
   $('search').addEventListener('input',e=>{state.query=e.target.value;filterProjects();});$('reset').addEventListener('click',reset);$('empty-reset').addEventListener('click',reset);
   ['fr','en'].forEach(l=>$(l).addEventListener('click',()=>{state.lang=l;try{localStorage.setItem('ao-lang',l);}catch{}render();}));
   $('theme').addEventListener('click',()=>{state.dark=!state.dark;try{localStorage.setItem('ao-theme',state.dark?'dark':'light');}catch{}updateTheme();});

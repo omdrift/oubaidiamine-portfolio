@@ -7,10 +7,10 @@ window.portfolio={
       "Contact"
     ],
     "role": "Ingénieur IA · Data Scientist",
-    "availability": "CDI / Doctorat · Île-de-France",
-    "hero": "Deep Learning.<br>Ingénierie IA.<br><em>Applications concrètes.</em>",
-    "intro": "Amine Oubaidi — diplômé d’un Master Informatique, parcours Ingénierie des Données. J’associe modélisation, expérimentation et développement logiciel pour traiter des problèmes de vision, de séquences et d’IA générative.",
-    "explore": "Explorer les projets",
+    "availability": "Disponible · CDI junior · Île-de-France",
+    "hero": "Ingénieur IA junior.<br>Deep Learning.<br><em>Applications concrètes.</em>",
+    "intro": "Amine Oubaidi — Master Informatique, Ingénierie des Données. Deux stages de recherche au L3i et un stage chez Enedis. Je construis des modèles de vision et des applications IA, de l’expérimentation au service Python.",
+    "explore": "Voir mes projets",
     "github": "Mon GitHub",
     "focus": "FOCUS RECHERCHE",
     "focusTitle": "Apprendre la dynamique d’un panache.",
@@ -27,8 +27,8 @@ window.portfolio={
       "MLOps & AWS S3"
     ],
     "projectKicker": "LES PROJETS",
-    "projectTitle": "Les projets, dans le détail.",
-    "projectIntro": "Le problème, les données, l’approche technique et ma contribution. Les résultats visuels et documents permettent d’aller au-delà du résumé.",
+    "projectTitle": "Trois projets pour découvrir mon travail.",
+    "projectIntro": "Modélisation vidéo, pipeline MLOps et application IA : pour chacun, mon rôle, les livrables et les ressources à examiner.",
     "searchLabel": "Rechercher un projet",
     "searchPlaceholder": "Projet, outil, domaine…",
     "filters": [
@@ -71,7 +71,7 @@ window.portfolio={
     "languageBody": "Français bilingue · Anglais C1",
     "contactKicker": "LA SUITE",
     "contactTitle": "Construire une IA utile.<br>Avec la bonne équipe.",
-    "contactBody": "Disponible pour un CDI junior en Data Science, ML Engineering ou Computer Vision, ou un doctorat en Deep Learning, en Île-de-France.",
+    "contactBody": "Disponible pour un CDI junior en AI / ML Engineering ou Computer Vision en Île-de-France. Également ouvert aux doctorats en Deep Learning.",
     "emailButton": "Écrivez-moi",
     "backTop": "Retour en haut",
     "switchTheme": "Changer le thème",
@@ -150,7 +150,16 @@ window.portfolio={
       "Master Informatique",
       "Recherche & industrie",
       "Île-de-France"
-    ]
+    ],
+    "cvDownload": "Télécharger mon CV",
+    "cvNav": "CV · PDF",
+    "linkedin": "LinkedIn",
+    "showAllProjects": "Voir les 10 projets",
+    "showFeaturedProjects": "Revenir aux 3 projets à la une",
+    "featuredLabel": "À LA UNE",
+    "proofLabel": "Ce que j’ai construit",
+    "codeLink": "Code",
+    "resourcesLink": "Résultats & ressources"
   },
   "en": {
     "nav": [
@@ -160,10 +169,10 @@ window.portfolio={
       "Contact"
     ],
     "role": "AI Engineer · Data Scientist",
-    "availability": "Full-time / PhD · Île-de-France",
-    "hero": "Deep Learning.<br>AI Engineering.<br><em>Practical applications.</em>",
-    "intro": "Amine Oubaidi — MSc Computer Science graduate, specialising in Data Engineering. I combine modelling, experimentation and software development to solve computer vision, sequence and generative AI problems.",
-    "explore": "Explore projects",
+    "availability": "Available · Junior permanent role · Paris region",
+    "hero": "Junior AI Engineer.<br>Deep Learning.<br><em>Practical applications.</em>",
+    "intro": "Amine Oubaidi — MSc Computer Science, Data Engineering. Two research internships at L3i and an industry internship at Enedis. I build vision models and AI applications, from experimentation to Python services.",
+    "explore": "Explore my projects",
     "github": "My GitHub",
     "focus": "RESEARCH FOCUS",
     "focusTitle": "Learning a plume’s dynamics.",
@@ -180,8 +189,8 @@ window.portfolio={
       "MLOps & AWS S3"
     ],
     "projectKicker": "THE PROJECTS",
-    "projectTitle": "A closer look at the work.",
-    "projectIntro": "The problem, the data, the technical approach and my contribution. Visual results and supporting documents go beyond the overview.",
+    "projectTitle": "Three projects to explore my work.",
+    "projectIntro": "Video modelling, an MLOps pipeline and an AI application: my contribution, deliverables and evidence for each.",
     "searchLabel": "Search projects",
     "searchPlaceholder": "Project, tool, topic…",
     "filters": [
@@ -224,7 +233,7 @@ window.portfolio={
     "languageBody": "Bilingual French · C1 English",
     "contactKicker": "WHAT’S NEXT",
     "contactTitle": "Build useful AI.<br>With the right team.",
-    "contactBody": "Available for a junior full-time role in Data Science, ML Engineering or Computer Vision, or a Deep Learning PhD, in Île-de-France.",
+    "contactBody": "Available for a junior permanent role in AI / ML Engineering or Computer Vision in the Paris region. Also open to Deep Learning PhD opportunities.",
     "emailButton": "Get in touch",
     "backTop": "Back to top",
     "switchTheme": "Toggle theme",
@@ -303,7 +312,16 @@ window.portfolio={
       "MSc Computer Science",
       "Research & industry",
       "Île-de-France"
-    ]
+    ],
+    "cvDownload": "Download my CV (FR)",
+    "cvNav": "CV · PDF",
+    "linkedin": "LinkedIn",
+    "showAllProjects": "Explore all 10 projects",
+    "showFeaturedProjects": "Back to 3 featured projects",
+    "featuredLabel": "FEATURED",
+    "proofLabel": "What I built",
+    "codeLink": "Code",
+    "resourcesLink": "Results & resources"
   },
   "projects": [
     {
@@ -411,16 +429,161 @@ window.portfolio={
             "Latent representation"
           ]
         }
+      ],
+      "proof": [
+        "Pipeline vidéo PyTorch : préparation, VQGAN, Flow Matching et comparaisons réel / généré.",
+        "PyTorch video pipeline: preparation, VQGAN, Flow Matching and real / generated comparisons."
+      ]
+    },
+    {
+      "id": "face",
+      "documents": [
+        {
+          "kind": "presentation",
+          "href": "documents/presentation-attributs-faciaux-mlops.pdf",
+          "format": "PDF",
+          "caption": [
+            "Pipeline MLOps · 12 pages",
+            "MLOps pipeline · 12 pages"
+          ]
+        },
+        {
+          "kind": "report",
+          "href": "https://github.com/omdrift/mlops_face_attribute_classification/blob/master/metrics/eval_metrics.json",
+          "format": "JSON",
+          "label": [
+            "Métriques & matrices de confusion",
+            "Metrics & confusion matrices"
+          ],
+          "caption": [
+            "Résultats enregistrés · protocole à consulter dans le dépôt",
+            "Recorded results · see the repository for the evaluation protocol"
+          ]
+        }
+      ],
+      "cats": [
+        2,
+        4
+      ],
+      "year": "2025",
+      "context": [
+        "Projet M2",
+        "MSc project"
+      ],
+      "title": [
+        "Attributs faciaux & MLOps",
+        "Facial attributes & MLOps"
+      ],
+      "summary": [
+        "Un CNN multi-têtes pour cinq attributs, intégré dans un pipeline ML.",
+        "A multi-head CNN for five attributes, integrated into an ML pipeline."
+      ],
+      "contribution": [
+        "Entraînement sur environ 15 890 images et mise en place du versioning, du suivi d’expériences, de l’orchestration et de l’API.",
+        "Training on approximately 15,890 images and implementing versioning, experiment tracking, orchestration and an API."
+      ],
+      "detail": [
+        "Trois tâches binaires et deux multiclasses : barbe, moustache, lunettes, longueur et couleur des cheveux. DVC pour les données, MLflow pour les expériences, Hyperopt pour l’optimisation, Airflow pour l’orchestration, FastAPI et Docker pour le service. Tests pytest et CI/CD GitHub Actions, avec analyse des métriques par attribut.",
+        "Three binary and two multiclass tasks: beard, moustache, glasses, hair length and colour. DVC data versioning, MLflow experiments, Hyperopt optimisation, Airflow orchestration and a FastAPI/Docker service. pytest tests and GitHub Actions CI/CD, with per-attribute metric analysis."
+      ],
+      "stack": [
+        "PyTorch",
+        "DVC",
+        "MLflow",
+        "Hyperopt",
+        "Airflow",
+        "FastAPI",
+        "Docker",
+        "pytest",
+        "GitHub Actions"
+      ],
+      "repo": "https://github.com/omdrift/mlops_face_attribute_classification",
+      "problem": [
+        "Prédire plusieurs attributs d’un visage avec un modèle partagé, puis organiser son entraînement et son utilisation dans un pipeline reproductible.",
+        "Predict several facial attributes with a shared model, then organise training and inference in a reproducible pipeline."
+      ],
+      "sections": [
+        {
+          "title": [
+            "Méthode & expérimentation",
+            "Method & experimentation"
+          ],
+          "items": [
+            [
+              "Préparer les données — Les images alimentent cinq tâches : barbe, moustache, lunettes, longueur et couleur des cheveux. DVC suit les données et les étapes de préparation.",
+              "Preparing data — Images support five tasks: beard, moustache, glasses, hair length and hair colour. DVC tracks data and preparation stages."
+            ],
+            [
+              "Partager les features — Un backbone convolutif extrait les caractéristiques communes. Cinq têtes spécialisées produisent les prédictions binaires ou multiclasses.",
+              "Sharing features — A convolutional backbone extracts shared features. Five specialised heads produce binary or multiclass predictions."
+            ],
+            [
+              "Entraîner le modèle — Entraînement multi-tâches avec AdamW, early stopping et scheduler. Hyperopt explore les hyperparamètres ; l’évaluation reste séparée pour chaque attribut.",
+              "Training the model — Multi-task training uses AdamW, early stopping and a scheduler. Hyperopt explores hyperparameters; evaluation remains separate for each attribute."
+            ],
+            [
+              "Suivre les expériences — MLflow centralise les paramètres, les courbes et les versions des modèles pour comparer les essais.",
+              "Tracking experiments — MLflow centralises parameters, curves and model versions to compare experiments."
+            ],
+            [
+              "Orchestrer le pipeline — DVC décrit les dépendances entre préparation, recherche d’hyperparamètres, entraînement et évaluation. Airflow orchestre l’exécution et les notifications.",
+              "Orchestrating the pipeline — DVC describes dependencies between preparation, hyperparameter search, training and evaluation. Airflow orchestrates execution and notifications."
+            ],
+            [
+              "Servir les prédictions — Le service FastAPI et l’application sont conteneurisés avec Docker. L’interface donne accès aux attributs prédits et aux filtres.",
+              "Serving predictions — The FastAPI service and application are containerised with Docker. The interface exposes predicted attributes and filters."
+            ]
+          ]
+        },
+        {
+          "title": [
+            "Livrable & lecture du résultat",
+            "Deliverable & interpreting the result"
+          ],
+          "items": [
+            [
+              "Pipeline multi-tâches : préparation, entraînement, suivi, orchestration et API. Les performances sont examinées séparément pour chaque attribut.",
+              "Multi-task pipeline: preparation, training, tracking, orchestration and API. Performance is examined separately for each attribute."
+            ]
+          ]
+        }
+      ],
+      "facts": [
+        {
+          "value": "≈ 15 890",
+          "label": [
+            "Images",
+            "Images"
+          ]
+        },
+        {
+          "value": "5",
+          "label": [
+            "Attributs prédits",
+            "Predicted attributes"
+          ]
+        },
+        {
+          "value": "3 + 2",
+          "label": [
+            "Tâches binaires + multiclasses",
+            "Binary + multiclass tasks"
+          ]
+        }
+      ],
+      "proof": [
+        "CNN à cinq têtes, pipeline DVC / MLflow et service d’inférence FastAPI conteneurisé.",
+        "Five-head CNN, DVC / MLflow pipeline and containerised FastAPI inference service."
       ]
     },
     {
       "id": "cv-matcher",
       "documents": [],
       "cats": [
+        6,
         1,
         3,
-        5,
-        6
+        5
       ],
       "year": "2026",
       "context": [
@@ -432,117 +595,105 @@ window.portfolio={
         "CareerPilot · CV Matcher"
       ],
       "summary": [
-        "Un copilote de candidature conçu pour réunir recherche d’offres, matching, chatbot sourcé, documents personnalisés et suivi dans un espace privé.",
-        "An application copilot designed to unite job discovery, matching, a source-grounded chatbot, tailored documents and tracking in one private workspace."
+        "MVP local pour importer des offres, expliquer leur correspondance avec un profil, préparer des documents et suivre les candidatures.",
+        "Local MVP for importing jobs, explaining profile fit, drafting documents and tracking applications."
       ],
       "contribution": [
-        "Conception du produit et de son architecture full-stack : React/TypeScript, API FastAPI, services métier, domaine, repositories et intégrations. Le parcours relie profil, offres, preuves, documents versionnés, validation et suivi.",
-        "Product and full-stack architecture design: React/TypeScript, FastAPI API, business services, domain, repositories and integrations. The workflow connects profile, jobs, evidence, versioned documents, review and tracking."
+        "Conception du dashboard React/TypeScript, des routes FastAPI et de la persistance SQLAlchemy/Alembic. Intégration des imports, du matching, de la génération et du suivi dans un même parcours.",
+        "Built the React/TypeScript dashboard, FastAPI routes and SQLAlchemy/Alembic persistence. Integrated ingestion, matching, generation and tracking into one workflow."
       ],
       "detail": [
-        "L’objectif du produit est de combiner une recherche explicable, des documents adaptés au parcours réel du candidat et un suivi traçable. La validation utilisateur et l’isolation des données structurent l’ensemble du parcours.",
-        "The product aims to combine explainable discovery, documents tailored to the candidate’s actual background and traceable tracking. User review and data isolation shape the entire workflow."
+        "Version présentée : branche develop, MVP individuel. Une démonstration fonctionne avec des données fictives et une génération déterministe ; Ollama et Qdrant sont optionnels. Le dépôt reste privé.",
+        "Version presented: develop branch, single-user MVP. A demo works with fictional data and deterministic generation; Ollama and Qdrant are optional. The repository remains private."
       ],
       "stack": [
         "Python",
         "React / TypeScript",
         "FastAPI / Pydantic",
-        "LangChain / LangGraph",
-        "Ollama",
-        "Qdrant / RAG",
-        "PostgreSQL / SQLAlchemy",
+        "SQLAlchemy / PostgreSQL",
         "Docker Compose",
-        "pytest / Playwright"
+        "pytest / GitHub Actions",
+        "Ollama · optionnel / optional",
+        "Qdrant · optionnel / optional",
+        "LangChain / LangGraph"
       ],
       "sections": [
         {
           "title": [
-            "Recherche d’offres & matching",
-            "Job discovery & matching"
+            "Import & matching explicable",
+            "Ingestion & explainable matching"
           ],
           "items": [
             [
-              "Collecte multi-source avec JobSpy, Adzuna et imports directs ; recherche par métier et localisation, filtres, favoris et provenance des offres.",
-              "Multi-source collection through JobSpy, Adzuna and direct imports; role/location search, filters, saved jobs and source provenance."
+              "Imports Adzuna, CSV et saisie manuelle ; adaptateur JobSpy expérimental. Filtres, favoris et liens vers les annonces d’origine.",
+              "Adzuna, CSV and manual imports; experimental JobSpy adapter. Filters, saved jobs and original listing links."
             ],
             [
-              "Un classement expliqué : compétences communes, écarts avec le profil et critères de pertinence, pour aider le candidat à choisir les offres à approfondir.",
-              "Explainable ranking: shared skills, profile gaps and relevance criteria that help candidates choose which jobs to explore."
+              "Classement lexical basé sur les compétences communes et les mots du profil. Le score permet d’ordonner les offres ; il ne mesure pas une probabilité de recrutement.",
+              "Lexical ranking based on shared skills and profile terms. The score orders jobs; it does not measure a hiring probability."
             ]
           ]
         },
         {
           "title": [
-            "Chatbot, RAG & documents du candidat",
-            "Chatbot, RAG & candidate documents"
+            "Documents & preuves du profil",
+            "Documents & profile evidence"
           ],
           "items": [
             [
-              "Un espace conversationnel pour comparer des offres, comprendre leur adéquation au profil et préparer une candidature à partir des documents autorisés.",
-              "A conversational workspace for comparing offers, understanding profile fit and preparing applications from authorised documents."
+              "Extraction de texte PDF avec relecture avant sauvegarde du profil. Création de brouillons de CV et de lettres en texte, avec identifiants des preuves utilisées et export .txt.",
+              "PDF text extraction with review before saving the profile. Text CV and cover-letter drafts with source evidence IDs and .txt export."
             ],
             [
-              "Bibliothèque documentaire privée, extraction, chunks et recherche vectorielle ; citations vers les passages utilisés. Les outils de consultation et d’action passent par les mêmes services métier que le dashboard.",
-              "Private document library, extraction, chunks and vector retrieval; citations to the source passages. Read/action tools use the same business services as the dashboard."
+              "Génération déterministe ou Ollama. Retrieval lexical, ou Qdrant avec des vecteurs de hachage de tokens de dimension 64. La vérification des citations porte sur leurs identifiants.",
+              "Deterministic or Ollama generation. Lexical retrieval, or Qdrant with 64-dimensional token-hash vectors. Citation checks validate evidence identifiers."
             ]
           ]
         },
         {
           "title": [
-            "CV & lettres personnalisés",
-            "Tailored CVs & cover letters"
+            "Validation, suivi & qualité logicielle",
+            "Review, tracking & software quality"
           ],
           "items": [
             [
-              "Contenu adapté à l’offre et fondé sur le parcours du candidat : génération, correction, aperçu HTML et rendu PDF à partir de templates.",
-              "Content tailored to the offer and grounded in the candidate’s background: generation, editing, HTML preview and template-based PDF rendering."
+              "Versions des documents persistées, préparation puis approbation de la candidature. Enregistrement d’une remise manuelle ou appel d’un endpoint configuré.",
+              "Persisted document versions, application preparation and approval. Record a manual submission or call a configured endpoint."
             ],
             [
-              "Versions identifiables des documents, historique et téléchargement ; l’approbation porte sur les artefacts exacts associés à la candidature.",
-              "Identifiable document versions, history and downloads; approval refers to the exact artefacts attached to the application."
+              "Réponses saisies manuellement ou importées par IMAP en lecture seule, classification par règles et rapprochement conservateur. Migrations Alembic, tests de régression et builds frontend / Docker en CI.",
+              "Manual responses or read-only IMAP imports, rule-based classification and conservative linking. Alembic migrations, regression tests and frontend / Docker builds in CI."
             ]
           ]
         },
         {
           "title": [
-            "Candidatures, réponses & automatisation",
-            "Applications, responses & automation"
+            "Prochaines étapes",
+            "Next steps"
           ],
           "items": [
             [
-              "Un parcours de candidature avec validation, modes de remise explicites, historique des tentatives et gestion des résultats incertains.",
-              "An application workflow with review, explicit delivery modes, attempt history and uncertain-outcome handling."
+              "Évaluer le matching sur des offres annotées et comparer des embeddings sémantiques au classement lexical. Ajouter des exports PDF/DOCX et un chatbot documentaire.",
+              "Evaluate matching on annotated jobs and compare semantic embeddings with lexical ranking. Add PDF/DOCX exports and a document chatbot."
             ],
             [
-              "Association des réponses aux candidatures, classification, correction manuelle et suivi des entretiens. Orchestration LangGraph, tâches persistées et règles d’automatisation définies par le candidat.",
-              "Response-to-application linking, classification, manual correction and interview tracking. LangGraph orchestration, persisted tasks and candidate-defined automation rules."
-            ]
-          ]
-        },
-        {
-          "title": [
-            "Architecture & stratégie de déploiement",
-            "Architecture & deployment strategy"
-          ],
-          "items": [
-            [
-              "React/TypeScript pour l’interface ; FastAPI/Pydantic pour les contrats REST ; SQLAlchemy, PostgreSQL et Alembic pour la persistance. LangChain/LangGraph, Qdrant et Ollama structurent la couche IA.",
-              "React/TypeScript for the interface; FastAPI/Pydantic for REST contracts; SQLAlchemy, PostgreSQL and Alembic for persistence. LangChain/LangGraph, Qdrant and Ollama form the AI layer."
-            ],
-            [
-              "Déploiement bientôt : pilote conteneurisé avec Docker Compose, frontend Nginx et API sous HTTPS, PostgreSQL persistant, sauvegardes externalisées et vérifications après publication. Services IA privés et capacité LLM ajustée aux ressources de l’hôte.",
-              "Deployment coming soon: Docker Compose pilot, Nginx frontend and API behind HTTPS, persistent PostgreSQL, external backups and post-release checks. Private AI services and LLM capacity matched to host resources."
+              "Avant une ouverture publique : authentification, isolation des utilisateurs et validation des intégrations réelles. Le graphe LangGraph actuel contient un seul nœud de génération.",
+              "Before public hosting: authentication, user isolation and validation of real integrations. The current LangGraph graph contains one generation node."
             ]
           ]
         }
       ],
       "problem": [
-        "Concevoir un parcours cohérent de recherche d’emploi, depuis les documents du candidat jusqu’aux réponses des recruteurs, avec les mêmes données et règles métier dans chaque écran.",
-        "Design a coherent job-search workflow, from candidate documents to recruiter responses, with shared data and business rules across every interface."
+        "Réduire les tâches dispersées de recherche d’emploi : conserver les offres, relier les documents au profil du candidat et suivre les réponses.",
+        "Reduce fragmented job-search tasks: retain listings, connect drafts to candidate evidence and track responses."
       ],
       "deployment": [
-        "Déploiement bientôt",
-        "Deployment coming soon"
+        "MVP local · usage individuel",
+        "Local MVP · single-user"
+      ],
+      "proof": [
+        "React + FastAPI, données persistées, documents versionnés et validation avant remise.",
+        "React + FastAPI, persisted data, versioned documents and review before submission."
       ]
     },
     {
@@ -669,130 +820,6 @@ window.portfolio={
           "label": [
             "Types d’événements",
             "Event types"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "face",
-      "documents": [
-        {
-          "kind": "presentation",
-          "href": "documents/presentation-attributs-faciaux-mlops.pdf",
-          "format": "PDF",
-          "caption": [
-            "Pipeline MLOps · 12 pages",
-            "MLOps pipeline · 12 pages"
-          ]
-        }
-      ],
-      "cats": [
-        2,
-        4
-      ],
-      "year": "2025",
-      "context": [
-        "Projet M2",
-        "MSc project"
-      ],
-      "title": [
-        "Attributs faciaux & MLOps",
-        "Facial attributes & MLOps"
-      ],
-      "summary": [
-        "Un CNN multi-têtes pour cinq attributs, intégré dans un pipeline ML.",
-        "A multi-head CNN for five attributes, integrated into an ML pipeline."
-      ],
-      "contribution": [
-        "Entraînement sur environ 15 890 images et mise en place du versioning, du suivi d’expériences, de l’orchestration et de l’API.",
-        "Training on approximately 15,890 images and implementing versioning, experiment tracking, orchestration and an API."
-      ],
-      "detail": [
-        "Trois tâches binaires et deux multiclasses : barbe, moustache, lunettes, longueur et couleur des cheveux. DVC pour les données, MLflow pour les expériences, Hyperopt pour l’optimisation, Airflow pour l’orchestration, FastAPI et Docker pour le service. Tests pytest et CI/CD GitHub Actions, avec analyse des métriques par attribut.",
-        "Three binary and two multiclass tasks: beard, moustache, glasses, hair length and colour. DVC data versioning, MLflow experiments, Hyperopt optimisation, Airflow orchestration and a FastAPI/Docker service. pytest tests and GitHub Actions CI/CD, with per-attribute metric analysis."
-      ],
-      "stack": [
-        "PyTorch",
-        "DVC",
-        "MLflow",
-        "Hyperopt",
-        "Airflow",
-        "FastAPI",
-        "Docker",
-        "pytest",
-        "GitHub Actions"
-      ],
-      "repo": "https://github.com/omdrift/mlops_face_attribute_classification",
-      "problem": [
-        "Prédire plusieurs attributs d’un visage avec un modèle partagé, puis organiser son entraînement et son utilisation dans un pipeline reproductible.",
-        "Predict several facial attributes with a shared model, then organise training and inference in a reproducible pipeline."
-      ],
-      "sections": [
-        {
-          "title": [
-            "Méthode & expérimentation",
-            "Method & experimentation"
-          ],
-          "items": [
-            [
-              "Préparer les données — Les images alimentent cinq tâches : barbe, moustache, lunettes, longueur et couleur des cheveux. DVC suit les données et les étapes de préparation.",
-              "Preparing data — Images support five tasks: beard, moustache, glasses, hair length and hair colour. DVC tracks data and preparation stages."
-            ],
-            [
-              "Partager les features — Un backbone convolutif extrait les caractéristiques communes. Cinq têtes spécialisées produisent les prédictions binaires ou multiclasses.",
-              "Sharing features — A convolutional backbone extracts shared features. Five specialised heads produce binary or multiclass predictions."
-            ],
-            [
-              "Entraîner le modèle — Entraînement multi-tâches avec AdamW, early stopping et scheduler. Hyperopt explore les hyperparamètres ; l’évaluation reste séparée pour chaque attribut.",
-              "Training the model — Multi-task training uses AdamW, early stopping and a scheduler. Hyperopt explores hyperparameters; evaluation remains separate for each attribute."
-            ],
-            [
-              "Suivre les expériences — MLflow centralise les paramètres, les courbes et les versions des modèles pour comparer les essais.",
-              "Tracking experiments — MLflow centralises parameters, curves and model versions to compare experiments."
-            ],
-            [
-              "Orchestrer le pipeline — DVC décrit les dépendances entre préparation, recherche d’hyperparamètres, entraînement et évaluation. Airflow orchestre l’exécution et les notifications.",
-              "Orchestrating the pipeline — DVC describes dependencies between preparation, hyperparameter search, training and evaluation. Airflow orchestrates execution and notifications."
-            ],
-            [
-              "Servir les prédictions — Le service FastAPI et l’application sont conteneurisés avec Docker. L’interface donne accès aux attributs prédits et aux filtres.",
-              "Serving predictions — The FastAPI service and application are containerised with Docker. The interface exposes predicted attributes and filters."
-            ]
-          ]
-        },
-        {
-          "title": [
-            "Livrable & lecture du résultat",
-            "Deliverable & interpreting the result"
-          ],
-          "items": [
-            [
-              "Pipeline multi-tâches : préparation, entraînement, suivi, orchestration et API. Les performances sont examinées séparément pour chaque attribut.",
-              "Multi-task pipeline: preparation, training, tracking, orchestration and API. Performance is examined separately for each attribute."
-            ]
-          ]
-        }
-      ],
-      "facts": [
-        {
-          "value": "≈ 15 890",
-          "label": [
-            "Images",
-            "Images"
-          ]
-        },
-        {
-          "value": "5",
-          "label": [
-            "Attributs prédits",
-            "Predicted attributes"
-          ]
-        },
-        {
-          "value": "3 + 2",
-          "label": [
-            "Tâches binaires + multiclasses",
-            "Binary + multiclass tasks"
           ]
         }
       ]
@@ -1611,5 +1638,10 @@ window.portfolio={
     "IBM Data Science Professional",
     "Microsoft PL-300",
     "HackerRank Problem Solving"
+  ],
+  "featuredProjects": [
+    "flow",
+    "face",
+    "cv-matcher"
   ]
 };
