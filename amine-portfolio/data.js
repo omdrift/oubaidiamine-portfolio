@@ -102,9 +102,9 @@ window.portfolio={
       [
         "2024",
         "Laboratoire L3i",
-        "Recherche cross-modale · Stage R&D",
+        "Deep Learning multimodal · Stage R&D",
         "La Rochelle · Avril – juin 2024",
-        "Étude et adaptation d’une méthode de représentation commune texte-image sur RVL-CDIP. Features VGG-19 et Word2Vec/CNN, projection latente, expérimentation sous PyTorch et évaluation par mAP.",
+        "Adaptation de DSCMR sous PyTorch pour la recherche documentaire texte–image sur RVL-CDIP. Représentations VGG-19 et Word2Vec/CNN projetées dans un espace commun ; entraînement, benchmarking de méthodes de référence et évaluation par mAP.",
         "cross"
       ]
     ],
@@ -292,9 +292,9 @@ window.portfolio={
       [
         "2024",
         "L3i Laboratory",
-        "Cross-modal retrieval · R&D internship",
+        "Multimodal Deep Learning · R&D internship",
         "La Rochelle · April – June 2024",
-        "Studied and adapted a joint text-image representation method on RVL-CDIP. VGG-19 and Word2Vec/CNN features, latent projection, PyTorch experiments and mAP evaluation.",
+        "Adapted DSCMR in PyTorch for text–image document retrieval on RVL-CDIP. Projected VGG-19 and Word2Vec/CNN representations into a shared space; trained models, benchmarked reference methods and evaluated retrieval with mAP.",
         "cross"
       ]
     ],
@@ -1654,23 +1654,24 @@ window.portfolio={
             "R&D internship · L3i"
           ],
           "title": [
-            "Recherche cross-modale texte-image",
-            "Text-image cross-modal retrieval"
+            "DSCMR · Recherche documentaire texte–image",
+            "DSCMR · Text–image document retrieval"
           ],
           "summary": [
-            "Projeter texte et image dans un espace de représentation commun.",
-            "Projecting text and images into a shared representation space."
+            "Comparer et retrouver des documents à partir de représentations textuelles et visuelles communes.",
+            "Comparing and retrieving documents through shared textual and visual representations."
           ],
           "contribution": [
-            "Adaptation sous PyTorch d’une méthode cross-modale sur RVL-CDIP, avec features VGG-19 et Word2Vec/CNN.",
-            "PyTorch adaptation of a cross-modal method on RVL-CDIP using VGG-19 and Word2Vec/CNN features."
+            "Étude et adaptation de DSCMR sous PyTorch : extraction des features VGG-19 et Word2Vec/CNN, projection dans un espace latent commun, entraînement et benchmarking.",
+            "Studied and adapted DSCMR in PyTorch: VGG-19 and Word2Vec/CNN feature extraction, projection into a shared latent space, model training and benchmarking."
           ],
           "detail": [
-            "Préparation de RVL-CDIP, avec 320 000 images d’entraînement. Projection commune des représentations visuelles et textuelles, entraînement et évaluation sur 16 classes par mean Average Precision. Analyse critique et propositions de prolongements avec ViT, BERT et CLIP.",
-            "Preparation of RVL-CDIP, with 320,000 training images. Joint projection of visual and textual representations, training and mean Average Precision evaluation across 16 classes. Critical analysis and proposed extensions using ViT, BERT and CLIP."
+            "Expérimentations sur RVL-CDIP (16 classes), comparaison avec des méthodes de référence et évaluation de la recherche croisée texte–image par mean Average Precision (mAP). Analyse critique des résultats et propositions de prolongements avec ViT, BERT et CLIP.",
+            "Experiments on RVL-CDIP (16 classes), comparison with reference methods and evaluation of text–image cross-modal retrieval using mean Average Precision (mAP). Critical analysis of results and proposed extensions using ViT, BERT and CLIP."
           ],
           "stack": [
             "PyTorch",
+            "DSCMR",
             "VGG-19",
             "Word2Vec",
             "CNN",
