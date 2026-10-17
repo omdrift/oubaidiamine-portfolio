@@ -1,6 +1,6 @@
 # Amine Oubaidi · AI engineering portfolio
 
-Bilingual French/English static portfolio: three featured projects, research and industry experience, project media, reports and a downloadable CV.
+Bilingual French/English static portfolio: five featured projects, research and industry experience, project media, reports and a downloadable CV.
 
 ## Project structure
 

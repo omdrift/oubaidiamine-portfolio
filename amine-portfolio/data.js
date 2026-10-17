@@ -27,8 +27,8 @@ window.portfolio={
       "MLOps & AWS S3"
     ],
     "projectKicker": "LES PROJETS",
-    "projectTitle": "Trois projets pour découvrir mon travail.",
-    "projectIntro": "Modélisation vidéo, pipeline MLOps et application IA : pour chacun, mon rôle, les livrables et les ressources à examiner.",
+    "projectTitle": "Projets sélectionnés.",
+    "projectIntro": "Vision, RAG documentaire, MLOps et applications : cinq projets pour examiner ma contribution, les livrables et les résultats.",
     "searchLabel": "Rechercher un projet",
     "searchPlaceholder": "Projet, outil, domaine…",
     "filters": [
@@ -154,8 +154,8 @@ window.portfolio={
     "cvDownload": "Télécharger mon CV",
     "cvNav": "CV · PDF",
     "linkedin": "LinkedIn",
-    "showAllProjects": "Voir les 10 projets",
-    "showFeaturedProjects": "Revenir aux 3 projets à la une",
+    "showAllProjects": "Voir tous les projets",
+    "showFeaturedProjects": "Revenir aux projets sélectionnés",
     "featuredLabel": "À LA UNE",
     "proofLabel": "Ce que j’ai construit",
     "codeLink": "Code",
@@ -189,8 +189,8 @@ window.portfolio={
       "MLOps & AWS S3"
     ],
     "projectKicker": "THE PROJECTS",
-    "projectTitle": "Three projects to explore my work.",
-    "projectIntro": "Video modelling, an MLOps pipeline and an AI application: my contribution, deliverables and evidence for each.",
+    "projectTitle": "Selected work.",
+    "projectIntro": "Vision, document RAG, MLOps and applications: five projects showing my contribution, deliverables and results.",
     "searchLabel": "Search projects",
     "searchPlaceholder": "Project, tool, topic…",
     "filters": [
@@ -316,8 +316,8 @@ window.portfolio={
     "cvDownload": "Download my CV (FR)",
     "cvNav": "CV · PDF",
     "linkedin": "LinkedIn",
-    "showAllProjects": "Explore all 10 projects",
-    "showFeaturedProjects": "Back to 3 featured projects",
+    "showAllProjects": "Explore all projects",
+    "showFeaturedProjects": "Back to selected projects",
     "featuredLabel": "FEATURED",
     "proofLabel": "What I built",
     "codeLink": "Code",
@@ -433,6 +433,68 @@ window.portfolio={
       "proof": [
         "Pipeline vidéo PyTorch : préparation, VQGAN, Flow Matching et comparaisons réel / généré.",
         "PyTorch video pipeline: preparation, VQGAN, Flow Matching and real / generated comparisons."
+      ]
+    },
+    {
+      "id": "rag",
+      "documents": [],
+      "cats": [
+        3,
+        1
+      ],
+      "year": "2025–2026",
+      "context": [
+        "Projet académique",
+        "Academic project"
+      ],
+      "title": [
+        "RAG documentaire & API",
+        "Document RAG & API"
+      ],
+      "summary": [
+        "Rechercher, résumer et classifier des documents avec un LLM.",
+        "Searching, summarising and classifying documents with an LLM."
+      ],
+      "contribution": [
+        "Extraction multi-PDF, embeddings, indexation vectorielle et orchestration avec LangChain et LangGraph.",
+        "Multi-PDF extraction, embeddings, vector indexing and orchestration with LangChain and LangGraph."
+      ],
+      "detail": [
+        "Moteur de recherche sémantique et classification selon cinq axes. Expérimentation de différentes stratégies de prompt engineering. API FastAPI permettant l’upload, la classification en temps réel, la mise à jour de l’index et le stockage S3.",
+        "Semantic search engine and five-axis classification. Experiments with prompt engineering strategies. FastAPI endpoints for uploads, real-time classification, index updates and S3 storage."
+      ],
+      "stack": [
+        "LLM",
+        "RAG",
+        "LangChain",
+        "LangGraph",
+        "Prompt engineering",
+        "Embeddings",
+        "Vector DB",
+        "FastAPI",
+        "AWS S3"
+      ],
+      "problem": [
+        "Rendre un corpus de documents interrogeable et exploitable par recherche, résumé et classification, avec une interface API.",
+        "Make a document corpus usable through retrieval, summarisation and classification behind an API."
+      ],
+      "sections": [
+        {
+          "title": [
+            "Livrable & lecture du résultat",
+            "Deliverable & interpreting the result"
+          ],
+          "items": [
+            [
+              "Service documentaire FastAPI : upload, classification, mise à jour de l’index et stockage AWS S3.",
+              "FastAPI document service: upload, classification, index updates and AWS S3 storage."
+            ]
+          ]
+        }
+      ],
+      "proof": [
+        "Pipeline multi-PDF, embeddings, recherche et classification par LLM, exposés via FastAPI.",
+        "Multi-PDF pipeline, embeddings, retrieval and LLM classification exposed through FastAPI."
       ]
     },
     {
@@ -697,6 +759,138 @@ window.portfolio={
       ]
     },
     {
+      "id": "mice",
+      "cats": [
+        2
+      ],
+      "year": "2025",
+      "context": [
+        "Stage R&D · L3i",
+        "R&D internship · L3i"
+      ],
+      "title": [
+        "Analyse vidéo & suivi de souris",
+        "Video analysis & mouse tracking"
+      ],
+      "summary": [
+        "Détecter les points anatomiques de deux souris en vue du dessus.",
+        "Detecting anatomical keypoints on two mice in top-view video."
+      ],
+      "contribution": [
+        "Revue de littérature, sélection de MARS, annotation des données du laboratoire et adaptation de Keypoint R-CNN à 7 points par souris.",
+        "Literature review, selection of MARS, lab-data annotation and adaptation of Keypoint R-CNN to seven keypoints per mouse."
+      ],
+      "detail": [
+        "Le logiciel initialement prévu n’étant pas exploitable, proposition d’une approche Deep Learning avec l’encadrant. Préparation et augmentation des données, entraînements sur le serveur du L3i, inspection des sorties et itérations. Interface PyQt5 pour analyser les résultats et régler les paramètres ; rapport technique.",
+        "When the originally planned software could not be used, I proposed a Deep Learning approach with my supervisor. Data preparation and augmentation, training on L3i’s server, output inspection and iteration. PyQt5 interface for inspecting results and tuning parameters, plus a technical report."
+      ],
+      "stack": [
+        "PyTorch",
+        "Keypoint R-CNN",
+        "ResNet50-FPN",
+        "MARS",
+        "OpenCV",
+        "PyQt5",
+        "Linux / HPC"
+      ],
+      "repo": "https://github.com/omdrift/stage-M1-Analyse-video-souris-laboratoire",
+      "repoType": "report",
+      "documents": [
+        {
+          "kind": "recommendation",
+          "href": "documents/recommandation-l3i-2025.pdf",
+          "format": "PDF",
+          "caption": [
+            "Jean-Christophe Burie · Professeur des universités, L3i · 2 octobre 2025",
+            "Jean-Christophe Burie · Professor, L3i · 2 October 2025"
+          ]
+        },
+        {
+          "kind": "report",
+          "href": "documents/rapport-stage-l3i-suivi-souris-2025.pdf",
+          "format": "PDF",
+          "caption": [
+            "Rapport de stage · 44 pages",
+            "Internship report · 44 pages"
+          ]
+        },
+        {
+          "kind": "presentation",
+          "href": "documents/presentation-stage-l3i-suivi-souris-2025.pdf",
+          "format": "PDF",
+          "caption": [
+            "Soutenance du stage · 12 pages",
+            "Internship presentation · 12 pages"
+          ]
+        }
+      ],
+      "proof": [
+        "Adaptation de Keypoint R-CNN, entraînements GPU, interface PyQt5 et rapport de stage.",
+        "Keypoint R-CNN adaptation, GPU experiments, PyQt5 interface and internship report."
+      ],
+      "problem": [
+        "Détecter les points anatomiques et suivre deux souris qui interagissent, avec des occultations et des conditions vidéo différentes des données publiques.",
+        "Estimate keypoints and track two interacting mice, with occlusions and video conditions that differ from public training data."
+      ],
+      "facts": [
+        {
+          "label": [
+            "Souris suivies",
+            "Tracked mice"
+          ],
+          "value": "2"
+        },
+        {
+          "label": [
+            "Points par souris",
+            "Keypoints per mouse"
+          ],
+          "value": "7"
+        },
+        {
+          "label": [
+            "Contexte",
+            "Context"
+          ],
+          "value": "Stage R&D · L3i"
+        }
+      ],
+      "sections": [
+        {
+          "title": [
+            "Méthode & expérimentation",
+            "Method & experimentation"
+          ],
+          "items": [
+            [
+              "Revue de littérature, choix de MARS puis annotation et augmentation des données du laboratoire. Adaptation de Keypoint R-CNN, entraînements sur le serveur du L3i et inspection des interactions difficiles.",
+              "Literature review, MARS selection, lab-data annotation and augmentation. Adapted Keypoint R-CNN, trained on L3i servers and inspected difficult interactions."
+            ],
+            [
+              "Développement d’une interface PyQt5 pour analyser les points détectés, les trajectoires et les paramètres du traitement.",
+              "Built a PyQt5 interface to inspect predicted keypoints, trajectories and processing parameters."
+            ]
+          ]
+        },
+        {
+          "title": [
+            "Résultats & ressources",
+            "Results & resources"
+          ],
+          "items": [
+            [
+              "Les médias montrent des annotations, des poses et des sorties de suivi. Le rapport décrit le protocole et les limites, notamment lors des interactions et des occultations.",
+              "The media shows annotations, poses and tracking outputs. The report describes the protocol and limitations, including interactions and occlusions."
+            ],
+            [
+              "Le dépôt public publie le rapport de stage ; les vidéos du laboratoire et le package d’entraînement n’y sont pas distribués.",
+              "The public repository contains the internship report; lab videos and a training package are not distributed there."
+            ]
+          ]
+        }
+      ]
+    },
+    {
       "id": "process",
       "documents": [
         {
@@ -820,64 +1014,6 @@ window.portfolio={
           "label": [
             "Types d’événements",
             "Event types"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "rag",
-      "documents": [],
-      "cats": [
-        1,
-        3
-      ],
-      "year": "2025–2026",
-      "context": [
-        "Projet académique",
-        "Academic project"
-      ],
-      "title": [
-        "RAG documentaire & API",
-        "Document RAG & API"
-      ],
-      "summary": [
-        "Rechercher, résumer et classifier des documents avec un LLM.",
-        "Searching, summarising and classifying documents with an LLM."
-      ],
-      "contribution": [
-        "Extraction multi-PDF, embeddings, indexation vectorielle et orchestration avec LangChain et LangGraph.",
-        "Multi-PDF extraction, embeddings, vector indexing and orchestration with LangChain and LangGraph."
-      ],
-      "detail": [
-        "Moteur de recherche sémantique et classification selon cinq axes. Expérimentation de différentes stratégies de prompt engineering. API FastAPI permettant l’upload, la classification en temps réel, la mise à jour de l’index et le stockage S3.",
-        "Semantic search engine and five-axis classification. Experiments with prompt engineering strategies. FastAPI endpoints for uploads, real-time classification, index updates and S3 storage."
-      ],
-      "stack": [
-        "LLM",
-        "RAG",
-        "LangChain",
-        "LangGraph",
-        "Prompt engineering",
-        "Embeddings",
-        "Vector DB",
-        "FastAPI",
-        "AWS S3"
-      ],
-      "problem": [
-        "Rendre un corpus de documents interrogeable et exploitable par recherche, résumé et classification, avec une interface API.",
-        "Make a document corpus usable through retrieval, summarisation and classification behind an API."
-      ],
-      "sections": [
-        {
-          "title": [
-            "Livrable & lecture du résultat",
-            "Deliverable & interpreting the result"
-          ],
-          "items": [
-            [
-              "Service documentaire FastAPI : upload, classification, mise à jour de l’index et stockage AWS S3.",
-              "FastAPI document service: upload, classification, index updates and AWS S3 storage."
-            ]
           ]
         }
       ]
@@ -1641,7 +1777,9 @@ window.portfolio={
   ],
   "featuredProjects": [
     "flow",
+    "rag",
     "face",
-    "cv-matcher"
+    "cv-matcher",
+    "mice"
   ]
 };
