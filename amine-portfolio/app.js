@@ -28,7 +28,7 @@
     if(p.id==='rag'||p.id==='cv-matcher') {
       const steps=p.id==='rag'
         ? [['Corpus PDF','PDF corpus'],['Index vectoriel','Vector index'],['LLM + API','LLM + API']]
-        : [['Profil & CV','Profile & CV'],['Matching lexical','Lexical matching'],['Brouillon .txt','.txt draft']];
+        : [['Profil & offres','Profile & jobs'],['RAG & agents','RAG & agents'],['Candidatures','Applications']];
       return `<span class="project-graphic pipeline-graphic"><span class="graphic-caption">${esc(p.id==='rag'?t().ragDiagram:t().careerDiagram)}</span><span class="pipeline-nodes">${steps.map((label,n)=>`<span class="pipeline-node ${n===1?'node-accent':''}"><span class="node-number">0${n+1}</span><span>${esc(text(label))}</span></span>${n<2?'<span class="pipeline-arrow" aria-hidden="true">→</span>':''}`).join('')}</span><span class="pipeline-note">${esc(p.id==='rag'?t().ragDiagramNote:t().careerDiagramNote)}</span></span>`;
     }
     const labels = {

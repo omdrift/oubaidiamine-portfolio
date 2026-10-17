@@ -184,8 +184,8 @@ window.portfolio={
     "diagramCaption": "Schéma du pipeline",
     "ragDiagram": "DU DOCUMENT À LA RECHERCHE",
     "ragDiagramNote": "Extraction · embeddings · recherche & classification",
-    "careerDiagram": "CAREERPILOT · MVP LOCAL",
-    "careerDiagramNote": "Profil · comparaison avec une offre · brouillon de lettre",
+    "careerDiagram": "CAREERPILOT · VERSION CIBLE",
+    "careerDiagramNote": "Chatbot sourcé · PDF versionnés · validation & suivi",
     "pipelineLabel": "ARCHITECTURE DU PROJET",
     "projectVisualCaption": "Visuel du projet",
     "paginationLabel": "Pagination des projets",
@@ -380,8 +380,8 @@ window.portfolio={
     "diagramCaption": "Pipeline diagram",
     "ragDiagram": "FROM DOCUMENTS TO RETRIEVAL",
     "ragDiagramNote": "Extraction · embeddings · retrieval & classification",
-    "careerDiagram": "CAREERPILOT · LOCAL MVP",
-    "careerDiagramNote": "Profile · comparison with a job · cover-letter draft",
+    "careerDiagram": "CAREERPILOT · TARGET VERSION",
+    "careerDiagramNote": "Sourced chatbot · versioned PDFs · approval & tracking",
     "pipelineLabel": "PROJECT ARCHITECTURE",
     "projectVisualCaption": "Project visual",
     "paginationLabel": "Project pagination",
@@ -740,110 +740,127 @@ window.portfolio={
         "CareerPilot · CV Matcher"
       ],
       "summary": [
-        "MVP local pour importer des offres, expliquer leur correspondance avec un profil, préparer des documents et suivre les candidatures.",
-        "Local MVP for importing jobs, explaining profile fit, drafting documents and tracking applications."
+        "Version cible d’un assistant IA de recherche d’emploi : matching expliqué, chatbot RAG, CV et lettres en PDF, candidatures et réponses réunis dans un même parcours.",
+        "Target version of an AI job-search assistant: explainable matching, a RAG chatbot, PDF CVs and cover letters, applications and responses in one workflow."
       ],
       "contribution": [
-        "Conception du dashboard React/TypeScript, des routes FastAPI et de la persistance SQLAlchemy/Alembic. Intégration des imports, du matching, de la génération et du suivi dans un même parcours.",
-        "Built the React/TypeScript dashboard, FastAPI routes and SQLAlchemy/Alembic persistence. Integrated ingestion, matching, generation and tracking into one workflow."
+        "Conception du produit et de son architecture full stack : dashboard React/TypeScript, API Python modulaire, services métier partagés par les écrans, le chatbot et les workers. La cible relie recherche, RAG, génération documentaire et orchestration dans un même système.",
+        "Product and full-stack architecture design: a React/TypeScript dashboard, modular Python API and business services shared by screens, the chatbot and workers. The target connects search, RAG, document generation and orchestration in one system."
       ],
       "detail": [
-        "Version présentée : branche develop, MVP individuel. Une démonstration fonctionne avec des données fictives et une génération déterministe ; Ollama et Qdrant sont optionnels. Le dépôt reste privé.",
-        "Version presented: develop branch, single-user MVP. A demo works with fictional data and deterministic generation; Ollama and Qdrant are optional. The repository remains private."
+        "Cette étude présente la version finale cible définie dans le plan projet et le plan de déploiement. Le développement est en cours : les fonctionnalités ci-dessous décrivent le produit attendu et ses critères de validation. Le dépôt applicatif reste privé.",
+        "This case study presents the final target version defined in the project and deployment plans. Development is ongoing: the capabilities below describe the intended product and its acceptance criteria. The application repository remains private."
       ],
       "stack": [
         "Python",
         "React / TypeScript",
         "FastAPI / Pydantic",
-        "SQLAlchemy / PostgreSQL",
+        "SQLAlchemy / PostgreSQL / Alembic",
+        "LangChain / LangGraph",
+        "Qdrant / RAG",
+        "Ollama",
+        "HTML / CSS → PDF",
         "Docker Compose",
-        "pytest / GitHub Actions",
-        "Ollama · optionnel / optional",
-        "Qdrant · optionnel / optional",
-        "LangChain / LangGraph"
+        "pytest / GitHub Actions"
       ],
       "sections": [
         {
           "title": [
-            "Import & matching explicable",
-            "Ingestion & explainable matching"
+            "Recherche personnalisée & matching expliqué",
+            "Personalised search & explainable matching"
           ],
           "items": [
             [
-              "Imports Adzuna, CSV et saisie manuelle ; adaptateur JobSpy expérimental. Filtres, favoris et liens vers les annonces d’origine.",
-              "Adzuna, CSV and manual imports; experimental JobSpy adapter. Filters, saved jobs and original listing links."
+              "Centraliser les offres issues de sources autorisées, dont JobSpy et Adzuna, ainsi que les imports CSV et manuels. Conserver provenance, historique et diagnostics ; normaliser les informations et maîtriser les doublons.",
+              "Centralise jobs from authorised sources, including JobSpy and Adzuna, alongside CSV and manual imports. Preserve provenance, history and diagnostics; normalise fields and control duplicates."
             ],
             [
-              "Classement lexical basé sur les compétences communes et les mots du profil. Le score permet d’ordonner les offres ; il ne mesure pas une probabilité de recrutement.",
-              "Lexical ranking based on shared skills and profile terms. The score orders jobs; it does not measure a hiring probability."
+              "Combiner critères structurés, recouvrement lexical et proximité sémantique. Expliquer compétences communes, écarts et informations manquantes en tenant compte des préférences de contrat, lieu et télétravail.",
+              "Combine structured criteria, lexical overlap and semantic similarity. Explain shared skills, gaps and missing information while accounting for contract, location and remote-work preferences."
             ]
           ]
         },
         {
           "title": [
-            "Documents & preuves du profil",
-            "Documents & profile evidence"
+            "Bibliothèque documentaire & chatbot RAG",
+            "Document library & RAG chatbot"
           ],
           "items": [
             [
-              "Extraction de texte PDF avec relecture avant sauvegarde du profil. Création de brouillons de CV et de lettres en texte, avec identifiants des preuves utilisées et export .txt.",
-              "PDF text extraction with review before saving the profile. Text CV and cover-letter drafts with source evidence IDs and .txt export."
+              "Importer les documents, corriger puis approuver le profil extrait. Versionner les sources et indexer leurs passages avec des références au document, à sa version et à son propriétaire.",
+              "Import documents, correct and approve the extracted profile. Version sources and index passages with references to their document, version and owner."
             ],
             [
-              "Génération déterministe ou Ollama. Retrieval lexical, ou Qdrant avec des vecteurs de hachage de tokens de dimension 64. La vérification des citations porte sur leurs identifiants.",
-              "Deterministic or Ollama generation. Lexical retrieval, or Qdrant with 64-dimensional token-hash vectors. Citation checks validate evidence identifiers."
+              "Converser sur ses offres, ses documents et ses candidatures : comparer des postes, comprendre un score ou préparer une lettre. Fournir des réponses sourcées et proposer des actions via les mêmes services que le dashboard.",
+              "Chat about jobs, documents and applications: compare roles, understand a score or prepare a letter. Provide sourced answers and propose actions through the same services as the dashboard."
             ]
           ]
         },
         {
           "title": [
-            "Validation, suivi & qualité logicielle",
-            "Review, tracking & software quality"
+            "CV et lettres : des preuves au PDF",
+            "CVs and letters: from evidence to PDF"
           ],
           "items": [
             [
-              "Versions des documents persistées, préparation puis approbation de la candidature. Enregistrement d’une remise manuelle ou appel d’un endpoint configuré.",
-              "Persisted document versions, application preparation and approval. Record a manual submission or call a configured endpoint."
+              "Générer un contenu structuré à partir des faits approuvés du candidat ; associer les affirmations à leurs preuves et signaler les informations à compléter avant validation.",
+              "Generate structured content from approved candidate facts; connect claims to evidence and flag information to complete before approval."
             ],
             [
-              "Réponses saisies manuellement ou importées par IMAP en lecture seule, classification par règles et rapprochement conservateur. Migrations Alembic, tests de régression et builds frontend / Docker en CI.",
-              "Manual responses or read-only IMAP imports, rule-based classification and conservative linking. Alembic migrations, regression tests and frontend / Docker builds in CI."
+              "Prévisualiser et modifier des modèles HTML/CSS, puis télécharger les PDF. Conserver chaque version pour que la relecture, l’approbation et la soumission concernent exactement les mêmes documents.",
+              "Preview and edit HTML/CSS templates, then download PDFs. Retain each version so review, approval and submission refer to the exact same documents."
             ]
           ]
         },
         {
           "title": [
-            "Prochaines étapes",
-            "Next steps"
+            "Workflow agentique & suivi des candidatures",
+            "Agentic workflow & application tracking"
           ],
           "items": [
             [
-              "Évaluer le matching sur des offres annotées et comparer des embeddings sémantiques au classement lexical. Ajouter des exports PDF/DOCX et un chatbot documentaire.",
-              "Evaluate matching on annotated jobs and compare semantic embeddings with lexical ranking. Add PDF/DOCX exports and a document chatbot."
+              "Orchestrer avec LangGraph le retrieval, la génération, la vérification, le rendu et la revue. Prévoir checkpoints persistants, reprise après panne, progression visible et validation humaine avant les actions engageantes.",
+              "Orchestrate retrieval, generation, verification, rendering and review with LangGraph. Plan persistent checkpoints, recovery, visible progress and human approval before consequential actions."
             ],
             [
-              "Avant une ouverture publique : authentification, isolation des utilisateurs et validation des intégrations réelles. Le graphe LangGraph actuel contient un seul nœud de génération.",
-              "Before public hosting: authentication, user isolation and validation of real integrations. The current LangGraph graph contains one generation node."
+              "Relier soumission via un connecteur pris en charge, reçu, réponses de messagerie et chronologie de candidature. Encadrer l’automatisation par des règles explicites, des limites et une possibilité de pause ; réconcilier les résultats incertains avant tout nouvel envoi.",
+              "Connect submission through a supported connector, receipts, mailbox responses and an application timeline. Govern automation with explicit rules, limits and a pause control; reconcile uncertain outcomes before resubmitting."
+            ]
+          ]
+        },
+        {
+          "title": [
+            "Architecture cible & critères de réussite",
+            "Target architecture & success criteria"
+          ],
+          "items": [
+            [
+              "Isoler les données de chaque compte dans PostgreSQL, les documents et les index RAG. Séparer API, domaine, services, repositories et intégrations ; prévoir déploiement HTTPS, supervision et restauration des sauvegardes.",
+              "Isolate each account’s PostgreSQL data, documents and RAG indexes. Separate API, domain, services, repositories and integrations; plan HTTPS deployment, monitoring and backup restoration."
+            ],
+            [
+              "Évaluer le matching face à la baseline lexicale sur des offres annotées, le retrieval et les citations, la fidélité des documents et leur rendu PDF. Tester les parcours complets, l’isolation et la reprise sans double candidature ; ces évaluations sont des critères cibles, sans résultat revendiqué ici.",
+              "Evaluate matching against the lexical baseline on annotated jobs, retrieval and citations, document faithfulness and PDF rendering. Test complete journeys, isolation and recovery without duplicate applications; these are target criteria, with no results claimed here."
             ]
           ]
         }
       ],
       "problem": [
-        "Réduire les tâches dispersées de recherche d’emploi : conserver les offres, relier les documents au profil du candidat et suivre les réponses.",
-        "Reduce fragmented job-search tasks: retain listings, connect drafts to candidate evidence and track responses."
+        "Passer d’outils dispersés à un parcours cohérent : sélectionner les bonnes offres, adapter ses documents sans déformer son expérience et savoir quelle action entreprendre ensuite.",
+        "Turn fragmented tools into a coherent journey: select relevant jobs, tailor documents without misrepresenting experience and identify the next action."
       ],
       "deployment": [
-        "MVP local · usage individuel",
-        "Local MVP · single-user"
+        "En développement · version finale cible",
+        "In development · final target version"
       ],
       "proof": [
-        "React + FastAPI, données persistées, documents versionnés et validation avant remise.",
-        "React + FastAPI, persisted data, versioned documents and review before submission."
+        "Un parcours cible complet : offres expliquées, documents sourcés et versionnés, validation avant envoi, suivi des réponses.",
+        "A complete target journey: explained job matches, sourced and versioned documents, approval before submission and response tracking."
       ],
       "cardTags": [
-        "React",
-        "FastAPI",
-        "Docker"
+        "RAG",
+        "LangGraph",
+        "FastAPI"
       ]
     },
     {

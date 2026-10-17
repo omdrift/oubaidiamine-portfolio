@@ -35,6 +35,6 @@ Open <http://localhost:8000/>. Check both languages, mobile layouts, project fil
 
 ## Content maintenance
 
-Descriptions distinguish implemented features from planned work. The CareerPilot case study describes its current `develop` MVP; its application repository remains private. Update the downloadable CV and the corresponding text together when the professional profile changes.
+Descriptions distinguish implemented features from planned work. The CareerPilot card and case study present the documented final product vision, explicitly labelled as a target version in development in both languages. They describe the intended user journey, architecture and acceptance criteria rather than the current MVP. Source documents: `README.md`, `docs/PLAN_PROJET.md` and `docs/PLAN_PREMIER_DEPLOIEMENT.md` from the application’s `feature/production-onboarding` branch at `f7dee66314efa3d8d682d3ccd5c3c1b413fb7460`. Its application repository remains private. Do not turn target capabilities into delivered claims or add unverified performance results. Update the downloadable CV and the corresponding text together when the professional profile changes.
 
 `featuredProjects` controls the curated selection; optional `cardTags` chooses the three homepage tags without shortening the detailed stack. Keep image captions accurate when replacing project media.
