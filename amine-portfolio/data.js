@@ -8,8 +8,8 @@ window.portfolio={
     ],
     "role": "Ingénieur IA · Data Scientist",
     "availability": "Disponible · CDI junior · Île-de-France",
-    "hero": "Ingénieur IA junior.<br>Deep Learning.<br><em>Applications concrètes.</em>",
-    "intro": "Amine Oubaidi — Master Informatique, Ingénierie des Données. Deux stages de recherche au L3i et un stage chez Enedis. Je construis des modèles de vision et des applications IA, de l’expérimentation au service Python.",
+    "hero": "Du modèle à<br><em>l’application IA.</em>",
+    "intro": "Je construis des modèles de vision et des services Python. Deux stages de recherche au L3i, un stage chez Enedis et un Master en Ingénierie des Données : un parcours entre expérimentation et applications métier.",
     "explore": "Voir mes projets",
     "github": "Mon GitHub",
     "focus": "FOCUS RECHERCHE",
@@ -28,7 +28,7 @@ window.portfolio={
     ],
     "projectKicker": "LES PROJETS",
     "projectTitle": "Projets sélectionnés.",
-    "projectIntro": "Vision, RAG documentaire, MLOps et applications : cinq projets pour examiner ma contribution, les livrables et les résultats.",
+    "projectIntro": "Cinq projets, du modèle génératif au service documentaire. Ouvrez une étude pour voir mon rôle, la méthode et les livrables.",
     "searchLabel": "Rechercher un projet",
     "searchPlaceholder": "Projet, outil, domaine…",
     "filters": [
@@ -43,7 +43,7 @@ window.portfolio={
     "count": "projets",
     "empty": "Aucun projet ne correspond à cette recherche.",
     "reset": "Effacer les filtres",
-    "details": "Explorer le projet",
+    "details": "Voir l’étude",
     "contribution": "Ma contribution",
     "tools": "Stack technique",
     "experienceDetails": "Réalisations & outils",
@@ -144,22 +144,50 @@ window.portfolio={
     "projectClose": "Fermer le projet",
     "deployment": "Déploiement bientôt",
     "filterReset": "Tout afficher",
-    "heroEyebrow": "AMINE OUBAIDI / IA & DATA",
+    "heroEyebrow": "AMINE OUBAIDI · INGÉNIEUR IA JUNIOR",
     "projectMore": "Approche, architecture & ressources",
     "heroFacts": [
-      "Master Informatique",
-      "Recherche & industrie",
-      "Île-de-France"
+      [
+        "Formation",
+        "Master Informatique · La Rochelle"
+      ],
+      [
+        "Recherche",
+        "2 stages R&D · Laboratoire L3i"
+      ],
+      [
+        "Industrie",
+        "Data & automatisation · Enedis"
+      ]
     ],
     "cvDownload": "Télécharger mon CV",
     "cvNav": "CV · PDF",
     "linkedin": "LinkedIn",
-    "showAllProjects": "Voir tous les projets",
-    "showFeaturedProjects": "Revenir aux projets sélectionnés",
+    "showAllProjects": "Explorer les {count} projets",
+    "showFeaturedProjects": "Revenir à la sélection",
     "featuredLabel": "À LA UNE",
     "proofLabel": "Ce que j’ai construit",
     "codeLink": "Code",
-    "resourcesLink": "Résultats & ressources"
+    "resourcesLink": "Résultats & ressources",
+    "profileTitle": "Recherche & industrie.",
+    "recommendationLink": "Recommandation L3i · PDF",
+    "flagshipLabel": "PROJET PRINCIPAL · IA GÉNÉRATIVE",
+    "reportShort": "Rapport",
+    "realSample": "Réel",
+    "generatedSample": "Généré",
+    "flowStillCaption": "Exemples réel / généré · images du projet",
+    "flowSequenceCaption": "Extraits animés · séquences indépendantes",
+    "animateFlow": "Animer",
+    "pauseFlow": "Figer",
+    "interfaceCaption": "Interface du projet · capture",
+    "trackingCaption": "Points anatomiques détectés · sortie du modèle",
+    "diagramCaption": "Schéma du pipeline",
+    "ragDiagram": "DU DOCUMENT À LA RECHERCHE",
+    "ragDiagramNote": "Extraction · embeddings · recherche & classification",
+    "careerDiagram": "CAREERPILOT · MVP LOCAL",
+    "careerDiagramNote": "Profil · comparaison avec une offre · brouillon de lettre",
+    "pipelineLabel": "ARCHITECTURE DU PROJET",
+    "projectVisualCaption": "Visuel du projet"
   },
   "en": {
     "nav": [
@@ -170,8 +198,8 @@ window.portfolio={
     ],
     "role": "AI Engineer · Data Scientist",
     "availability": "Available · Junior permanent role · Paris region",
-    "hero": "Junior AI Engineer.<br>Deep Learning.<br><em>Practical applications.</em>",
-    "intro": "Amine Oubaidi — MSc Computer Science, Data Engineering. Two research internships at L3i and an industry internship at Enedis. I build vision models and AI applications, from experimentation to Python services.",
+    "hero": "From the model<br><em>to the application.</em>",
+    "intro": "I build vision models and Python services. Two research internships at L3i, an internship at Enedis and a Master’s in Data Engineering: experience spanning experiments and business applications.",
     "explore": "Explore my projects",
     "github": "My GitHub",
     "focus": "RESEARCH FOCUS",
@@ -190,7 +218,7 @@ window.portfolio={
     ],
     "projectKicker": "THE PROJECTS",
     "projectTitle": "Selected work.",
-    "projectIntro": "Vision, document RAG, MLOps and applications: five projects showing my contribution, deliverables and results.",
+    "projectIntro": "Five projects, from generative models to document services. Open a case study to explore my role, methods and deliverables.",
     "searchLabel": "Search projects",
     "searchPlaceholder": "Project, tool, topic…",
     "filters": [
@@ -205,7 +233,7 @@ window.portfolio={
     "count": "projects",
     "empty": "No projects match this search.",
     "reset": "Clear filters",
-    "details": "Explore the project",
+    "details": "View case study",
     "contribution": "My contribution",
     "tools": "Technical stack",
     "experienceDetails": "Achievements & tools",
@@ -306,22 +334,50 @@ window.portfolio={
     "projectClose": "Close project",
     "deployment": "Deployment coming soon",
     "filterReset": "Show all",
-    "heroEyebrow": "AMINE OUBAIDI / AI & DATA",
+    "heroEyebrow": "AMINE OUBAIDI · JUNIOR AI ENGINEER",
     "projectMore": "Approach, architecture & resources",
     "heroFacts": [
-      "MSc Computer Science",
-      "Research & industry",
-      "Île-de-France"
+      [
+        "Education",
+        "MSc in Computer Science · La Rochelle"
+      ],
+      [
+        "Research",
+        "2 R&D internships · L3i laboratory"
+      ],
+      [
+        "Industry",
+        "Data & automation · Enedis"
+      ]
     ],
     "cvDownload": "Download my CV (FR)",
     "cvNav": "CV · PDF",
     "linkedin": "LinkedIn",
-    "showAllProjects": "Explore all projects",
+    "showAllProjects": "Explore all {count} projects",
     "showFeaturedProjects": "Back to selected projects",
     "featuredLabel": "FEATURED",
     "proofLabel": "What I built",
     "codeLink": "Code",
-    "resourcesLink": "Results & resources"
+    "resourcesLink": "Results & resources",
+    "profileTitle": "Research & industry.",
+    "recommendationLink": "L3i recommendation · PDF",
+    "flagshipLabel": "MAIN PROJECT · GENERATIVE AI",
+    "reportShort": "Report",
+    "realSample": "Real",
+    "generatedSample": "Generated",
+    "flowStillCaption": "Real / generated examples · project images",
+    "flowSequenceCaption": "Animated excerpts · independent sequences",
+    "animateFlow": "Animate",
+    "pauseFlow": "Freeze",
+    "interfaceCaption": "Project interface · screenshot",
+    "trackingCaption": "Detected anatomical keypoints · model output",
+    "diagramCaption": "Pipeline diagram",
+    "ragDiagram": "FROM DOCUMENTS TO RETRIEVAL",
+    "ragDiagramNote": "Extraction · embeddings · retrieval & classification",
+    "careerDiagram": "CAREERPILOT · LOCAL MVP",
+    "careerDiagramNote": "Profile · comparison with a job · cover-letter draft",
+    "pipelineLabel": "PROJECT ARCHITECTURE",
+    "projectVisualCaption": "Project visual"
   },
   "projects": [
     {
@@ -433,6 +489,11 @@ window.portfolio={
       "proof": [
         "Pipeline vidéo PyTorch : préparation, VQGAN, Flow Matching et comparaisons réel / généré.",
         "PyTorch video pipeline: preparation, VQGAN, Flow Matching and real / generated comparisons."
+      ],
+      "cardTags": [
+        "PyTorch",
+        "VQGAN",
+        "Flow Matching"
       ]
     },
     {
@@ -495,6 +556,11 @@ window.portfolio={
       "proof": [
         "Pipeline multi-PDF, embeddings, recherche et classification par LLM, exposés via FastAPI.",
         "Multi-PDF pipeline, embeddings, retrieval and LLM classification exposed through FastAPI."
+      ],
+      "cardTags": [
+        "RAG",
+        "LangChain",
+        "FastAPI"
       ]
     },
     {
@@ -636,6 +702,11 @@ window.portfolio={
       "proof": [
         "CNN à cinq têtes, pipeline DVC / MLflow et service d’inférence FastAPI conteneurisé.",
         "Five-head CNN, DVC / MLflow pipeline and containerised FastAPI inference service."
+      ],
+      "cardTags": [
+        "PyTorch",
+        "MLflow",
+        "Docker"
       ]
     },
     {
@@ -756,6 +827,11 @@ window.portfolio={
       "proof": [
         "React + FastAPI, données persistées, documents versionnés et validation avant remise.",
         "React + FastAPI, persisted data, versioned documents and review before submission."
+      ],
+      "cardTags": [
+        "React",
+        "FastAPI",
+        "Docker"
       ]
     },
     {
@@ -888,6 +964,11 @@ window.portfolio={
             ]
           ]
         }
+      ],
+      "cardTags": [
+        "PyTorch",
+        "Keypoint R-CNN",
+        "PyQt5"
       ]
     },
     {

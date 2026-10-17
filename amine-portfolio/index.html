@@ -11,11 +11,33 @@
 </head>
 <body>
 <a class="skip" href="#main">Aller au contenu / Skip to content</a>
-<header class="header"><a class="brand" href="#top"><span class="brand-mark">AO<span aria-hidden="true">.</span></span><span>Amine Oubaidi</span></a><nav class="nav" aria-label="Navigation"></nav><div class="header-controls"><div class="language" aria-label="Language"><button id="fr" aria-pressed="true">FR</button><button id="en" aria-pressed="false">EN</button></div><button id="theme" class="icon-button" aria-label="Changer le thème">◐</button><button id="menu" class="icon-button menu-button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Ouvrir la navigation">☰</button></div><nav id="mobile-nav" class="mobile-nav" hidden aria-label="Navigation mobile"></nav></header>
+<header class="header">
+  <a class="brand" href="#top" aria-label="Amine Oubaidi"><span class="brand-mark">AO<span aria-hidden="true">.</span></span><span class="brand-name">Amine Oubaidi</span></a>
+  <nav class="nav" aria-label="Navigation"></nav>
+  <div class="header-controls">
+    <a id="header-cv" class="header-cv" href="documents/CV_Amine_Oubaidi.pdf" download="CV_Amine_Oubaidi.pdf" aria-label="Télécharger mon CV">CV <span class="cv-file" aria-hidden="true">↓</span></a>
+    <div class="language" aria-label="Language"><button id="fr" aria-pressed="true" aria-label="Français">FR</button><button id="en" aria-pressed="false" aria-label="English">EN</button></div>
+    <button id="theme" class="icon-button" aria-label="Changer le thème">◐</button>
+    <button id="menu" class="icon-button menu-button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Ouvrir la navigation">☰</button>
+  </div>
+  <nav id="mobile-nav" class="mobile-nav" hidden aria-label="Navigation mobile"></nav>
+</header>
 <main id="main">
-<section id="top" class="hero wrap"><div class="hero-copy"><p class="eyebrow" data-t="heroEyebrow"></p><h1 data-html="hero"></h1><p class="hero-intro" data-t="intro"></p><div class="hero-actions"><a class="button primary" href="documents/CV_Amine_Oubaidi.pdf" download="CV_Amine_Oubaidi.pdf" data-t="cvDownload"></a><a class="button secondary" href="#projects" data-t="explore"></a></div><div class="hero-contact"><a href="https://fr.linkedin.com/in/amine-oubaidi-600315233" target="_blank" rel="noopener" data-t="linkedin"></a><a href="mailto:amine.oubaidi010@gmail.com" data-t="emailButton"></a></div><p class="availability"><span class="status-dot"></span><span data-t="availability"></span></p><div class="hero-facts" id="hero-facts"></div></div>
-<article class="research-card"><div class="research-meta"><span data-t="focus"></span><span class="research-code">CV / GENERATIVE</span></div><h2 data-t="focusTitle"></h2><div class="research-images"><figure><div class="hero-media-frame"><img src="images/flow/flow-original.png" width="544" height="544" alt="Image source du panache industriel / Source industrial plume" decoding="async"></div><figcaption data-t="focusReal"></figcaption></figure><figure><div class="hero-media-frame"><img src="images/flow/flow-reconstruction.png" width="544" height="544" alt="Reconstruction VQGAN du panache / VQGAN plume reconstruction" decoding="async"></div><figcaption data-t="focusReconstruction"></figcaption></figure></div><p data-t="focusBody"></p><button class="text-button" data-study="flow" aria-haspopup="dialog" aria-controls="study-dialog"><span data-t="focusLink"></span><span aria-hidden="true">↗</span></button></article></section>
-<div class="topic-ribbon"><div class="wrap" id="ribbon"></div></div>
+<section id="top" class="hero wrap">
+  <div class="hero-copy">
+    <p class="eyebrow" data-t="heroEyebrow"></p>
+    <h1 data-html="hero"></h1>
+    <p class="hero-intro" data-t="intro"></p>
+    <div class="hero-actions"><a class="button primary" href="documents/CV_Amine_Oubaidi.pdf" download="CV_Amine_Oubaidi.pdf"><span data-t="cvDownload"></span><span aria-hidden="true">↓</span></a><a class="button secondary" href="#projects"><span data-t="explore"></span><span aria-hidden="true">↘</span></a></div>
+    <div class="hero-contact"><a href="https://fr.linkedin.com/in/amine-oubaidi-600315233" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a><a href="mailto:amine.oubaidi010@gmail.com" data-t="emailButton"></a></div>
+  </div>
+  <aside class="hero-profile" aria-labelledby="profile-title">
+    <p class="availability"><span class="status-dot" aria-hidden="true"></span><span data-t="availability"></span></p>
+    <h2 id="profile-title" data-t="profileTitle"></h2>
+    <dl class="profile-facts" id="hero-facts"></dl>
+    <a class="profile-recommendation" href="documents/recommandation-l3i-2025.pdf" target="_blank" rel="noopener"><span data-t="recommendationLink"></span><span aria-hidden="true">↗</span></a>
+  </aside>
+</section>
 <section id="projects" class="section wrap"><div class="section-heading"><div><p class="kicker" data-t="projectKicker"></p><h2 data-html="projectTitle"></h2></div><p class="section-description" data-t="projectIntro"></p></div><div class="project-tools"><label class="search-box"><span data-t="searchLabel"></span><input id="search" type="search" autocomplete="off"></label><div class="project-result"><span id="result-count" aria-live="polite"></span><button id="reset" class="text-button" data-t="reset"></button></div></div><div id="filters" class="filters" role="group"></div><div id="project-grid" class="project-grid"></div><div class="project-more"><button id="show-projects" class="button secondary" aria-controls="project-grid" aria-expanded="false" data-t="showAllProjects"></button></div><div id="empty" class="empty" hidden><p data-t="empty"></p><button id="empty-reset" class="button secondary" data-t="filterReset"></button></div></section>
 <section id="expertise" class="expertise-section"><div class="wrap section"><div class="section-heading"><div><p class="kicker" data-t="skillsKicker"></p><h2 data-html="skillsTitle"></h2></div><p class="section-description" data-t="skillsIntro"></p></div><div id="skills" class="skills-grid"></div><div id="practice" class="practice"></div></div></section>
 <section id="experience" class="section wrap"><div class="section-heading"><div><p class="kicker" data-t="experienceKicker"></p><h2 data-html="experienceTitle"></h2></div><p class="section-description" data-t="experienceIntro"></p></div><div class="experience-layout"><div id="timeline" class="timeline"></div><aside class="credentials"><div><h3 data-t="educationTitle"></h3><div id="education"></div></div><div><h3 data-t="certTitle"></h3><ul id="certifications"></ul></div><div><h3 data-t="languagesTitle"></h3><p data-t="languageBody"></p></div></aside></div></section>

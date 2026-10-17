@@ -3,7 +3,7 @@
   const $ = id => document.getElementById(id);
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const normalise = value => String(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-  const state = {lang:'fr', category:0, query:'', project:null, trigger:null, dark:false, showAll:false};
+  const state = {lang:'fr', category:0, query:'', project:null, trigger:null, dark:false, showAll:false, animateFlow:false};
   try {state.lang=localStorage.getItem('ao-lang')==='en'?'en':'fr';state.dark=localStorage.getItem('ao-theme')==='dark';} catch {}
   const i = () => state.lang==='fr'?0:1;
   const t = () => data[state.lang];
@@ -14,22 +14,41 @@
     return items.length?`<div class="document-links">${items.filter(x=>x.href).map(x=>`<a class="document-link" href="${esc(x.href)}" target="_blank" rel="noopener"><span>${esc(text(x.label)||t().documentLabels[x.kind])}</span><span>${esc(x.format||'PDF')} ↗</span>${x.caption?`<small>${esc(text(x.caption))}</small>`:''}</a>`).join('')}</div>`:'';
   }
   function graphic(p) {
-    const cover = window.portfolioStudies[p.id]?.cover;
-    if(cover)return `<div class="project-image"><img src="${esc(cover.src)}" alt="${esc(text(cover.alt))}" width="${cover.width}" height="${cover.height}" loading="lazy"></div>`;
+    if(p.id==='flow')return `<span class="flow-comparison">${[
+      {still:'flow-real-11.png',motion:'real-sequence.gif',label:t().realSample},
+      {still:'flow-predicted-11.png',motion:'generated-sequence.gif',label:t().generatedSample}
+    ].map(s=>`<span class="flow-sample"><span class="sample-label">${esc(s.label)}</span><img src="images/flow/${esc(state.animateFlow?s.motion:s.still)}" data-flow-still="images/flow/${esc(s.still)}" data-flow-motion="images/flow/${esc(s.motion)}" alt="${esc(s.label)}" width="267" height="267" decoding="async"></span>`).join('')}</span>`;
+    const cover = p.id==='face'
+      ? {src:'images/face/face-app.png',alt:['Interface du projet MLOps : filtres et images par attribut','MLOps project interface: attribute filters and images'],width:1280,height:672}
+      : p.id==='mice'
+        ? {src:'images/mice/mice-tracking.png',alt:['Détection des points anatomiques de deux souris','Keypoint detections on two mice'],width:887,height:774}
+        : window.portfolioStudies[p.id]?.cover;
+    if(cover)return `<span class="project-image"><img src="${esc(cover.src)}" alt="${esc(text(cover.alt))}" width="${cover.width}" height="${cover.height}" loading="lazy" decoding="async"></span>`;
+    if(p.id==='rag'||p.id==='cv-matcher') {
+      const steps=p.id==='rag'
+        ? [['Corpus PDF','PDF corpus'],['Index vectoriel','Vector index'],['LLM + API','LLM + API']]
+        : [['Profil & CV','Profile & CV'],['Matching lexical','Lexical matching'],['Brouillon .txt','.txt draft']];
+      return `<span class="project-graphic pipeline-graphic"><span class="graphic-caption">${esc(p.id==='rag'?t().ragDiagram:t().careerDiagram)}</span><span class="pipeline-nodes">${steps.map((label,n)=>`<span class="pipeline-node ${n===1?'node-accent':''}"><span class="node-number">0${n+1}</span><span>${esc(text(label))}</span></span>${n<2?'<span class="pipeline-arrow" aria-hidden="true">→</span>':''}`).join('')}</span><span class="pipeline-note">${esc(p.id==='rag'?t().ragDiagramNote:t().careerDiagramNote)}</span></span>`;
+    }
     const labels = {
-      'cv-matcher':[['Profil & documents','Profile & documents'],['RAG / LLM'],['Offres & matching','Jobs & matching'],['Candidatures & suivi','Applications & tracking']],
-      rag:[['Corpus PDF'],['Embeddings / RAG'],['Recherche & classification','Retrieval & classification']],
       maritime:[['Vidéo + IMU','Video + IMU'],['CNN / LSTM'],['Estimation du mouvement','Motion estimation']],
       hackathon:[['Texte & images','Text & images'],['VLM + LLM'],['XML structuré','Structured XML']],
       pdf:[['Annotations PDF'],['Extraction & contexte','Extraction & context'],['JSON / CSV']],
       xiatech:[['Événements','Events'],['Relations & provenance','Relations & provenance'],['Visualisation','Visualisation']]
     };
-    return `<div class="project-graphic"><span class="graphic-caption">${esc(p.id==='cv-matcher'?'CAREERPILOT':'SYSTEM / '+p.id.toUpperCase())}</span><div class="graphic-nodes">${(labels[p.id]||[['API'],['Services'],['Data']]).map((x,n)=>`<span class="graphic-node ${n===1?'node-accent':''}">${esc(x[i()]||x[0])}</span>`).join('')}</div></div>`;
+    return `<span class="project-graphic"><span class="graphic-caption">${esc(t().pipelineLabel)}</span><span class="graphic-nodes">${(labels[p.id]||[['API'],['Services'],['Data']]).map((x,n)=>`<span class="graphic-node ${n===1?'node-accent':''}">${esc(x[i()]||x[0])}</span>`).join('')}</span></span>`;
   }
   function card(p) {
-    const featured = data.featuredProjects.includes(p.id);
-    const code = p.repo ? `<a class="text-button" href="${esc(p.repo)}" target="_blank" rel="noopener">${esc(p.repoType==='report'?t().report:t().codeLink)} ↗</a>` : '';
-    return `<article class="project-card" id="project-${esc(p.id)}" data-id="${esc(p.id)}"><button class="project-cover" data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog" aria-label="${esc(t().details+' : '+text(p.title))}">${graphic(p)}</button><div class="project-card-body"><div class="project-meta"><span>${esc(text(p.context))}</span><span>${esc(p.year)}</span></div><p class="project-kind">${esc(featured ? t().featuredLabel+' · '+t().filters[p.cats[0]] : t().filters[p.cats[0]])}</p><h3><button data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(text(p.title))}</button></h3><p class="project-summary">${esc(text(p.summary))}</p>${p.proof?`<p class="project-evidence"><strong>${esc(t().proofLabel)}</strong>${esc(text(p.proof))}</p>`:''}${p.deployment?`<p class="deployment-chip"><span class="status-dot"></span>${esc(text(p.deployment))}</p>`:facts(p.facts?.slice(0,3))}${tags(p.stack.slice(0,6))}<div class="project-actions"><button class="text-button" data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(t().details)} <span aria-hidden="true">↗</span></button>${window.portfolioStudies[p.id]?`<button class="text-button subdued" data-study="${esc(p.id)}" aria-haspopup="dialog" aria-controls="study-dialog">${esc(t().resourcesLink)}</button>`:''}${code}</div></div></article>`;
+    const code = p.repo ? `<a class="text-button project-source" href="${esc(p.repo)}" target="_blank" rel="noopener">${esc(p.repoType==='report'?t().reportShort:t().codeLink)} <span aria-hidden="true">↗</span></a>` : '';
+    const caption=p.id==='flow'?(state.animateFlow?t().flowSequenceCaption:t().flowStillCaption):p.id==='face'?t().interfaceCaption:p.id==='mice'?t().trackingCaption:window.portfolioStudies[p.id]?.cover?t().projectVisualCaption:t().diagramCaption;
+    return `<article class="project-card ${p.id==='flow'?'is-flagship':''}" id="project-${esc(p.id)}" data-id="${esc(p.id)}"><div class="project-media project-media--${esc(p.id)}"><button class="project-cover" data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog" aria-label="${esc(t().details+' : '+text(p.title))}">${graphic(p)}</button><div class="media-toolbar"><span class="media-caption" ${p.id==='flow'?'id="flow-caption"':''}>${esc(caption)}</span>${p.id==='flow'?`<button class="motion-toggle" data-toggle-flow aria-pressed="${state.animateFlow}">${esc(state.animateFlow?t().pauseFlow:t().animateFlow)}</button>`:''}</div></div><div class="project-card-body"><div class="project-meta"><span>${esc(text(p.context))}</span><span>${esc(p.year)}</span></div><p class="project-kind">${esc(p.id==='flow'?t().flagshipLabel:t().filters[p.cats[0]])}</p><h3><button data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(text(p.title))}</button></h3><p class="project-summary">${esc(text(p.summary))}</p>${tags((p.cardTags||p.stack).slice(0,3))}<div class="project-actions"><button class="project-details" data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(t().details)} <span aria-hidden="true">↗</span></button>${code}</div></div></article>`;
+  }
+  function updateFlowMotion() {
+    document.querySelectorAll('[data-flow-still]').forEach(img=>{img.src=state.animateFlow?img.dataset.flowMotion:img.dataset.flowStill;});
+    const button=document.querySelector('[data-toggle-flow]');
+    button.setAttribute('aria-pressed',String(state.animateFlow));
+    button.textContent=state.animateFlow?t().pauseFlow:t().animateFlow;
+    $('flow-caption').textContent=state.animateFlow?t().flowSequenceCaption:t().flowStillCaption;
   }
   function filterProjects() {
     const query=normalise(state.query.trim());
@@ -48,8 +67,9 @@
     $('reset').hidden=!filtering;
     $('show-projects').hidden=filtering;
     $('show-projects').setAttribute('aria-expanded',String(state.showAll));
-    $('show-projects').textContent=state.showAll?t().showFeaturedProjects:t().showAllProjects;
+    $('show-projects').textContent=(state.showAll?t().showFeaturedProjects:t().showAllProjects).replace('{count}',data.projects.length);
     document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.filter)===state.category)));
+    if($('project-flow').hidden&&state.animateFlow){state.animateFlow=false;updateFlowMotion();}
   }
   function renderProjectDialog() {
     const p=data.projects.find(p=>p.id===state.project);if(!p)return;
@@ -74,10 +94,11 @@
     document.querySelectorAll('[data-t]').forEach(el=>el.textContent=t()[el.dataset.t]);
     document.querySelectorAll('[data-html]').forEach(el=>el.innerHTML=t()[el.dataset.html]);
     ['fr','en'].forEach(l=>$(l).setAttribute('aria-pressed',String(l===state.lang)));
-    const nav=['projects','expertise','experience','contact'].map((id,n)=>`<a href="#${id}" data-section="${id}">${esc(t().nav[n])}</a>`).join('');const cvLink=`<a href="documents/CV_Amine_Oubaidi.pdf" download="CV_Amine_Oubaidi.pdf">${esc(t().cvNav)}</a>`;document.querySelector('.nav').innerHTML=nav+cvLink;$('mobile-nav').innerHTML=nav+cvLink;
-    $('menu').setAttribute('aria-label',t().menu);$('search').placeholder=t().searchPlaceholder;
+    const nav=['projects','expertise','experience','contact'].map((id,n)=>`<a href="#${id}" data-section="${id}">${esc(t().nav[n])}</a>`).join('');document.querySelector('.nav').innerHTML=nav;$('mobile-nav').innerHTML=nav;
+    $('header-cv').setAttribute('aria-label',t().cvDownload);
+    $('menu').setAttribute('aria-label',$('mobile-nav').hidden?t().menu:t().closeMenu);$('search').placeholder=t().searchPlaceholder;
     $('filters').setAttribute('aria-label',state.lang==='fr'?'Filtrer les projets':'Filter projects');$('filters').innerHTML=t().filters.map((label,n)=>`<button data-filter="${n}" aria-pressed="${n===state.category}">${esc(label)}</button>`).join('');
-    $('hero-facts').innerHTML=t().heroFacts.map(x=>`<span>${esc(x)}</span>`).join('');$('ribbon').innerHTML=t().ribbon.map(x=>`<span>${esc(x)}</span>`).join('');
+    $('hero-facts').innerHTML=t().heroFacts.map(x=>`<div><dt>${esc(x[0])}</dt><dd>${esc(x[1])}</dd></div>`).join('');
     $('project-grid').innerHTML=data.projects.map(card).join('');filterProjects();
     $('skills').innerHTML=data.skills.map((s,n)=>`<article class="skill-card"><div class="skill-heading"><span class="skill-index">${String(n+1).padStart(2,'0')}</span><h3>${esc(text(s.title))}</h3></div><p>${esc(text(s.note))}</p>${tags(s.items)}<div class="skill-evidence"><span>${esc(t().skillsEvidence)}</span>${s.projects.map(id=>{const p=data.projects.find(p=>p.id===id);return `<button data-project="${esc(id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(text(p.title))} ↗</button>`;}).join('')}</div></article>`).join('');
     $('practice').innerHTML=t().practice.map(x=>`<span>${esc(x)}</span>`).join('');renderExperience();
@@ -92,6 +113,8 @@
     if(event.target.closest('[data-project-close]'))$('project-dialog').close();
     const study=event.target.closest('[data-open-study]');if(study){const trigger=state.trigger;$('project-dialog').close();window.caseStudies.open(study.dataset.openStudy,trigger);}
     if(event.target.closest('#mobile-nav a'))closeMenu();
+    if(event.target.closest('[data-toggle-flow]')){state.animateFlow=!state.animateFlow;updateFlowMotion();}
+    if(!event.target.closest('.header'))closeMenu();
   });
   $('project-dialog').addEventListener('close',()=>{document.body.classList.remove('project-open');if(state.trigger?.isConnected)state.trigger.focus({preventScroll:true});});
   $('project-dialog').addEventListener('click',event=>{if(event.target===$('project-dialog')){const r=$('project-dialog').getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)$('project-dialog').close();}});
@@ -101,6 +124,7 @@
   $('theme').addEventListener('click',()=>{state.dark=!state.dark;try{localStorage.setItem('ao-theme',state.dark?'dark':'light');}catch{}updateTheme();});
   $('menu').addEventListener('click',()=>{const open=$('mobile-nav').hidden;$('mobile-nav').hidden=!open;$('menu').setAttribute('aria-expanded',String(open));$('menu').setAttribute('aria-label',open?t().closeMenu:t().menu);});
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
+  if('matchMedia' in window){const motion=window.matchMedia('(prefers-reduced-motion: reduce)');motion.addEventListener('change',()=>{if(motion.matches&&state.animateFlow){state.animateFlow=false;updateFlowMotion();}});}
   if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting)document.querySelectorAll('[data-section]').forEach(a=>{const active=a.dataset.section===entry.target.id;a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});},{rootMargin:'-15% 0px -65% 0px'});['projects','expertise','experience','contact'].forEach(id=>observer.observe($(id)));}
   render();
 })();

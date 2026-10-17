@@ -2,6 +2,8 @@
 
 Bilingual French/English static portfolio: five featured projects, research and industry experience, project media, reports and a downloadable CV.
 
+The homepage pairs a full-width flagship project with four complementary case studies. Cards use three technology tags and keep the detailed contribution, methodology and resources in dialogs. Existing screenshots and model outputs are distinguished from pipeline diagrams; plume animations start only on request. The header keeps the CV accessible on mobile.
+
 ## Project structure
 
 - `amine-portfolio/index.html`: page structure and contact / CV links.
@@ -32,3 +34,5 @@ Open <http://localhost:8000/>. Check both languages, mobile layouts, project fil
 ## Content maintenance
 
 Descriptions distinguish implemented features from planned work. The CareerPilot case study describes its current `develop` MVP; its application repository remains private. Update the downloadable CV and the corresponding text together when the professional profile changes.
+
+`featuredProjects` controls the curated selection; optional `cardTags` chooses the three homepage tags without shortening the detailed stack. Keep image captions accurate when replacing project media.
