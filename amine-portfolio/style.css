@@ -426,3 +426,63 @@ body.study-open{overflow:hidden}
   .study-media-grid.sequence-media { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .study-paging .button { gap:6px; padding-inline:10px; font-size:13px; }
 }
+
+/* Persistent page navigation. */
+.back-to-top {
+  position:fixed; z-index:15; right:max(24px,calc((100vw - 1184px)/2));
+  bottom:calc(20px + env(safe-area-inset-bottom,0px));
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  min-height:48px; padding:6px 16px 6px 6px; border:1px solid var(--border);
+  border-radius:30px; background:var(--surface); color:var(--text);
+  box-shadow:0 6px 24px #10244020; font-size:14px; font-weight:600;
+}
+.back-to-top-icon { display:grid; place-items:center; width:36px; height:36px; border-radius:50%; background:var(--accent); color:#fff; font-size:22px; }
+body.dark .back-to-top-icon { color:var(--bg); }
+.back-to-top:hover { border-color:var(--accent); color:var(--accent); }
+body.study-open .back-to-top,body.project-open .back-to-top { visibility:hidden; }
+.project-cover:focus-visible { outline-offset:-5px; }
+.project-pagination { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:12px; scroll-margin-top:100px; }
+.pagination-top { margin:0 0 24px; }
+.pagination-bottom { margin:28px 0 0; }
+.page-numbers { display:flex; gap:6px; }
+.project-pagination button { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-width:44px; min-height:44px; padding:8px 12px; border:1px solid var(--border); border-radius:8px; background:var(--surface); color:var(--text); font-size:14px; }
+.project-pagination button:hover:not(:disabled) { border-color:var(--accent); color:var(--accent); }
+.project-pagination button[aria-current=page] { background:var(--accent); border-color:var(--accent); color:#fff; font-weight:650; }
+body.dark .project-pagination button[aria-current=page] { color:var(--bg); }
+.project-pagination button:disabled { opacity:.4; cursor:default; }
+
+/* The study content scrolls between a persistent close control and step pager. */
+.study-dialog { --study-height:90dvh; max-height:var(--study-height); overflow:hidden; }
+.study-dialog-layout { display:flex; flex-direction:column; max-height:calc(var(--study-height) - 2px); }
+.study-titlebar { display:flex; align-items:center; justify-content:space-between; gap:20px; flex-shrink:0; padding:10px 24px; border-bottom:1px solid var(--border); background:var(--surface); }
+.study-titlebar>span { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:14px; font-weight:600; }
+.study-titlebar .study-close { flex-shrink:0; width:44px; height:44px; }
+.study-scroll { position:relative; overflow-y:auto; min-height:0; flex:1 1 auto; overscroll-behavior:contain; scrollbar-gutter:stable; }
+.study-paging { display:grid; grid-template-columns:1fr minmax(200px,1.4fr) 1fr; gap:20px; align-items:center; flex-shrink:0; margin:0; padding:16px 24px; border-top:1px solid var(--border); background:var(--surface); }
+.study-paging .button { width:100%; min-height:44px; padding:10px 14px; gap:8px; font-size:14px; }
+.study-progress { display:grid; gap:6px; min-width:0; }
+.study-page-count { text-align:center; font-size:13px; color:var(--muted); line-height:1.5; }
+.study-progress select { width:100%; min-width:0; min-height:44px; padding:8px 30px 8px 12px; border:1px solid var(--border); border-radius:8px; background:var(--bg); color:var(--text); font:14px/1.5 var(--body); text-overflow:ellipsis; }
+.study-progress select:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
+@media(max-width:850px) {
+  .study-dialog { --study-height:94dvh; }
+  .study-step-nav { display:none; }
+}
+@media(min-width:851px) { .mobile-nav { display:none; } }
+@media(max-width:620px) {
+  .back-to-top { right:18px; min-width:48px; width:48px; height:48px; padding:5px; }
+  .back-to-top>span:last-child { position:absolute; width:1px; height:1px; padding:0; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+  .project-pagination { gap:8px; }
+  .project-pagination .page-direction { padding-inline:10px; }
+  .study-titlebar { padding:8px 16px; gap:12px; }
+  .study-paging { grid-template-columns:1fr 1fr; gap:10px; padding:12px 16px max(12px,env(safe-area-inset-bottom,0px)); }
+  .study-progress { grid-column:1/-1; grid-row:1; grid-template-columns:auto minmax(0,1fr); align-items:center; gap:12px; }
+  .study-page-count { font-size:12px; white-space:nowrap; }
+  .study-paging [data-study-nav=previous] { grid-column:1; grid-row:2; }
+  .study-paging [data-study-nav=next] { grid-column:2; grid-row:2; }
+  .study-paging .button { font-size:14px; }
+}
+@media(max-width:380px) {
+  .project-pagination .page-direction>span:not([aria-hidden]) { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+  .project-pagination .page-direction { padding:8px; }
+}

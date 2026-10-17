@@ -187,7 +187,13 @@ window.portfolio={
     "careerDiagram": "CAREERPILOT · MVP LOCAL",
     "careerDiagramNote": "Profil · comparaison avec une offre · brouillon de lettre",
     "pipelineLabel": "ARCHITECTURE DU PROJET",
-    "projectVisualCaption": "Visuel du projet"
+    "projectVisualCaption": "Visuel du projet",
+    "paginationLabel": "Pagination des projets",
+    "pageLabel": "Page",
+    "previousPage": "Précédente",
+    "nextPage": "Suivante",
+    "rangeOf": "sur",
+    "studyJump": "Aller à une étape"
   },
   "en": {
     "nav": [
@@ -377,7 +383,13 @@ window.portfolio={
     "careerDiagram": "CAREERPILOT · LOCAL MVP",
     "careerDiagramNote": "Profile · comparison with a job · cover-letter draft",
     "pipelineLabel": "PROJECT ARCHITECTURE",
-    "projectVisualCaption": "Project visual"
+    "projectVisualCaption": "Project visual",
+    "paginationLabel": "Project pagination",
+    "pageLabel": "Page",
+    "previousPage": "Previous",
+    "nextPage": "Next",
+    "rangeOf": "of",
+    "studyJump": "Jump to a step"
   },
   "projects": [
     {

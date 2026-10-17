@@ -2,7 +2,9 @@
 
 Bilingual French/English static portfolio: five featured projects, research and industry experience, project media, reports and a downloadable CV.
 
-The homepage pairs a full-width flagship project with four complementary case studies. Cards use three technology tags and keep the detailed contribution, methodology and resources in dialogs. Existing screenshots and model outputs are distinguished from pipeline diagrams; plume animations start only on request. The header keeps the CV accessible on mobile.
+The homepage pairs a full-width flagship project with four complementary case studies. The full project list and filtered results use four projects per page, with synchronized pagination above and below the cards. Cards use three technology tags and keep the detailed contribution, methodology and resources in dialogs. Existing screenshots and model outputs are distinguished from pipeline diagrams; plume animations start only on request. The header keeps the CV accessible on mobile, and a floating return-to-top control appears after scrolling.
+
+Visual case studies keep their close control and previous/next navigation outside the scrolling content. A step selector provides direct access to every step, including on mobile.
 
 ## Project structure
 

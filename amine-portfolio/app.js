@@ -3,7 +3,8 @@
   const $ = id => document.getElementById(id);
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const normalise = value => String(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-  const state = {lang:'fr', category:0, query:'', project:null, trigger:null, dark:false, showAll:false, animateFlow:false};
+  const state = {lang:'fr', category:0, query:'', project:null, trigger:null, dark:false, showAll:false, animateFlow:false, page:1};
+  const pageSize=4;
   try {state.lang=localStorage.getItem('ao-lang')==='en'?'en':'fr';state.dark=localStorage.getItem('ao-theme')==='dark';} catch {}
   const i = () => state.lang==='fr'?0:1;
   const t = () => data[state.lang];
@@ -50,26 +51,46 @@
     button.textContent=state.animateFlow?t().pauseFlow:t().animateFlow;
     $('flow-caption').textContent=state.animateFlow?t().flowSequenceCaption:t().flowStillCaption;
   }
+  function renderPagination(pageCount) {
+    const controls=`<button class="page-direction" data-project-page="${state.page-1}" aria-controls="project-grid" ${state.page===1?'disabled':''}><span aria-hidden="true">←</span><span>${esc(t().previousPage)}</span></button><div class="page-numbers">${Array.from({length:pageCount},(_,n)=>`<button data-project-page="${n+1}" aria-controls="project-grid" aria-label="${esc(t().pageLabel+' '+(n+1))}" ${state.page===n+1?'aria-current="page"':''}>${n+1}</button>`).join('')}</div><button class="page-direction" data-project-page="${state.page+1}" aria-controls="project-grid" ${state.page===pageCount?'disabled':''}><span>${esc(t().nextPage)}</span><span aria-hidden="true">→</span></button>`;
+    for(const id of ['project-pagination-top','project-pagination-bottom']){
+      const pager=$(id);pager.hidden=pageCount<2;pager.setAttribute('aria-label',t().paginationLabel);
+      pager.innerHTML=pageCount>1?controls:'';
+    }
+  }
   function filterProjects() {
     const query=normalise(state.query.trim());
     const filtering=Boolean(state.category||query);
-    let count=0;
-    for(const p of data.projects){
+    const curated=!filtering&&!state.showAll;
+    const matching=data.projects.filter(p=>{
       const corpus=normalise([p.title,p.summary,p.problem,p.contribution,p.detail,p.stack,p.context,...(p.sections||[]).flatMap(s=>[s.title,...s.items])].flat(Infinity).join(' '));
-      const match=(!state.category||p.cats.includes(state.category))&&(!query||corpus.includes(query));
-      const show=match&&(filtering||state.showAll||data.featuredProjects.includes(p.id));
-      $('project-'+p.id).hidden=!show;
-      if(show)count++;
-    }
-    $('project-grid').classList.toggle('featured-view',!filtering&&!state.showAll);
-    $('result-count').textContent=`${count} / ${data.projects.length} ${t().count}`;
-    $('empty').hidden=count>0;
+      return (!state.category||p.cats.includes(state.category))&&(!query||corpus.includes(query));
+    });
+    const results=curated?matching.filter(p=>data.featuredProjects.includes(p.id)):matching;
+    const pageCount=curated?1:Math.max(1,Math.ceil(results.length/pageSize));
+    state.page=Math.max(1,Math.min(state.page,pageCount));
+    const offset=curated?0:(state.page-1)*pageSize;
+    const visible=curated?results:results.slice(offset,offset+pageSize);
+    const shown=new Set(visible.map(p=>p.id));
+    for(const p of data.projects)$('project-'+p.id).hidden=!shown.has(p.id);
+    $('project-grid').classList.toggle('featured-view',curated);
+    $('result-count').textContent=curated?`${results.length} / ${data.projects.length} ${t().count}`:results.length?`${offset+1}–${offset+visible.length} ${t().rangeOf} ${results.length} ${t().count}`:`0 ${t().count}`;
+    renderPagination(pageCount);
+    $('empty').hidden=results.length>0;
     $('reset').hidden=!filtering;
     $('show-projects').hidden=filtering;
     $('show-projects').setAttribute('aria-expanded',String(state.showAll));
     $('show-projects').textContent=(state.showAll?t().showFeaturedProjects:t().showAllProjects).replace('{count}',data.projects.length);
     document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.filter)===state.category)));
     if($('project-flow').hidden&&state.animateFlow){state.animateFlow=false;updateFlowMotion();}
+  }
+  function focusResults() {
+    const target=$('project-pagination-top').hidden?$('project-grid'):$('project-pagination-top');
+    target.scrollIntoView({block:'start',behavior:window.matchMedia?.('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+    document.querySelector('.project-card:not([hidden]) h3 button')?.focus({preventScroll:true});
+  }
+  function updateBackToTop() {
+    $('back-to-top').hidden=(window.scrollY||document.documentElement.scrollTop||0)<Math.max(320,(window.innerHeight||700)*.55);
   }
   function renderProjectDialog() {
     const p=data.projects.find(p=>p.id===state.project);if(!p)return;
@@ -103,13 +124,14 @@
     $('skills').innerHTML=data.skills.map((s,n)=>`<article class="skill-card"><div class="skill-heading"><span class="skill-index">${String(n+1).padStart(2,'0')}</span><h3>${esc(text(s.title))}</h3></div><p>${esc(text(s.note))}</p>${tags(s.items)}<div class="skill-evidence"><span>${esc(t().skillsEvidence)}</span>${s.projects.map(id=>{const p=data.projects.find(p=>p.id===id);return `<button data-project="${esc(id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(text(p.title))} ↗</button>`;}).join('')}</div></article>`).join('');
     $('practice').innerHTML=t().practice.map(x=>`<span>${esc(x)}</span>`).join('');renderExperience();
     $('education').innerHTML=t().education.map(x=>`<article class="education-item"><span>${esc(x[0])}</span><h4>${esc(x[1])}</h4><p>${esc(x[2])}</p><p>${esc(x[3])}</p></article>`).join('');$('certifications').innerHTML=data.certs.map(x=>`<li>${esc(x)}</li>`).join('');
-    updateTheme();if($('project-dialog').open)renderProjectDialog();window.caseStudies.refresh();
+    updateTheme();updateBackToTop();if($('project-dialog').open)renderProjectDialog();window.caseStudies.refresh();
   }
-  function reset(){state.category=0;state.query='';$('search').value='';filterProjects();}
+  function reset(){state.category=0;state.query='';state.page=1;$('search').value='';filterProjects();}
   function closeMenu(){$('mobile-nav').hidden=true;$('menu').setAttribute('aria-expanded','false');$('menu').setAttribute('aria-label',t().menu);}
   document.addEventListener('click',event=>{
     const p=event.target.closest('[data-project]');if(p)openProject(p.dataset.project,p);
-    const filter=event.target.closest('[data-filter]');if(filter){state.category=Number(filter.dataset.filter);filterProjects();}
+    const filter=event.target.closest('[data-filter]');if(filter){state.category=Number(filter.dataset.filter);state.page=1;filterProjects();}
+    const page=event.target.closest('[data-project-page]');if(page&&!page.disabled){state.page=Number(page.dataset.projectPage);filterProjects();focusResults();}
     if(event.target.closest('[data-project-close]'))$('project-dialog').close();
     const study=event.target.closest('[data-open-study]');if(study){const trigger=state.trigger;$('project-dialog').close();window.caseStudies.open(study.dataset.openStudy,trigger);}
     if(event.target.closest('#mobile-nav a'))closeMenu();
@@ -118,8 +140,11 @@
   });
   $('project-dialog').addEventListener('close',()=>{document.body.classList.remove('project-open');if(state.trigger?.isConnected)state.trigger.focus({preventScroll:true});});
   $('project-dialog').addEventListener('click',event=>{if(event.target===$('project-dialog')){const r=$('project-dialog').getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)$('project-dialog').close();}});
-  $('show-projects').addEventListener('click',()=>{state.showAll=!state.showAll;filterProjects();});
-  $('search').addEventListener('input',e=>{state.query=e.target.value;filterProjects();});$('reset').addEventListener('click',reset);$('empty-reset').addEventListener('click',reset);
+  $('show-projects').addEventListener('click',()=>{state.showAll=!state.showAll;state.page=1;filterProjects();focusResults();});
+  $('search').addEventListener('input',e=>{state.query=e.target.value;state.page=1;filterProjects();});$('reset').addEventListener('click',reset);$('empty-reset').addEventListener('click',reset);
+  $('back-to-top').addEventListener('click',event=>{event.preventDefault();window.scrollTo({top:0,behavior:window.matchMedia?.('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});$('hero-title').focus({preventScroll:true});});
+  window.addEventListener('scroll',updateBackToTop,{passive:true});
+  window.addEventListener('resize',updateBackToTop);
   ['fr','en'].forEach(l=>$(l).addEventListener('click',()=>{state.lang=l;try{localStorage.setItem('ao-lang',l);}catch{}render();}));
   $('theme').addEventListener('click',()=>{state.dark=!state.dark;try{localStorage.setItem('ao-theme',state.dark?'dark':'light');}catch{}updateTheme();});
   $('menu').addEventListener('click',()=>{const open=$('mobile-nav').hidden;$('mobile-nav').hidden=!open;$('menu').setAttribute('aria-expanded',String(open));$('menu').setAttribute('aria-label',open?t().closeMenu:t().menu);});
