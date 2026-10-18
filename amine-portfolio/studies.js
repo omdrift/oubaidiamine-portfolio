@@ -47,12 +47,12 @@ window.portfolioStudies={
     "steps": [
       {
         "title": [
-          "Données",
-          "Data"
+          "Collecte et pipeline",
+          "Acquisition and pipeline"
         ],
         "body": [
-          "Clips annotés issus de Project RISE : récupération des vidéos, extraction des frames et constitution de séquences temporelles. La source de données et le sous-ensemble d'entraînement ne sont pas confondus.",
-          "Annotated Project RISE clips: retrieving videos, extracting frames and preparing temporal sequences. The source corpus is distinguished from the experimental training subset."
+          "Clips annotés issus de Project RISE : récupération des vidéos à partir des métadonnées, extraction des frames, segmentation temporelle puis préparation des données. Schéma du pipeline expérimenté : PyMatting, VQGAN, Flow Matching et intégration ODE.",
+          "Annotated Project RISE clips: videos retrieved from metadata, frames extracted, temporal sequences prepared. The experimental pipeline combines PyMatting, VQGAN, Flow Matching and ODE integration."
         ],
         "media": [
           {
@@ -69,6 +69,19 @@ window.portfolioStudies={
             ],
             "width": 180,
             "height": 180
+          },
+          {
+            "src": "images/flow/pipeline-experimental.svg",
+            "width": 1400,
+            "height": 540,
+            "caption": [
+              "Pipeline complet — schéma explicatif réalisé pour ce portfolio",
+              "Complete pipeline — explanatory diagram created for this portfolio"
+            ],
+            "alt": [
+              "Pipeline complet — schéma explicatif réalisé pour ce portfolio",
+              "Complete pipeline — explanatory diagram created for this portfolio"
+            ]
           }
         ],
         "blocks": []
@@ -118,8 +131,8 @@ window.portfolioStudies={
           "Encoding with VQGAN"
         ],
         "body": [
-          "Encodage VQGAN : une image 64 × 64 × 3 devient un latent 8 × 8 × 256, ensuite décodé. Sur les quatre frames de la figure de reconstruction : MSE moyen 160,7, PSNR moyen 26,23 dB et SSIM moyen 0,919. Il s'agit uniquement de reconstruction VQGAN.",
-          "VQGAN encoding: a 64 × 64 × 3 image becomes an 8 × 8 × 256 latent and is decoded. On the four reconstruction examples: mean MSE 160.7, mean PSNR 26.23 dB and mean SSIM 0.919. These only measure VQGAN reconstruction."
+          "Le VQGAN reconstruit les images à partir de latents spatiaux 8 × 8 × 256. Les images ci-dessous montrent un exemple de reconstruction et une mosaïque d'extraction, reconstruction et recomposition depuis le dépôt. Sur quatre autres frames illustrées dans le diaporama, la moyenne est : MSE 160,7, PSNR 26,23 dB, SSIM 0,919 (reconstruction uniquement).",
+          "VQGAN reconstructs frames from spatial 8 × 8 × 256 latents. The images below show a reconstruction example plus a repository mosaic of extraction, reconstruction and background composition. Across four other frames shown in the slides, mean MSE is 160.7, PSNR 26.23 dB, SSIM 0.919 (reconstruction only)."
         ],
         "media": [
           {
@@ -149,16 +162,16 @@ window.portfolioStudies={
             ]
           },
           {
-            "src": "https://raw.githubusercontent.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/main/media/vqgan_reconstruction_comparison.png",
+            "src": "images/flow/vqgan-matting-comparison.png",
             "width": 2953,
             "height": 2984,
             "caption": [
-              "VQGAN : originaux, latents et reconstructions comparés sur quatre frames",
-              "VQGAN: originals, latents and reconstructions compared across four frames"
+              "Chaîne visuelle sur des exemples du dépôt : original, fumée isolée, VQGAN, recomposition et résultat final (scores du diaporama distincts)",
+              "Repository examples: original, extracted plume, VQGAN reconstruction, background composition and final result (separate from slide metrics)"
             ],
             "alt": [
-              "Figure comparative de reconstruction VQGAN, avec métriques PSNR et SSIM",
-              "VQGAN reconstruction comparison showing PSNR and SSIM"
+              "Chaîne visuelle sur des exemples du dépôt : original, fumée isolée, VQGAN, recomposition et résultat final (scores du diaporama distincts)",
+              "Repository examples: original, extracted plume, VQGAN reconstruction, background composition and final result (separate from slide metrics)"
             ]
           }
         ],
@@ -187,8 +200,8 @@ window.portfolioStudies={
           "Learning the dynamics"
         ],
         "body": [
-          "Flow Matching conditionnel apprend un champ de vitesses dans l'espace latent pour générer la frame suivante à partir de l'historique. Une ODE est intégrée numériquement : la démonstration illustre 100 étapes et 10 observations initiales, suivies d'une fenêtre glissante autorégressive.",
-          "Conditional Flow Matching learns a velocity field in latent space to generate subsequent frames from prior context. An ODE is numerically integrated: the demonstration illustrates 100 integration steps and 10 initial observations, followed by an autoregressive rolling window."
+          "Le Flow Matching conditionnel apprend un champ de vitesses entre bruit latent et latent de frame future. La dynamique est conditionnée sur l'historique : la démonstration utilise 10 images réelles initiales, puis des prédictions réinjectées à l'aide d'une fenêtre glissante. Les animations montrent des extraits distincts du dépôt.",
+          "Conditional Flow Matching learns a velocity field between latent noise and the latent of a future frame. The model is conditioned on temporal history: the demonstration starts with 10 observed frames and feeds predictions into a rolling window. Animations show independent examples from the repository."
         ],
         "media": [
           {
@@ -226,21 +239,21 @@ window.portfolioStudies={
           "ODE-based generation"
         ],
         "body": [
-          "Le vecteur latent évolue du bruit vers une frame synthétique sous le champ de vitesses appris. La figure illustre les étapes de génération, pas un score d'évaluation.",
-          "A latent evolves from noise to a synthesised frame according to the learned velocity field. The figure illustrates generation steps, not an evaluation score."
+          "Le champ appris est intégré par un solveur ODE dans l'espace latent. La présentation illustre 100 étapes de calcul, le décodage de la frame 11 et la réutilisation d'une fenêtre de contexte pour générer progressivement les frames 12 à 36. Le schéma ci-dessous représente ce mécanisme ; il n'est pas une courbe de performance ni une visualisation mesurée des états latents.",
+          "The learned field is integrated with an ODE solver in latent space. The slides illustrate 100 integration steps, decoding frame 11 and reusing a context window to progressively generate frames 12 through 36. The diagram below explains this process, not a measured latent trajectory or a performance curve."
         ],
         "media": [
           {
-            "src": "https://raw.githubusercontent.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/main/media/figure5_generation.png",
-            "width": 4674,
-            "height": 1772,
+            "src": "images/flow/ode-trajectory-explainer.svg",
+            "width": 1400,
+            "height": 680,
             "caption": [
-              "Progression d'une génération Flow Matching",
-              "A Flow Matching generation progression"
+              "Schéma conceptuel : 10 observations, 100 pas ODE et rollout autoregressif 11–36",
+              "Conceptual diagram: 10 observed frames, 100 ODE steps and autoregressive rollout 11–36"
             ],
             "alt": [
-              "Étapes d'inférence Flow Matching entre bruit et frame synthétique",
-              "Flow Matching inference stages from noise to a generated frame"
+              "Schéma conceptuel : 10 observations, 100 pas ODE et rollout autoregressif 11–36",
+              "Conceptual diagram: 10 observed frames, 100 ODE steps and autoregressive rollout 11–36"
             ]
           }
         ],
@@ -248,12 +261,12 @@ window.portfolioStudies={
       },
       {
         "title": [
-          "Comparer les sorties",
-          "Comparing outputs"
+          "Prédictions à court horizon",
+          "Short-horizon predictions"
         ],
         "body": [
-          "Comparaison des frames générées à la vérité terrain. On retrouve des panaches plausibles mais certaines différences de texture, forme et localisation persistent. Les métriques de reconstruction précédentes ne mesurent pas cette fidélité prédictive.",
-          "Generated frames are compared to ground truth. Plausible plume shapes appear, but texture, shape and location differences remain. Earlier reconstruction metrics do not measure this forecasting accuracy."
+          "Exemples d'images 11 à 13 : les panaches prédits préservent une partie de la silhouette, mais leur position, leurs contours et leur texture ne coïncident pas toujours avec les frames réelles. Cette galerie présente une comparaison qualitative, pas une précision moyenne sur jeu de test.",
+          "Example frames 11 through 13: predicted plumes retain some overall silhouette, but their location, boundaries and texture do not always match the real frames. This gallery is a qualitative comparison, not an average held-out test accuracy."
         ],
         "media": [
           {
@@ -339,18 +352,78 @@ window.portfolioStudies={
       },
       {
         "title": [
+          "Évaluation du rollout (11–36)",
+          "Evaluating the rollout (11–36)"
+        ],
+        "body": [
+          "Sur un horizon autoregressif plus long, les différences entre vérité terrain et prédiction s'accumulent. Les deux mosaïques proviennent du dépôt du projet : la première montre des comparaisons avec des métriques annotées par frame, la seconde affiche des MSE par instant sur une séquence. Il ne s'agit pas d'une moyenne globale, ni d'une comparaison à protocole commun contre RAFT et ConvLSTM.",
+          "At a longer autoregressive horizon, discrepancies between ground truth and prediction accumulate. Both mosaics come from the project repository: the first shows comparisons with per-frame annotations, the second shows per-frame MSE for one sequence. Neither is a global test-set aggregate or a controlled benchmark against RAFT and ConvLSTM."
+        ],
+        "media": [
+          {
+            "src": "images/flow/forecast-frames-11-36.png",
+            "width": 4674,
+            "height": 1772,
+            "caption": [
+              "Réel vs généré — frames 11–36 et scores affichés dans la figure",
+              "Ground truth vs generated — frames 11–36 with annotations within the figure"
+            ],
+            "alt": [
+              "Réel vs généré — frames 11–36 et scores affichés dans la figure",
+              "Ground truth vs generated — frames 11–36 with annotations within the figure"
+            ]
+          },
+          {
+            "src": "images/flow/forecast-mse-grid.png",
+            "width": 1664,
+            "height": 173,
+            "caption": [
+              "Autre séquence : référence, prédiction et erreurs par frame",
+              "Another sequence: ground truth, prediction and frame-level errors"
+            ],
+            "alt": [
+              "Autre séquence : référence, prédiction et erreurs par frame",
+              "Another sequence: ground truth, prediction and frame-level errors"
+            ]
+          }
+        ],
+        "blocks": []
+      },
+      {
+        "title": [
           "Méthodes alternatives et limites",
           "Alternative methods and limitations"
         ],
         "body": [
-          "Le groupe a aussi étudié RAFT + warping et ConvLSTM. RAFT ne synthétise pas la nouvelle matière ; ConvLSTM peut accumuler les erreurs à long horizon. Des tests sur vidéos inédites restent nécessaires pour caractériser la généralisation du Flow Matching.",
-          "The team also studied RAFT + warping and ConvLSTM. RAFT cannot synthesise new smoke material; ConvLSTM can accumulate errors at long horizons. Held-out video tests are needed to quantify Flow Matching generalisation."
+          "Approches examinées en équipe : RAFT avec déformation (warping) pour transporter les pixels existants ; ConvLSTM pour prédire des frames par mémoire spatio-temporelle ; VQGAN + Flow Matching pour générer de nouveaux latents. Dans la présentation, Flow Matching semblait le plus prometteur, mais la comparaison ne constitue pas un benchmark complet contrôlé et reste sensible au drift temporel.",
+          "Approaches explored by the team: RAFT with warping to transport existing pixels; ConvLSTM for recurrent spatiotemporal frame prediction; VQGAN + Flow Matching to synthesise new latents. The presentation considered Flow Matching the most promising, but this was not a fully controlled benchmark and temporal drift remains a limitation."
         ],
-        "media": [],
+        "media": [
+          {
+            "src": "images/flow/alternative-methods.svg",
+            "width": 1400,
+            "height": 620,
+            "caption": [
+              "Résumé des trois approches et de leurs limites — schéma de synthèse",
+              "Summary of three methods and their limitations — explanatory chart"
+            ],
+            "alt": [
+              "Résumé des trois approches et de leurs limites — schéma de synthèse",
+              "Summary of three methods and their limitations — explanatory chart"
+            ]
+          }
+        ],
         "blocks": []
       }
     ],
     "annex": [
+      {
+        "label": [
+          "Présentation technique complète (synthèse web illustrée)",
+          "Full technical walkthrough (illustrated web summary)"
+        ],
+        "href": "presentation-panaches.html"
+      },
       {
         "label": [
           "Préparation des frames et matting",
