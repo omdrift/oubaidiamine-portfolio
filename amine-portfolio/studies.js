@@ -428,7 +428,10 @@ window.portfolioStudies={
           "Présentation technique complète (synthèse web illustrée)",
           "Full technical walkthrough (illustrated web summary)"
         ],
-        "href": "presentation-panaches.html"
+        "href": [
+          "presentation-panaches.html",
+          "presentation-panaches-en.html"
+        ]
       },
       {
         "label": [
