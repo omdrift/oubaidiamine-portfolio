@@ -22,8 +22,8 @@
     const caption = text(media.caption);
     const content = media.type === 'video'
       ? `<video controls playsinline preload="none" poster="${escape(media.poster)}" width="${media.width}" height="${media.height}" aria-label="${escape(text(media.alt))}"><source src="${escape(media.src)}" type="video/mp4"></video>`
-      : `<a href="${escape(media.src)}" target="_blank" rel="noopener" aria-label="${escape(labels().studyZoom + ' : ' + caption)}"><img src="${escape(media.src)}" alt="${escape(text(media.alt))}" width="${media.width}" height="${media.height}" decoding="async"></a>`;
-    return `<figure class="study-figure"><div class="study-media-frame">${content}</div><figcaption>${escape(caption)}</figcaption></figure>`;
+      : `<a href="${escape(media.src)}" target="_blank" rel="noopener" aria-label="${escape(labels().studyZoom + ' : ' + caption)}"><img src="${escape(media.src)}" alt="${escape(text(media.alt))}" width="${media.width}" height="${media.height}" loading="lazy" decoding="async"></a>`;
+    return `<figure class="study-figure ${media.wide ? 'study-figure--wide' : ''}"><div class="study-media-frame">${content}</div><figcaption>${escape(caption)}</figcaption></figure>`;
   }
 
   function stepMarkup(study) {
