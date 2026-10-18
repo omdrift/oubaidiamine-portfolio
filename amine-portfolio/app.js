@@ -12,7 +12,7 @@
   const tags = items => `<div class="tags">${items.map(s=>`<span>${esc(text(s))}</span>`).join('')}</div>`;
   const facts = items => items?.length?`<dl class="project-facts">${items.map(f=>`<div><dt>${esc(text(f.label))}</dt><dd>${esc(f.value)}</dd></div>`).join('')}</dl>`:'';
   function documents(items=[]) {
-    return items.length?`<div class="document-links">${items.filter(x=>x.href).map(x=>`<a class="document-link" href="${esc(x.href)}" target="_blank" rel="noopener"><span>${esc(text(x.label)||t().documentLabels[x.kind])}</span><span>${esc(x.format||'PDF')} ↗</span>${x.caption?`<small>${esc(text(x.caption))}</small>`:''}</a>`).join('')}</div>`:'';
+    return items.length?`<div class="document-links">${items.filter(x=>x.href).map(x=>`<a class="document-link" href="${esc(text(x.href))}" target="_blank" rel="noopener"><span>${esc(text(x.label)||t().documentLabels[x.kind])}</span><span>${esc(x.format||'PDF')} ↗</span>${x.caption?`<small>${esc(text(x.caption))}</small>`:''}</a>`).join('')}</div>`:'';
   }
   function graphic(p) {
     if(p.id==='flow')return `<span class="flow-comparison">${[
