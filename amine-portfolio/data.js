@@ -394,7 +394,21 @@ window.portfolio={
   "projects": [
     {
       "id": "flow",
-      "documents": [],
+      "documents": [
+        {
+          "kind": "presentation",
+          "href": "presentation-panaches.html",
+          "format": "WEB",
+          "label": [
+            "Présentation technique interactive",
+            "Interactive technical presentation"
+          ],
+          "caption": [
+            "Synthèse illustrée du diaporama de groupe (24 diapositives)",
+            "Illustrated summary adapted from the 24-slide team presentation"
+          ]
+        }
+      ],
       "cats": [
         1,
         2
@@ -417,8 +431,8 @@ window.portfolio={
         "Team project. My work: collecting and preparing videos, extracting plumes with PyMatting, building the VQGAN + Flow Matching pipeline, training and inspecting reconstructions and generations."
       ],
       "detail": [
-        "Modélisation des panaches indépendamment de l'arrière-plan. Les images 64 × 64 sont encodées en latents spatiaux 8 × 8 × 256 ; Flow Matching apprend un champ de vitesses conditionnel dans cet espace. À l'inférence, l'intégration d'une ODE et une fenêtre temporelle glissante produisent des frames futures. Les métriques de reconstruction VQGAN ne sont pas assimilées à des scores de prévision.",
-        "Plumes are modelled separately from their background. 64 × 64 images are encoded as 8 × 8 × 256 spatial latents; Flow Matching learns a conditional velocity field in this space. At inference, ODE integration with a rolling temporal window generates future frames. VQGAN reconstruction metrics are not misrepresented as forecasting scores."
+        "Pipeline documenté : récupération de clips industriels Project RISE, matting du panache, représentation VQGAN à 64 × 64, puis Flow Matching conditionnel en espace latent et génération autoregressive via intégration ODE. Comparaison aux références et analyse du drift. L'étude présente les métriques VQGAN et les exemples de prédiction séparément.",
+        "Documented pipeline: Project RISE video collection, plume matting, 64 × 64 VQGAN representations, conditional latent Flow Matching and autoregressive ODE-based generation. Ground-truth comparisons and temporal drift are analysed. VQGAN metrics are kept distinct from forecasting examples."
       ],
       "stack": [
         "PyTorch",
@@ -477,12 +491,12 @@ window.portfolio={
           ],
           "items": [
             [
-              "Reconstruction VQGAN — Sur les quatre exemples de la figure : MSE moyen 160,7, PSNR moyen 26,23 dB et SSIM moyen 0,919. Ces métriques portent sur la reconstruction, pas sur la génération de frames futures.",
-              "VQGAN reconstruction — For the four illustrated samples: mean MSE 160.7, mean PSNR 26.23 dB and mean SSIM 0.919. These metrics concern reconstruction, not future-frame generation."
+              "Reconstruction VQGAN — Sur les quatre frames du diaporama de groupe : MSE moyen 160,7, PSNR moyen 26,23 dB et SSIM moyen 0,919. Les figures de reconstruction du dépôt montrent d'autres exemples sans présenter ces scores ; il ne faut pas associer artificiellement les deux protocoles.",
+              "VQGAN reconstruction — Across four frames in the team slide deck: mean MSE 160.7, mean PSNR 26.23 dB and mean SSIM 0.919. Separate repository illustrations show other reconstructions without those scores; the two evaluations are not conflated."
             ],
             [
-              "Prédictions — Comparaisons qualitatives réel/généré : les silhouettes des panaches restent souvent identifiables mais présentent des écarts de contours, texture et position. Pas de score global de prévision revendiqué.",
-              "Forecasts — Real/generated visual comparisons: plume silhouettes are often identifiable but differ in boundaries, texture and position. No overall forecasting accuracy score is claimed."
+              "Prédictions — Les grilles de frames 11–36 et les séquences réel/généré montrent le mouvement des panaches, mais une dérive des formes et des textures apparaît à plus long horizon. Des scores par frame figurent dans certains exemples, sans benchmark global consolidé.",
+              "Forecasting — Frames 11–36 and real/generated sequence grids illustrate plume motion, with drift in shape and texture at longer horizons. Some example-specific metrics are shown, but no consolidated global forecasting benchmark is claimed."
             ],
             [
               "RAFT avec warping et ConvLSTM ont également été explorés par le groupe. Le premier ne crée pas de nouvelle fumée, tandis que l'autorégression peut accumuler les erreurs.",
