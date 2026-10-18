@@ -409,16 +409,16 @@ window.portfolio={
         "Industrial smoke plume modelling"
       ],
       "summary": [
-        "Isoler la fumée, apprendre une représentation VQGAN et générer des frames par Flow Matching.",
-        "Isolating smoke, learning a VQGAN representation and generating frames with Flow Matching."
+        "Prédiction de la dynamique de fumées industrielles : récupération de vidéos RISE, extraction PyMatting, encodage VQGAN et Flow Matching conditionnel.",
+        "Industrial smoke forecasting: RISE video acquisition, PyMatting extraction, VQGAN encoding and conditional Flow Matching."
       ],
       "contribution": [
-        "Pipeline VQGAN + Flow Matching : préparation des séquences, splits, entraînements GPU, suivi W&B et analyse des reconstructions et générations.",
-        "VQGAN + Flow Matching pipeline: sequence preparation, data splits, GPU training, W&B tracking and analysis of reconstructions and generated sequences."
+        "Projet de groupe. Mes contributions : récupération et préparation des vidéos, extraction des panaches avec PyMatting, pipeline VQGAN + Flow Matching, entraînement et inspection des reconstructions et générations.",
+        "Team project. My work: collecting and preparing videos, extracting plumes with PyMatting, building the VQGAN + Flow Matching pipeline, training and inspecting reconstructions and generations."
       ],
       "detail": [
-        "Images 64 × 64 et latents 8 × 8 × 256 dans la configuration actuelle. Conditionnement temporel échantillonné à l’entraînement, puis génération de frames par résolution d’une ODE. Inspection des reconstructions et des séquences ; PSNR, SSIM et FVD.",
-        "64 × 64 images and 8 × 8 × 256 latents in the current configuration. Temporal conditioning is sampled during training, followed by ODE-based frame generation. Reconstruction and sequence inspection; PSNR, SSIM and FVD."
+        "Modélisation des panaches indépendamment de l'arrière-plan. Les images 64 × 64 sont encodées en latents spatiaux 8 × 8 × 256 ; Flow Matching apprend un champ de vitesses conditionnel dans cet espace. À l'inférence, l'intégration d'une ODE et une fenêtre temporelle glissante produisent des frames futures. Les métriques de reconstruction VQGAN ne sont pas assimilées à des scores de prévision.",
+        "Plumes are modelled separately from their background. 64 × 64 images are encoded as 8 × 8 × 256 spatial latents; Flow Matching learns a conditional velocity field in this space. At inference, ODE integration with a rolling temporal window generates future frames. VQGAN reconstruction metrics are not misrepresented as forecasting scores."
       ],
       "stack": [
         "PyTorch",
@@ -436,41 +436,57 @@ window.portfolio={
       "sections": [
         {
           "title": [
-            "Méthode & expérimentation",
-            "Method & experimentation"
+            "Acquisition et préparation",
+            "Data acquisition and preparation"
           ],
           "items": [
             [
-              "Données — Sélection de clips annotés de fumée industrielle issus de Project RISE. Les vidéos servent à préparer des séquences et des ensembles d’entraînement, de validation et de test.",
-              "Data — Selected annotated industrial smoke clips from Project RISE. Videos are used to prepare sequences and training, validation and test sets."
+              "Collecte de clips industriels du projet RISE ; extraction des frames et structuration des séquences vidéo pour l'expérimentation.",
+              "Collecting Project RISE industrial clips; extracting frames and structuring video sequences for experiments."
             ],
             [
-              "Isoler la fumée — Extraction des frames, estimation du fond puis matting : l’objectif est de séparer le panache du décor fixe avant l’apprentissage.",
-              "Isolating smoke — Frame extraction, background estimation and matting separate the plume from the static scene before training."
-            ],
-            [
-              "Encoder avec VQGAN — Le modèle compresse les images en latents puis apprend à les reconstruire. L’exemple montre ce que la représentation conserve et les détails qui se perdent.",
-              "Encoding with VQGAN — The model compresses images into latents and learns to reconstruct them. This example shows what the representation retains and which details are lost."
-            ],
-            [
-              "Apprendre la dynamique — À l’entraînement, une frame cible, sa référence précédente et un contexte antérieur sont échantillonnés dans la séquence. Flow Matching apprend le champ de vitesses dans l’espace latent ; une ODE permet ensuite de générer les latents futurs.",
-              "Learning the dynamics — Training samples a target frame, its preceding reference and an earlier context from a sequence. Flow Matching learns a velocity field in latent space; an ODE then generates future latents."
-            ],
-            [
-              "Comparer les sorties — Les latents sont décodés en images puis comparés aux frames réelles. Ici, les panaches restent reconnaissables, avec des écarts de forme et de texture : l’inspection visuelle complète PSNR, SSIM et FVD.",
-              "Comparing outputs — Latents are decoded into images and compared with real frames. Plumes remain recognisable here, with differences in shape and texture: visual inspection complements PSNR, SSIM and FVD."
+              "Segmentation par alpha matting : estimation du fond et extraction des panaches avec PyMatting. Les niveaux de transparence représentent les contours diffus et la dissipation.",
+              "Alpha matting: background estimation and plume extraction using PyMatting. Alpha values retain transparent, diffuse edges and dissipation."
             ]
           ]
         },
         {
           "title": [
-            "Livrable & lecture du résultat",
-            "Deliverable & interpreting the result"
+            "Architecture et entraînement",
+            "Architecture and training"
           ],
           "items": [
             [
-              "Comparaison des reconstructions et générations aux frames réelles. PSNR, SSIM et FVD complétés par l’inspection des écarts de forme et de texture.",
-              "Compare reconstructions and generations with real frames. PSNR, SSIM and FVD complemented by inspection of shape and texture differences."
+              "VQGAN reconstruit la fumée depuis une représentation latente 8 × 8 × 256. Le passage de 64 × 64 × 3 à 8 × 8 × 256 diminue la résolution spatiale, mais n'est pas une compression du nombre total de coefficients.",
+              "VQGAN reconstructs smoke from an 8 × 8 × 256 latent. Mapping 64 × 64 × 3 to 8 × 8 × 256 lowers spatial resolution but is not a reduction in the total number of scalar coefficients."
+            ],
+            [
+              "Flow Matching conditionnel apprend le champ de vitesses entre bruit latent et représentation d'une image future, sous conditionnement temporel.",
+              "Conditional Flow Matching learns a latent velocity field between noise and a future-frame representation, using temporal conditioning."
+            ],
+            [
+              "Le diaporama illustre une inférence par intégration ODE sur 100 étapes, à partir de 10 observations et avec génération autorégressive par fenêtre glissante.",
+              "The presentation illustrates 100-step ODE integration, conditioned on 10 observed frames with autoregressive rolling-window generation."
+            ]
+          ]
+        },
+        {
+          "title": [
+            "Résultats et limites",
+            "Results and limitations"
+          ],
+          "items": [
+            [
+              "Reconstruction VQGAN — Sur les quatre exemples de la figure : MSE moyen 160,7, PSNR moyen 26,23 dB et SSIM moyen 0,919. Ces métriques portent sur la reconstruction, pas sur la génération de frames futures.",
+              "VQGAN reconstruction — For the four illustrated samples: mean MSE 160.7, mean PSNR 26.23 dB and mean SSIM 0.919. These metrics concern reconstruction, not future-frame generation."
+            ],
+            [
+              "Prédictions — Comparaisons qualitatives réel/généré : les silhouettes des panaches restent souvent identifiables mais présentent des écarts de contours, texture et position. Pas de score global de prévision revendiqué.",
+              "Forecasts — Real/generated visual comparisons: plume silhouettes are often identifiable but differ in boundaries, texture and position. No overall forecasting accuracy score is claimed."
+            ],
+            [
+              "RAFT avec warping et ConvLSTM ont également été explorés par le groupe. Le premier ne crée pas de nouvelle fumée, tandis que l'autorégression peut accumuler les erreurs.",
+              "The team also explored RAFT with warping and ConvLSTM. The former does not create new smoke; autoregressive prediction can accumulate errors."
             ]
           ]
         }
@@ -499,8 +515,8 @@ window.portfolio={
         }
       ],
       "proof": [
-        "Pipeline vidéo PyTorch : préparation, VQGAN, Flow Matching et comparaisons réel / généré.",
-        "PyTorch video pipeline: preparation, VQGAN, Flow Matching and real / generated comparisons."
+        "De l'acquisition RISE et du PyMatting à la génération autoregressive par Flow Matching latent.",
+        "From RISE acquisition and PyMatting to autoregressive latent Flow Matching generation."
       ],
       "cardTags": [
         "PyTorch",

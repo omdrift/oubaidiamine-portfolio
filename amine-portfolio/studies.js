@@ -5,8 +5,8 @@ window.portfolioStudies={
       "Modelling smoke plumes"
     ],
     "intro": [
-      "Des clips industriels à la génération de frames : mon travail sur VQGAN et Flow Matching dans un projet de groupe.",
-      "From industrial clips to frame generation: my work on VQGAN and Flow Matching in a group project."
+      "Projet M2 réalisé en équipe. Étude visuelle de la collecte vidéo, du PyMatting et de la génération de panaches par Flow Matching conditionnel.",
+      "Team MSc project. A visual walkthrough of video acquisition, PyMatting and plume generation using conditional Flow Matching."
     ],
     "cover": {
       "src": "images/flow/flow-original.png",
@@ -51,8 +51,8 @@ window.portfolioStudies={
           "Data"
         ],
         "body": [
-          "Sélection de clips annotés de fumée industrielle issus de Project RISE. Les vidéos servent à préparer des séquences et des ensembles d’entraînement, de validation et de test.",
-          "Selected annotated industrial smoke clips from Project RISE. Videos are used to prepare sequences and training, validation and test sets."
+          "Clips annotés issus de Project RISE : récupération des vidéos, extraction des frames et constitution de séquences temporelles. La source de données et le sous-ensemble d'entraînement ne sont pas confondus.",
+          "Annotated Project RISE clips: retrieving videos, extracting frames and preparing temporal sequences. The source corpus is distinguished from the experimental training subset."
         ],
         "media": [
           {
@@ -79,8 +79,8 @@ window.portfolioStudies={
           "Isolating smoke"
         ],
         "body": [
-          "Extraction des frames, estimation du fond puis matting : l’objectif est de séparer le panache du décor fixe avant l’apprentissage.",
-          "Frame extraction, background estimation and matting separate the plume from the static scene before training."
+          "Après estimation du fond, PyMatting calcule les composantes du panache et les zones de transparence : I = αF + (1 − α)B. L'objectif est d'isoler la dynamique de la fumée du décor industriel.",
+          "After background estimation, PyMatting estimates the plume foreground and transparency: I = αF + (1 − α)B. The aim is to isolate smoke dynamics from the industrial scene."
         ],
         "media": [
           {
@@ -118,8 +118,8 @@ window.portfolioStudies={
           "Encoding with VQGAN"
         ],
         "body": [
-          "Le modèle compresse les images en latents puis apprend à les reconstruire. L’exemple montre ce que la représentation conserve et les détails qui se perdent.",
-          "The model compresses images into latents and learns to reconstruct them. This example shows what the representation retains and which details are lost."
+          "Encodage VQGAN : une image 64 × 64 × 3 devient un latent 8 × 8 × 256, ensuite décodé. Sur les quatre frames de la figure de reconstruction : MSE moyen 160,7, PSNR moyen 26,23 dB et SSIM moyen 0,919. Il s'agit uniquement de reconstruction VQGAN.",
+          "VQGAN encoding: a 64 × 64 × 3 image becomes an 8 × 8 × 256 latent and is decoded. On the four reconstruction examples: mean MSE 160.7, mean PSNR 26.23 dB and mean SSIM 0.919. These only measure VQGAN reconstruction."
         ],
         "media": [
           {
@@ -146,6 +146,19 @@ window.portfolioStudies={
             "alt": [
               "Reconstruction VQGAN",
               "VQGAN reconstruction"
+            ]
+          },
+          {
+            "src": "https://raw.githubusercontent.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/main/media/vqgan_reconstruction_comparison.png",
+            "width": 2953,
+            "height": 2984,
+            "caption": [
+              "VQGAN : originaux, latents et reconstructions comparés sur quatre frames",
+              "VQGAN: originals, latents and reconstructions compared across four frames"
+            ],
+            "alt": [
+              "Figure comparative de reconstruction VQGAN, avec métriques PSNR et SSIM",
+              "VQGAN reconstruction comparison showing PSNR and SSIM"
             ]
           }
         ],
@@ -174,8 +187,8 @@ window.portfolioStudies={
           "Learning the dynamics"
         ],
         "body": [
-          "À l’entraînement, une frame cible, sa référence précédente et un contexte antérieur sont échantillonnés dans la séquence. Flow Matching apprend le champ de vitesses dans l’espace latent ; une ODE permet ensuite de générer les latents futurs.",
-          "Training samples a target frame, its preceding reference and an earlier context from a sequence. Flow Matching learns a velocity field in latent space; an ODE then generates future latents."
+          "Flow Matching conditionnel apprend un champ de vitesses dans l'espace latent pour générer la frame suivante à partir de l'historique. Une ODE est intégrée numériquement : la démonstration illustre 100 étapes et 10 observations initiales, suivies d'une fenêtre glissante autorégressive.",
+          "Conditional Flow Matching learns a velocity field in latent space to generate subsequent frames from prior context. An ODE is numerically integrated: the demonstration illustrates 100 integration steps and 10 initial observations, followed by an autoregressive rolling window."
         ],
         "media": [
           {
@@ -209,12 +222,38 @@ window.portfolioStudies={
       },
       {
         "title": [
+          "Génération par intégration ODE",
+          "ODE-based generation"
+        ],
+        "body": [
+          "Le vecteur latent évolue du bruit vers une frame synthétique sous le champ de vitesses appris. La figure illustre les étapes de génération, pas un score d'évaluation.",
+          "A latent evolves from noise to a synthesised frame according to the learned velocity field. The figure illustrates generation steps, not an evaluation score."
+        ],
+        "media": [
+          {
+            "src": "https://raw.githubusercontent.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/main/media/figure5_generation.png",
+            "width": 4674,
+            "height": 1772,
+            "caption": [
+              "Progression d'une génération Flow Matching",
+              "A Flow Matching generation progression"
+            ],
+            "alt": [
+              "Étapes d'inférence Flow Matching entre bruit et frame synthétique",
+              "Flow Matching inference stages from noise to a generated frame"
+            ]
+          }
+        ],
+        "blocks": []
+      },
+      {
+        "title": [
           "Comparer les sorties",
           "Comparing outputs"
         ],
         "body": [
-          "Les latents sont décodés en images puis comparés aux frames réelles. Ici, les panaches restent reconnaissables, avec des écarts de forme et de texture : l’inspection visuelle complète PSNR, SSIM et FVD.",
-          "Latents are decoded into images and compared with real frames. Plumes remain recognisable here, with differences in shape and texture: visual inspection complements PSNR, SSIM and FVD."
+          "Comparaison des frames générées à la vérité terrain. On retrouve des panaches plausibles mais certaines différences de texture, forme et localisation persistent. Les métriques de reconstruction précédentes ne mesurent pas cette fidélité prédictive.",
+          "Generated frames are compared to ground truth. Plausible plume shapes appear, but texture, shape and location differences remain. Earlier reconstruction metrics do not measure this forecasting accuracy."
         ],
         "media": [
           {
@@ -297,6 +336,18 @@ window.portfolioStudies={
           }
         ],
         "blocks": []
+      },
+      {
+        "title": [
+          "Méthodes alternatives et limites",
+          "Alternative methods and limitations"
+        ],
+        "body": [
+          "Le groupe a aussi étudié RAFT + warping et ConvLSTM. RAFT ne synthétise pas la nouvelle matière ; ConvLSTM peut accumuler les erreurs à long horizon. Des tests sur vidéos inédites restent nécessaires pour caractériser la généralisation du Flow Matching.",
+          "The team also studied RAFT + warping and ConvLSTM. RAFT cannot synthesise new smoke material; ConvLSTM can accumulate errors at long horizons. Held-out video tests are needed to quantify Flow Matching generalisation."
+        ],
+        "media": [],
+        "blocks": []
       }
     ],
     "annex": [
@@ -320,6 +371,13 @@ window.portfolioStudies={
           "64 × 64 / 8 × 8 latent configuration"
         ],
         "href": "https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/configs/smoke_dataset_vqgan.yaml"
+      },
+      {
+        "label": [
+          "Documentation détaillée du pipeline",
+          "Detailed pipeline documentation"
+        ],
+        "href": "https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/SMOKE_FLOW_MATCHING_PIPELINE.md"
       }
     ]
   },
