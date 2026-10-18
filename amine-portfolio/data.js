@@ -397,7 +397,10 @@ window.portfolio={
       "documents": [
         {
           "kind": "presentation",
-          "href": "presentation-panaches.html",
+          "href": [
+            "presentation-panaches.html",
+            "presentation-panaches-en.html"
+          ],
           "format": "WEB",
           "label": [
             "Présentation technique interactive",
