@@ -81,7 +81,8 @@ window.portfolioStudies={
             "alt": [
               "Pipeline complet — schéma explicatif réalisé pour ce portfolio",
               "Complete pipeline — explanatory diagram created for this portfolio"
-            ]
+            ],
+            "wide": true
           }
         ],
         "blocks": []
@@ -172,7 +173,8 @@ window.portfolioStudies={
             "alt": [
               "Chaîne visuelle sur des exemples du dépôt : original, fumée isolée, VQGAN, recomposition et résultat final (scores du diaporama distincts)",
               "Repository examples: original, extracted plume, VQGAN reconstruction, background composition and final result (separate from slide metrics)"
-            ]
+            ],
+            "wide": true
           }
         ],
         "blocks": [
@@ -254,7 +256,8 @@ window.portfolioStudies={
             "alt": [
               "Schéma conceptuel : 10 observations, 100 pas ODE et rollout autoregressif 11–36",
               "Conceptual diagram: 10 observed frames, 100 ODE steps and autoregressive rollout 11–36"
-            ]
+            ],
+            "wide": true
           }
         ],
         "blocks": []
@@ -371,7 +374,8 @@ window.portfolioStudies={
             "alt": [
               "Réel vs généré — frames 11–36 et scores affichés dans la figure",
               "Ground truth vs generated — frames 11–36 with annotations within the figure"
-            ]
+            ],
+            "wide": true
           },
           {
             "src": "images/flow/forecast-mse-grid.png",
@@ -384,7 +388,8 @@ window.portfolioStudies={
             "alt": [
               "Autre séquence : référence, prédiction et erreurs par frame",
               "Another sequence: ground truth, prediction and frame-level errors"
-            ]
+            ],
+            "wide": true
           }
         ],
         "blocks": []
@@ -410,7 +415,8 @@ window.portfolioStudies={
             "alt": [
               "Résumé des trois approches et de leurs limites — schéma de synthèse",
               "Summary of three methods and their limitations — explanatory chart"
-            ]
+            ],
+            "wide": true
           }
         ],
         "blocks": []
