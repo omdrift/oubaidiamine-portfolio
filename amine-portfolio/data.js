@@ -13,8 +13,8 @@ window.portfolio={
     "explore": "Voir mes projets",
     "github": "Mon GitHub",
     "focus": "FOCUS RECHERCHE",
-    "focusTitle": "Apprendre la dynamique d’un panache.",
-    "focusBody": "De la préparation des vidéos au modèle génératif : VQGAN, Flow Matching et génération dans l’espace latent.",
+    "focusTitle": "Industrial Plume Forecasting",
+    "focusBody": "CLIPSeg → VQGAN → Flow Matching ; cinq observations, quinze futurs et un protocole vérifiable.",
     "focusInput": "Image de contexte",
     "focusLatent": "Espace latent",
     "focusOutput": "Images futures",
@@ -171,14 +171,9 @@ window.portfolio={
     "resourcesLink": "Résultats & ressources",
     "profileTitle": "Recherche & industrie.",
     "recommendationLink": "Recommandation L3i · PDF",
-    "flagshipLabel": "PROJET PRINCIPAL · IA GÉNÉRATIVE",
+    "flagshipLabel": "PROJET PRINCIPAL · PRÉVISION VIDÉO",
     "reportShort": "Rapport",
-    "realSample": "Réel",
-    "generatedSample": "Généré",
-    "flowStillCaption": "Exemples réel / généré · images du projet",
-    "flowSequenceCaption": "Extraits animés · séquences indépendantes",
-    "animateFlow": "Animer",
-    "pauseFlow": "Figer",
+    "flowStillCaption": "Source RISE et protocole de prévision",
     "interfaceCaption": "Interface du projet · capture",
     "trackingCaption": "Points anatomiques détectés · sortie du modèle",
     "diagramCaption": "Schéma du pipeline",
@@ -209,8 +204,8 @@ window.portfolio={
     "explore": "Explore my projects",
     "github": "My GitHub",
     "focus": "RESEARCH FOCUS",
-    "focusTitle": "Learning a plume’s dynamics.",
-    "focusBody": "From video preparation to a generative model: VQGAN, Flow Matching and generation in latent space.",
+    "focusTitle": "Industrial Plume Forecasting",
+    "focusBody": "CLIPSeg → VQGAN → Flow Matching; five observations, fifteen future frames and a verifiable protocol.",
     "focusInput": "Context image",
     "focusLatent": "Latent space",
     "focusOutput": "Future images",
@@ -369,12 +364,7 @@ window.portfolio={
     "recommendationLink": "L3i recommendation · PDF",
     "flagshipLabel": "MAIN PROJECT · GENERATIVE AI",
     "reportShort": "Report",
-    "realSample": "Real",
-    "generatedSample": "Generated",
-    "flowStillCaption": "Real / generated examples · project images",
-    "flowSequenceCaption": "Animated excerpts · independent sequences",
-    "animateFlow": "Animate",
-    "pauseFlow": "Freeze",
+    "flowStillCaption": "RISE source and forecasting protocol",
     "interfaceCaption": "Project interface · screenshot",
     "trackingCaption": "Detected anatomical keypoints · model output",
     "diagramCaption": "Pipeline diagram",
@@ -396,20 +386,20 @@ window.portfolio={
       "id": "flow",
       "documents": [
         {
-          "kind": "presentation",
-          "href": [
-            "presentation-panaches.html",
-            "presentation-panaches-en.html"
-          ],
-          "format": "WEB",
           "label": [
-            "Présentation technique interactive",
-            "Interactive technical presentation"
+            "Protocole expérimental",
+            "Experimental protocol"
           ],
-          "caption": [
-            "Synthèse illustrée du diaporama de groupe (24 diapositives)",
-            "Illustrated summary adapted from the 24-slide team presentation"
-          ]
+          "href": "https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/SCIENTIFIC_PROTOCOL.md",
+          "format": "DOC"
+        },
+        {
+          "label": [
+            "Architecture et vérification",
+            "Architecture and verification"
+          ],
+          "href": "https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/ENGINEERING.md",
+          "format": "DOC"
         }
       ],
       "cats": [
@@ -422,121 +412,130 @@ window.portfolio={
         "MSc project"
       ],
       "title": [
-        "Modélisation de panaches industriels",
-        "Industrial smoke plume modelling"
+        "Industrial Plume Forecasting",
+        "Industrial Plume Forecasting"
       ],
       "summary": [
-        "Prédiction de la dynamique de fumées industrielles : récupération de vidéos RISE, extraction PyMatting, encodage VQGAN et Flow Matching conditionnel.",
-        "Industrial smoke forecasting: RISE video acquisition, PyMatting extraction, VQGAN encoding and conditional Flow Matching."
+        "Prévision vidéo de fumée : CLIPSeg, VQGAN et Flow Matching, avec protocole reproductible, références comparables et suivi des erreurs.",
+        "Smoke video forecasting with CLIPSeg, VQGAN and Flow Matching, a reproducible protocol, comparable baselines and error diagnostics."
       ],
       "contribution": [
-        "Projet de groupe. Mes contributions : récupération et préparation des vidéos, extraction des panaches avec PyMatting, pipeline VQGAN + Flow Matching, entraînement et inspection des reconstructions et générations.",
-        "Team project. My work: collecting and preparing videos, extracting plumes with PyMatting, building the VQGAN + Flow Matching pipeline, training and inspecting reconstructions and generations."
+        "Projet de Master en équipe. Travail sur la préparation des séquences RISE et le pipeline VQGAN / Flow Matching ; structuration du protocole, de la reprise des entraînements, du monitoring et des vérifications logicielles.",
+        "Team MSc project. Work on RISE sequence preparation and the VQGAN / Flow Matching pipeline, with structured experimental design, recoverable training, monitoring and software verification."
       ],
       "detail": [
-        "Pipeline documenté : récupération de clips industriels Project RISE, matting du panache, représentation VQGAN à 64 × 64, puis Flow Matching conditionnel en espace latent et génération autoregressive via intégration ODE. Comparaison aux références et analyse du drift. L'étude présente les métriques VQGAN et les exemples de prédiction séparément.",
-        "Documented pipeline: Project RISE video collection, plume matting, 64 × 64 VQGAN representations, conditional latent Flow Matching and autoregressive ODE-based generation. Ground-truth comparisons and temporal drift are analysed. VQGAN metrics are kept distinct from forecasting examples."
+        "Les clips conservent 36 images. La tâche de référence observe cinq images et en prédit quinze à 64 × 64. CLIPSeg et un raffinement spatial produisent des masques estimés ; un VQGAN commun est figé avant les prédicteurs latents. Une commande enchaîne les étapes et W&B suit la qualité, les régions fumée/fond et les checkpoints.",
+        "Clips retain 36 frames. The reference task observes five frames and predicts fifteen at 64 × 64. CLIPSeg and spatial refinement provide estimated masks; a common VQGAN is frozen for the latent predictors. One command orchestrates the stages while W&B tracks quality, smoke/background regions and checkpoint selection."
       ],
       "stack": [
+        "Python",
         "PyTorch",
+        "CLIPSeg",
         "VQGAN",
         "Flow Matching",
-        "ODE",
-        "Weights & Biases",
-        "PSNR / SSIM / FVD"
+        "W&B",
+        "pytest"
       ],
       "repo": "https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching",
       "problem": [
-        "Comment représenter et générer l’évolution d’un panache industriel à partir de vidéos, en séparant la fumée du décor ?",
-        "How can industrial plume evolution be represented and generated from video while separating smoke from the scene?"
+        "Comment comparer une prévision de panache aux références, tout en maîtrisant les fuites temporelles, les erreurs de segmentation et la reproductibilité des entraînements ?",
+        "How can plume forecasts be compared against baselines while controlling temporal leakage, segmentation error and training reproducibility?"
       ],
       "sections": [
         {
           "title": [
-            "Acquisition et préparation",
-            "Data acquisition and preparation"
+            "Données et prévention des fuites",
+            "Data and leakage prevention"
           ],
           "items": [
             [
-              "Collecte de clips industriels du projet RISE ; extraction des frames et structuration des séquences vidéo pour l'expérimentation.",
-              "Collecting Project RISE industrial clips; extracting frames and structuring video sequences for experiments."
+              "RISE : clips de 36 acquisitions, RGB 64 × 64 et masques souples. Les partitions sont séparées par dates et vues ; les identifiants et empreintes sont conservés.",
+              "RISE: 36-acquisition clips, 64 × 64 RGB and soft masks. Splits separate dates and views; identifiers and checksums are retained."
             ],
             [
-              "Segmentation par alpha matting : estimation du fond et extraction des panaches avec PyMatting. Les niveaux de transparence représentent les contours diffus et la dissipation.",
-              "Alpha matting: background estimation and plume extraction using PyMatting. Alpha values retain transparent, diffuse edges and dissipation."
+              "CLIPSeg traite chaque image indépendamment, suivi d’un filtre guidé spatial. Les masques sont des estimations sémantiques, sans opacité physique ni vérité terrain dense revendiquée.",
+              "CLIPSeg processes each frame independently, followed by a spatial guided filter. Masks are semantic estimates, with no claim of physical opacity or independent dense ground truth."
             ]
           ]
         },
         {
           "title": [
-            "Architecture et entraînement",
-            "Architecture and training"
+            "Modèles et comparaison contrôlée",
+            "Models and controlled comparison"
           ],
           "items": [
             [
-              "VQGAN reconstruit la fumée depuis une représentation latente 8 × 8 × 256. Le passage de 64 × 64 × 3 à 8 × 8 × 256 diminue la résolution spatiale, mais n'est pas une compression du nombre total de coefficients.",
-              "VQGAN reconstructs smoke from an 8 × 8 × 256 latent. Mapping 64 × 64 × 3 to 8 × 8 × 256 lowers spatial resolution but is not a reduction in the total number of scalar coefficients."
+              "VQGAN commun : latents 8 × 8 × 256 et 1 024 codes. Flow Matching uniforme et pondéré par alpha sont comparés à la persistance, au flot optique de Farnebäck et à un SimVP compact.",
+              "Common VQGAN: 8 × 8 × 256 latents and 1,024 codes. Uniform and alpha-weighted Flow Matching are compared with persistence, Farnebäck optical flow and compact SimVP."
             ],
             [
-              "Flow Matching conditionnel apprend le champ de vitesses entre bruit latent et représentation d'une image future, sous conditionnement temporel.",
-              "Conditional Flow Matching learns a latent velocity field between noise and a future-frame representation, using temporal conditioning."
-            ],
-            [
-              "Le diaporama illustre une inférence par intégration ODE sur 100 étapes, à partir de 10 observations et avec génération autorégressive par fenêtre glissante.",
-              "The presentation illustrates 100-step ODE integration, conditioned on 10 observed frames with autoregressive rolling-window generation."
+              "Évaluation de cinq observations vers quinze futurs ; trois graines de prédicteurs, quatre réalisations par prévision stochastique et moyenne de toutes les réalisations. La LPIPS de validation sélectionne le checkpoint.",
+              "Five observed frames to fifteen future frames; three predictor seeds, four realizations per stochastic forecast and averaging over every realization. Validation LPIPS selects the checkpoint."
             ]
           ]
         },
         {
           "title": [
-            "Résultats et limites",
-            "Results and limitations"
+            "Suivi et robustesse logicielle",
+            "Monitoring and software reliability"
           ],
           "items": [
             [
-              "Reconstruction VQGAN — Sur les quatre frames du diaporama de groupe : MSE moyen 160,7, PSNR moyen 26,23 dB et SSIM moyen 0,919. Les figures de reconstruction du dépôt montrent d'autres exemples sans présenter ces scores ; il ne faut pas associer artificiellement les deux protocoles.",
-              "VQGAN reconstruction — Across four frames in the team slide deck: mean MSE 160.7, mean PSNR 26.23 dB and mean SSIM 0.919. Separate repository illustrations show other reconstructions without those scores; the two evaluations are not conflated."
+              "Panels train / validation fixes, erreurs fumée et fond, résultats par date et vue, utilisation du codebook, gradients, temps et mémoire. Les courbes précisent leur sens et leurs limites.",
+              "Fixed training / validation panels, smoke and background errors, date/view slices, codebook usage, gradients, time and memory. Charts document their meaning and limits."
             ],
             [
-              "Prédictions — Les grilles de frames 11–36 et les séquences réel/généré montrent le mouvement des panaches, mais une dérive des formes et des textures apparaît à plus long horizon. Des scores par frame figurent dans certains exemples, sans benchmark global consolidé.",
-              "Forecasting — Frames 11–36 and real/generated sequence grids illustrate plume motion, with drift in shape and texture at longer horizons. Some example-specific metrics are shown, but no consolidated global forecasting benchmark is claimed."
+              "Écriture atomique des checkpoints, conservation des deux derniers états et du meilleur modèle, sauvegarde des RNG et contrôle de provenance. Les NPZ finalisés restent réutilisables sans les MP4 sources.",
+              "Atomic checkpoint writes, retention of the two latest recovery states and the best model, RNG capture and provenance checks. Finalized NPZ data remain usable after source MP4 removal."
+            ]
+          ]
+        },
+        {
+          "title": [
+            "État des preuves et limites",
+            "Evidence status and limitations"
+          ],
+          "items": [
+            [
+              "Le code, le protocole, les tests et la matrice sont publiés. Aucun gain prédictif consolidé ni meilleur LR calibré n’est revendiqué ; les essais comparables doivent produire ces preuves.",
+              "Code, protocol, tests and the experiment matrix are published. No consolidated forecasting improvement or calibrated optimal LR is claimed; controlled runs must provide that evidence."
             ],
             [
-              "RAFT avec warping et ConvLSTM ont également été explorés par le groupe. Le premier ne crée pas de nouvelle fumée, tandis que l'autorégression peut accumuler les erreurs.",
-              "The team also explored RAFT with warping and ConvLSTM. The former does not create new smoke; autoregressive prediction can accumulate errors."
+              "Les tests réservés distinguent dates futures et vues inédites, avec différences appariées et bootstrap par journée. Une reconstruction VQGAN réussie ou un faible LPIPS ne suffisent pas à démontrer une prévision fidèle.",
+              "Held-out tests distinguish future dates and unseen views, with paired differences and day-clustered bootstrap. Good VQGAN reconstruction or low LPIPS alone does not establish faithful forecasting."
             ]
           ]
         }
       ],
       "facts": [
         {
-          "value": "Project RISE",
+          "value": "36",
           "label": [
-            "Corpus source",
-            "Source corpus"
+            "Images par clip",
+            "Frames per clip"
           ]
         },
         {
-          "value": "64 × 64",
+          "value": "5 → 15",
           "label": [
-            "Images du modèle",
-            "Model images"
+            "Observations → prévisions",
+            "Observations → predictions"
           ]
         },
         {
-          "value": "8 × 8 × 256",
+          "value": "5",
           "label": [
-            "Représentation latente",
-            "Latent representation"
+            "Méthodes comparées",
+            "Comparison methods"
           ]
         }
       ],
       "proof": [
-        "De l'acquisition RISE et du PyMatting à la génération autoregressive par Flow Matching latent.",
-        "From RISE acquisition and PyMatting to autoregressive latent Flow Matching generation."
+        "Protocole 5 → 15, données vérifiées et diagnostics interprétables. Les résultats prédictifs consolidés restent à établir.",
+        "A 5 → 15 protocol, checked data and interpretable diagnostics. Consolidated forecasting results remain to be established."
       ],
       "cardTags": [
-        "PyTorch",
+        "CLIPSeg",
         "VQGAN",
         "Flow Matching"
       ]

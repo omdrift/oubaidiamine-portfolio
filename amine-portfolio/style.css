@@ -114,8 +114,7 @@ body.dark .primary { color:#101b2b; }
 .flow-sample { display:flex; flex-direction:column; gap:12px; min-width:0; }
 .sample-label { font-size:14px; font-weight:500; }
 .flow-sample img { width:100%; aspect-ratio:1; height:auto; object-fit:cover; border:1px solid #52637a; border-radius:8px; }
-.motion-toggle { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:8px 12px; font-size:13px; background:transparent; color:#f3f6fb; border:1px solid #63738a; border-radius:7px; flex-shrink:0; }
-.motion-toggle:hover { background:#293d57; }
+.flow-sample img[src$=".svg"] { object-fit:contain; background:#0d1b2d; }
 .project-card-body { display:flex; flex-direction:column; flex:1; padding:28px; }
 .project-meta { display:flex; justify-content:space-between; align-items:baseline; gap:16px; font-size:13px; line-height:1.6; color:var(--muted); }
 .project-meta>span:last-child { white-space:nowrap; }

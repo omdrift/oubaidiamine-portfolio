@@ -3,7 +3,7 @@
   const $ = id => document.getElementById(id);
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const normalise = value => String(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-  const state = {lang:'fr', category:0, query:'', project:null, trigger:null, dark:false, showAll:false, animateFlow:false, page:1};
+  const state = {lang:'fr', category:0, query:'', project:null, trigger:null, dark:false, showAll:false, page:1};
   const pageSize=4;
   try {state.lang=localStorage.getItem('ao-lang')==='en'?'en':'fr';state.dark=localStorage.getItem('ao-theme')==='dark';} catch {}
   const i = () => state.lang==='fr'?0:1;
@@ -16,9 +16,9 @@
   }
   function graphic(p) {
     if(p.id==='flow')return `<span class="flow-comparison">${[
-      {still:'flow-real-11.png',motion:'real-sequence.gif',label:t().realSample},
-      {still:'flow-predicted-11.png',motion:'generated-sequence.gif',label:t().generatedSample}
-    ].map(s=>`<span class="flow-sample"><span class="sample-label">${esc(s.label)}</span><img src="images/flow/${esc(state.animateFlow?s.motion:s.still)}" data-flow-still="images/flow/${esc(s.still)}" data-flow-motion="images/flow/${esc(s.motion)}" alt="${esc(s.label)}" width="267" height="267" decoding="async"></span>`).join('')}</span>`;
+      {src:'dataset-frame.png',label:['Source RISE','RISE source']},
+      {src:'plume-forecasting-pipeline.svg',label:['Protocole 5 → 15','5 → 15 protocol']}
+    ].map(s=>`<span class="flow-sample"><span class="sample-label">${esc(text(s.label))}</span><img src="images/flow/${esc(s.src)}" alt="${esc(text(s.label))}" width="267" height="267" decoding="async"></span>`).join('')}</span>`;
     const cover = p.id==='face'
       ? {src:'images/face/face-app.png',alt:['Interface du projet MLOps : filtres et images par attribut','MLOps project interface: attribute filters and images'],width:1280,height:672}
       : p.id==='mice'
@@ -41,15 +41,8 @@
   }
   function card(p) {
     const code = p.repo ? `<a class="text-button project-source" href="${esc(p.repo)}" target="_blank" rel="noopener">${esc(p.repoType==='report'?t().reportShort:t().codeLink)} <span aria-hidden="true">↗</span></a>` : '';
-    const caption=p.id==='flow'?(state.animateFlow?t().flowSequenceCaption:t().flowStillCaption):p.id==='face'?t().interfaceCaption:p.id==='mice'?t().trackingCaption:window.portfolioStudies[p.id]?.cover?t().projectVisualCaption:t().diagramCaption;
-    return `<article class="project-card ${p.id==='flow'?'is-flagship':''}" id="project-${esc(p.id)}" data-id="${esc(p.id)}"><div class="project-media project-media--${esc(p.id)}"><button class="project-cover" data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog" aria-label="${esc(t().details+' : '+text(p.title))}">${graphic(p)}</button><div class="media-toolbar"><span class="media-caption" ${p.id==='flow'?'id="flow-caption"':''}>${esc(caption)}</span>${p.id==='flow'?`<button class="motion-toggle" data-toggle-flow aria-pressed="${state.animateFlow}">${esc(state.animateFlow?t().pauseFlow:t().animateFlow)}</button>`:''}</div></div><div class="project-card-body"><div class="project-meta"><span>${esc(text(p.context))}</span><span>${esc(p.year)}</span></div><p class="project-kind">${esc(p.id==='flow'?t().flagshipLabel:t().filters[p.cats[0]])}</p><h3><button data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(text(p.title))}</button></h3><p class="project-summary">${esc(text(p.summary))}</p>${tags((p.cardTags||p.stack).slice(0,3))}<div class="project-actions"><button class="project-details" data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(t().details)} <span aria-hidden="true">↗</span></button>${code}</div></div></article>`;
-  }
-  function updateFlowMotion() {
-    document.querySelectorAll('[data-flow-still]').forEach(img=>{img.src=state.animateFlow?img.dataset.flowMotion:img.dataset.flowStill;});
-    const button=document.querySelector('[data-toggle-flow]');
-    button.setAttribute('aria-pressed',String(state.animateFlow));
-    button.textContent=state.animateFlow?t().pauseFlow:t().animateFlow;
-    $('flow-caption').textContent=state.animateFlow?t().flowSequenceCaption:t().flowStillCaption;
+    const caption=p.id==='flow'?t().flowStillCaption:p.id==='face'?t().interfaceCaption:p.id==='mice'?t().trackingCaption:window.portfolioStudies[p.id]?.cover?t().projectVisualCaption:t().diagramCaption;
+    return `<article class="project-card ${p.id==='flow'?'is-flagship':''}" id="project-${esc(p.id)}" data-id="${esc(p.id)}"><div class="project-media project-media--${esc(p.id)}"><button class="project-cover" data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog" aria-label="${esc(t().details+' : '+text(p.title))}">${graphic(p)}</button><div class="media-toolbar"><span class="media-caption" ${p.id==='flow'?'id="flow-caption"':''}>${esc(caption)}</span></div></div><div class="project-card-body"><div class="project-meta"><span>${esc(text(p.context))}</span><span>${esc(p.year)}</span></div><p class="project-kind">${esc(p.id==='flow'?t().flagshipLabel:t().filters[p.cats[0]])}</p><h3><button data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(text(p.title))}</button></h3><p class="project-summary">${esc(text(p.summary))}</p>${tags((p.cardTags||p.stack).slice(0,3))}<div class="project-actions"><button class="project-details" data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(t().details)} <span aria-hidden="true">↗</span></button>${code}</div></div></article>`;
   }
   function renderPagination(pageCount) {
     const controls=`<button class="page-direction" data-project-page="${state.page-1}" aria-controls="project-grid" ${state.page===1?'disabled':''}><span aria-hidden="true">←</span><span>${esc(t().previousPage)}</span></button><div class="page-numbers">${Array.from({length:pageCount},(_,n)=>`<button data-project-page="${n+1}" aria-controls="project-grid" aria-label="${esc(t().pageLabel+' '+(n+1))}" ${state.page===n+1?'aria-current="page"':''}>${n+1}</button>`).join('')}</div><button class="page-direction" data-project-page="${state.page+1}" aria-controls="project-grid" ${state.page===pageCount?'disabled':''}><span>${esc(t().nextPage)}</span><span aria-hidden="true">→</span></button>`;
@@ -82,7 +75,6 @@
     $('show-projects').setAttribute('aria-expanded',String(state.showAll));
     $('show-projects').textContent=(state.showAll?t().showFeaturedProjects:t().showAllProjects).replace('{count}',data.projects.length);
     document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.filter)===state.category)));
-    if($('project-flow').hidden&&state.animateFlow){state.animateFlow=false;updateFlowMotion();}
   }
   function focusResults() {
     const target=$('project-pagination-top').hidden?$('project-grid'):$('project-pagination-top');
@@ -135,7 +127,6 @@
     if(event.target.closest('[data-project-close]'))$('project-dialog').close();
     const study=event.target.closest('[data-open-study]');if(study){const trigger=state.trigger;$('project-dialog').close();window.caseStudies.open(study.dataset.openStudy,trigger);}
     if(event.target.closest('#mobile-nav a'))closeMenu();
-    if(event.target.closest('[data-toggle-flow]')){state.animateFlow=!state.animateFlow;updateFlowMotion();}
     if(!event.target.closest('.header'))closeMenu();
   });
   $('project-dialog').addEventListener('close',()=>{document.body.classList.remove('project-open');if(state.trigger?.isConnected)state.trigger.focus({preventScroll:true});});
@@ -149,7 +140,6 @@
   $('theme').addEventListener('click',()=>{state.dark=!state.dark;try{localStorage.setItem('ao-theme',state.dark?'dark':'light');}catch{}updateTheme();});
   $('menu').addEventListener('click',()=>{const open=$('mobile-nav').hidden;$('mobile-nav').hidden=!open;$('menu').setAttribute('aria-expanded',String(open));$('menu').setAttribute('aria-label',open?t().closeMenu:t().menu);});
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
-  if('matchMedia' in window){const motion=window.matchMedia('(prefers-reduced-motion: reduce)');motion.addEventListener('change',()=>{if(motion.matches&&state.animateFlow){state.animateFlow=false;updateFlowMotion();}});}
   if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting)document.querySelectorAll('[data-section]').forEach(a=>{const active=a.dataset.section===entry.target.id;a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});},{rootMargin:'-15% 0px -65% 0px'});['projects','expertise','experience','contact'].forEach(id=>observer.observe($(id)));}
   render();
 })();

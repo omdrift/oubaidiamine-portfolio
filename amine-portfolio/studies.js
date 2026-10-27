@@ -1,465 +1,186 @@
 window.portfolioStudies={
   "flow": {
     "title": [
-      "Modéliser les panaches de fumée",
-      "Modelling smoke plumes"
+      "Industrial Plume Forecasting",
+      "Industrial Plume Forecasting"
     ],
     "intro": [
-      "Projet M2 réalisé en équipe. Étude visuelle de la collecte vidéo, du PyMatting et de la génération de panaches par Flow Matching conditionnel.",
-      "Team MSc project. A visual walkthrough of video acquisition, PyMatting and plume generation using conditional Flow Matching."
+      "Prévision vidéo de fumée : CLIPSeg, VQGAN et Flow Matching, avec protocole reproductible, références comparables et suivi des erreurs.",
+      "Smoke video forecasting with CLIPSeg, VQGAN and Flow Matching, a reproducible protocol, comparable baselines and error diagnostics."
     ],
     "cover": {
-      "src": "images/flow/flow-original.png",
-      "width": 544,
-      "height": 544,
-      "caption": [
-        "Panache du dataset",
-        "A plume from the dataset"
-      ],
+      "src": "images/flow/dataset-frame.png",
       "alt": [
-        "Panache du dataset",
-        "A plume from the dataset"
-      ]
+        "Image source d’un clip industriel RISE.",
+        "Source frame from an industrial RISE clip."
+      ],
+      "width": 1280,
+      "height": 720
     },
     "stats": [
       {
-        "value": "Project RISE",
+        "value": "36",
         "label": [
-          "Corpus source",
-          "Source corpus"
+          "Images par clip",
+          "Frames per clip"
         ]
       },
       {
-        "value": "64 × 64",
+        "value": "5 → 15",
         "label": [
-          "Images du modèle",
-          "Model images"
+          "Observations → prévisions",
+          "Observations → predictions"
         ]
       },
       {
-        "value": "8 × 8 × 256",
+        "value": "5",
         "label": [
-          "Représentation latente",
-          "Latent representation"
+          "Méthodes comparées",
+          "Comparison methods"
         ]
       }
     ],
     "steps": [
       {
         "title": [
-          "Collecte et pipeline",
-          "Acquisition and pipeline"
+          "Une tâche de prévision définie",
+          "A defined forecasting task"
         ],
         "body": [
-          "Clips annotés issus de Project RISE : récupération des vidéos à partir des métadonnées, extraction des frames, segmentation temporelle puis préparation des données. Schéma du pipeline expérimenté : PyMatting, VQGAN, Flow Matching et intégration ODE.",
-          "Annotated Project RISE clips: videos retrieved from metadata, frames extracted, temporal sequences prepared. The experimental pipeline combines PyMatting, VQGAN, Flow Matching and ODE integration."
+          "Chaque clip conserve 36 images consécutives. Cinq observations servent à prévoir quinze images ; les images futures réelles sont réservées aux pertes et à la mesure, jamais à l’entrée de génération.",
+          "Each clip retains 36 consecutive frames. Five observations support fifteen predictions; true future frames are used for losses and measurement, never as generation input."
         ],
         "media": [
           {
-            "src": "images/flow/dataset-clip.mp4",
-            "type": "video",
-            "poster": "images/flow/dataset-frame.png",
+            "type": "image",
+            "src": "images/flow/plume-forecasting-pipeline.svg",
             "caption": [
-              "Extrait vidéo du corpus source",
-              "Video excerpt from the source corpus"
+              "Architecture du protocole implémenté ; aucun résultat de prévision représenté.",
+              "Implemented protocol architecture; this diagram depicts no forecasting result."
             ],
             "alt": [
-              "Extrait vidéo du corpus source",
-              "Video excerpt from the source corpus"
+              "Chaîne RISE, CLIPSeg, NPZ, VQGAN, modèles comparés et tests réservés.",
+              "RISE, CLIPSeg, NPZ, VQGAN, comparison methods and held-out tests."
             ],
-            "width": 180,
-            "height": 180
-          },
-          {
-            "src": "images/flow/pipeline-experimental.svg",
-            "width": 1400,
-            "height": 540,
-            "caption": [
-              "Pipeline complet — schéma explicatif réalisé pour ce portfolio",
-              "Complete pipeline — explanatory diagram created for this portfolio"
-            ],
-            "alt": [
-              "Pipeline complet — schéma explicatif réalisé pour ce portfolio",
-              "Complete pipeline — explanatory diagram created for this portfolio"
-            ],
+            "width": 1200,
+            "height": 500,
             "wide": true
           }
-        ],
-        "blocks": []
-      },
-      {
-        "title": [
-          "Isoler la fumée",
-          "Isolating smoke"
-        ],
-        "body": [
-          "Après estimation du fond, PyMatting calcule les composantes du panache et les zones de transparence : I = αF + (1 − α)B. L'objectif est d'isoler la dynamique de la fumée du décor industriel.",
-          "After background estimation, PyMatting estimates the plume foreground and transparency: I = αF + (1 − α)B. The aim is to isolate smoke dynamics from the industrial scene."
-        ],
-        "media": [
-          {
-            "src": "images/flow/flow-original.png",
-            "width": 544,
-            "height": 544,
-            "caption": [
-              "Frame originale",
-              "Original frame"
-            ],
-            "alt": [
-              "Frame originale",
-              "Original frame"
-            ]
-          },
-          {
-            "src": "images/flow/flow-matting.png",
-            "width": 544,
-            "height": 544,
-            "caption": [
-              "Fumée extraite",
-              "Extracted foreground smoke"
-            ],
-            "alt": [
-              "Fumée extraite",
-              "Extracted foreground smoke"
-            ]
-          }
-        ],
-        "blocks": []
-      },
-      {
-        "title": [
-          "Encoder avec VQGAN",
-          "Encoding with VQGAN"
-        ],
-        "body": [
-          "Le VQGAN reconstruit les images à partir de latents spatiaux 8 × 8 × 256. Les images ci-dessous montrent un exemple de reconstruction et une mosaïque d'extraction, reconstruction et recomposition depuis le dépôt. Sur quatre autres frames illustrées dans le diaporama, la moyenne est : MSE 160,7, PSNR 26,23 dB, SSIM 0,919 (reconstruction uniquement).",
-          "VQGAN reconstructs frames from spatial 8 × 8 × 256 latents. The images below show a reconstruction example plus a repository mosaic of extraction, reconstruction and background composition. Across four other frames shown in the slides, mean MSE is 160.7, PSNR 26.23 dB, SSIM 0.919 (reconstruction only)."
-        ],
-        "media": [
-          {
-            "src": "images/flow/flow-matting.png",
-            "width": 544,
-            "height": 544,
-            "caption": [
-              "Avant encodage",
-              "Before encoding"
-            ],
-            "alt": [
-              "Avant encodage",
-              "Before encoding"
-            ]
-          },
-          {
-            "src": "images/flow/flow-reconstruction.png",
-            "width": 544,
-            "height": 544,
-            "caption": [
-              "Reconstruction VQGAN",
-              "VQGAN reconstruction"
-            ],
-            "alt": [
-              "Reconstruction VQGAN",
-              "VQGAN reconstruction"
-            ]
-          },
-          {
-            "src": "images/flow/vqgan-matting-comparison.png",
-            "width": 2953,
-            "height": 2984,
-            "caption": [
-              "Chaîne visuelle sur des exemples du dépôt : original, fumée isolée, VQGAN, recomposition et résultat final (scores du diaporama distincts)",
-              "Repository examples: original, extracted plume, VQGAN reconstruction, background composition and final result (separate from slide metrics)"
-            ],
-            "alt": [
-              "Chaîne visuelle sur des exemples du dépôt : original, fumée isolée, VQGAN, recomposition et résultat final (scores du diaporama distincts)",
-              "Repository examples: original, extracted plume, VQGAN reconstruction, background composition and final result (separate from slide metrics)"
-            ],
-            "wide": true
-          }
-        ],
-        "blocks": [
-          [
-            "Image 64 × 64",
-            "64 × 64 image"
-          ],
-          [
-            "Encodeur",
-            "Encoder"
-          ],
-          [
-            "Latent 8 × 8 × 256",
-            "8 × 8 × 256 latent"
-          ],
-          [
-            "Décodeur",
-            "Decoder"
-          ]
         ]
       },
       {
         "title": [
-          "Apprendre la dynamique",
-          "Learning the dynamics"
+          "Extraction causale et traçable",
+          "Causal, traceable extraction"
         ],
         "body": [
-          "Le Flow Matching conditionnel apprend un champ de vitesses entre bruit latent et latent de frame future. La dynamique est conditionnée sur l'historique : la démonstration utilise 10 images réelles initiales, puis des prédictions réinjectées à l'aide d'une fenêtre glissante. Les animations montrent des extraits distincts du dépôt.",
-          "Conditional Flow Matching learns a velocity field between latent noise and the latent of a future frame. The model is conditioned on temporal history: the demonstration starts with 10 observed frames and feeds predictions into a rolling window. Animations show independent examples from the repository."
+          "CLIPSeg traite chaque image indépendamment, suivi d’un filtre guidé spatial. Les masques sont des estimations sémantiques, sans opacité physique ni vérité terrain dense revendiquée.",
+          "CLIPSeg processes each frame independently, followed by a spatial guided filter. Masks are semantic estimates, with no claim of physical opacity or independent dense ground truth."
         ],
-        "media": [
-          {
-            "src": "images/flow/real-sequence.gif",
-            "width": 128,
-            "height": 128,
-            "caption": [
-              "Séquence réelle du dépôt",
-              "Real sequence from the repository"
-            ],
-            "alt": [
-              "Séquence réelle du dépôt",
-              "Real sequence from the repository"
-            ]
-          },
-          {
-            "src": "images/flow/generated-sequence.gif",
-            "width": 128,
-            "height": 128,
-            "caption": [
-              "Séquence générée du dépôt",
-              "Generated sequence from the repository"
-            ],
-            "alt": [
-              "Séquence générée du dépôt",
-              "Generated sequence from the repository"
-            ]
-          }
+        "blocks": [
+          [
+            "RISE : clips de 36 acquisitions, RGB 64 × 64 et masques souples. Les partitions sont séparées par dates et vues ; les identifiants et empreintes sont conservés.",
+            "RISE: 36-acquisition clips, 64 × 64 RGB and soft masks. Splits separate dates and views; identifiers and checksums are retained."
+          ],
+          [
+            "Les manifests conservent dates, caméras, vues, indices, temps et empreintes. Les contrôles automatiques lisent les tableaux et détectent masques invalides, clips manquants et chevauchements.",
+            "Manifests retain dates, cameras, views, indices, timestamps and checksums. Automatic checks read the arrays and detect invalid masks, missing clips and partition overlap."
+          ]
         ],
-        "blocks": []
+        "media": []
       },
       {
         "title": [
-          "Génération par intégration ODE",
-          "ODE-based generation"
+          "Représentation et modèles",
+          "Representation and models"
         ],
         "body": [
-          "Le champ appris est intégré par un solveur ODE dans l'espace latent. La présentation illustre 100 étapes de calcul, le décodage de la frame 11 et la réutilisation d'une fenêtre de contexte pour générer progressivement les frames 12 à 36. Le schéma ci-dessous représente ce mécanisme ; il n'est pas une courbe de performance ni une visualisation mesurée des états latents.",
-          "The learned field is integrated with an ODE solver in latent space. The slides illustrate 100 integration steps, decoding frame 11 and reusing a context window to progressively generate frames 12 through 36. The diagram below explains this process, not a measured latent trajectory or a performance curve."
+          "VQGAN commun : latents 8 × 8 × 256 et 1 024 codes. Flow Matching uniforme et pondéré par alpha sont comparés à la persistance, au flot optique de Farnebäck et à un SimVP compact.",
+          "Common VQGAN: 8 × 8 × 256 latents and 1,024 codes. Uniform and alpha-weighted Flow Matching are compared with persistence, Farnebäck optical flow and compact SimVP."
         ],
-        "media": [
-          {
-            "src": "images/flow/ode-trajectory-explainer.svg",
-            "width": 1400,
-            "height": 680,
-            "caption": [
-              "Schéma conceptuel : 10 observations, 100 pas ODE et rollout autoregressif 11–36",
-              "Conceptual diagram: 10 observed frames, 100 ODE steps and autoregressive rollout 11–36"
-            ],
-            "alt": [
-              "Schéma conceptuel : 10 observations, 100 pas ODE et rollout autoregressif 11–36",
-              "Conceptual diagram: 10 observed frames, 100 ODE steps and autoregressive rollout 11–36"
-            ],
-            "wide": true
-          }
+        "blocks": [
+          [
+            "Évaluation de cinq observations vers quinze futurs ; trois graines de prédicteurs, quatre réalisations par prévision stochastique et moyenne de toutes les réalisations. La LPIPS de validation sélectionne le checkpoint.",
+            "Five observed frames to fifteen future frames; three predictor seeds, four realizations per stochastic forecast and averaging over every realization. Validation LPIPS selects the checkpoint."
+          ],
+          [
+            "Les cibles d’apprentissage RIVER sont tirées dans le clip complet avec une référence précédente et une condition antérieure. Le scénario 5 → 15 est la tâche d’évaluation.",
+            "RIVER training targets are sampled across the full clip with a preceding reference and an earlier condition. The 5 → 15 scenario defines evaluation."
+          ]
         ],
-        "blocks": []
+        "media": []
       },
       {
         "title": [
-          "Prédictions à court horizon",
-          "Short-horizon predictions"
+          "Monitoring et reprise",
+          "Monitoring and recovery"
         ],
         "body": [
-          "Exemples d'images 11 à 13 : les panaches prédits préservent une partie de la silhouette, mais leur position, leurs contours et leur texture ne coïncident pas toujours avec les frames réelles. Cette galerie présente une comparaison qualitative, pas une précision moyenne sur jeu de test.",
-          "Example frames 11 through 13: predicted plumes retain some overall silhouette, but their location, boundaries and texture do not always match the real frames. This gallery is a qualitative comparison, not an average held-out test accuracy."
+          "Panels train / validation fixes, erreurs fumée et fond, résultats par date et vue, utilisation du codebook, gradients, temps et mémoire. Les courbes précisent leur sens et leurs limites.",
+          "Fixed training / validation panels, smoke and background errors, date/view slices, codebook usage, gradients, time and memory. Charts document their meaning and limits."
         ],
-        "media": [
-          {
-            "src": "images/flow/flow-real-11.png",
-            "width": 267,
-            "height": 267,
-            "caption": [
-              "Réel · frame 11",
-              "Real · frame 11"
-            ],
-            "alt": [
-              "Réel · frame 11",
-              "Real · frame 11"
-            ]
-          },
-          {
-            "src": "images/flow/flow-predicted-11.png",
-            "width": 267,
-            "height": 266,
-            "caption": [
-              "Généré · frame 11",
-              "Generated · frame 11"
-            ],
-            "alt": [
-              "Généré · frame 11",
-              "Generated · frame 11"
-            ]
-          },
-          {
-            "src": "images/flow/flow-real-12.png",
-            "width": 267,
-            "height": 267,
-            "caption": [
-              "Réel · frame 12",
-              "Real · frame 12"
-            ],
-            "alt": [
-              "Réel · frame 12",
-              "Real · frame 12"
-            ]
-          },
-          {
-            "src": "images/flow/flow-predicted-12.png",
-            "width": 267,
-            "height": 266,
-            "caption": [
-              "Généré · frame 12",
-              "Generated · frame 12"
-            ],
-            "alt": [
-              "Généré · frame 12",
-              "Generated · frame 12"
-            ]
-          },
-          {
-            "src": "images/flow/flow-real-13.png",
-            "width": 267,
-            "height": 267,
-            "caption": [
-              "Réel · frame 13",
-              "Real · frame 13"
-            ],
-            "alt": [
-              "Réel · frame 13",
-              "Real · frame 13"
-            ]
-          },
-          {
-            "src": "images/flow/flow-predicted-13.png",
-            "width": 267,
-            "height": 266,
-            "caption": [
-              "Généré · frame 13",
-              "Generated · frame 13"
-            ],
-            "alt": [
-              "Généré · frame 13",
-              "Generated · frame 13"
-            ]
-          }
+        "blocks": [
+          [
+            "Écriture atomique des checkpoints, conservation des deux derniers états et du meilleur modèle, sauvegarde des RNG et contrôle de provenance. Les NPZ finalisés restent réutilisables sans les MP4 sources.",
+            "Atomic checkpoint writes, retention of the two latest recovery states and the best model, RNG capture and provenance checks. Finalized NPZ data remain usable after source MP4 removal."
+          ],
+          [
+            "Les hyperparamètres VQGAN et prédicteurs sont déclarés séparément. Une comparaison de LR peut être préenregistrée ; une valeur dans un YAML ne prouve pas son optimalité.",
+            "VQGAN and predictor hyperparameters are declared separately. An LR comparison can be preregistered; a value in a YAML file does not demonstrate optimality."
+          ]
         ],
-        "blocks": []
+        "media": []
       },
       {
         "title": [
-          "Évaluation du rollout (11–36)",
-          "Evaluating the rollout (11–36)"
+          "Évaluer sans surinterpréter",
+          "Evaluate without overclaiming"
         ],
         "body": [
-          "Sur un horizon autoregressif plus long, les différences entre vérité terrain et prédiction s'accumulent. Les deux mosaïques proviennent du dépôt du projet : la première montre des comparaisons avec des métriques annotées par frame, la seconde affiche des MSE par instant sur une séquence. Il ne s'agit pas d'une moyenne globale, ni d'une comparaison à protocole commun contre RAFT et ConvLSTM.",
-          "At a longer autoregressive horizon, discrepancies between ground truth and prediction accumulate. Both mosaics come from the project repository: the first shows comparisons with per-frame annotations, the second shows per-frame MSE for one sequence. Neither is a global test-set aggregate or a controlled benchmark against RAFT and ConvLSTM."
+          "Le code, le protocole, les tests et la matrice sont publiés. Aucun gain prédictif consolidé ni meilleur LR calibré n’est revendiqué ; les essais comparables doivent produire ces preuves.",
+          "Code, protocol, tests and the experiment matrix are published. No consolidated forecasting improvement or calibrated optimal LR is claimed; controlled runs must provide that evidence."
         ],
-        "media": [
-          {
-            "src": "images/flow/forecast-frames-11-36.png",
-            "width": 4674,
-            "height": 1772,
-            "caption": [
-              "Réel vs généré — frames 11–36 et scores affichés dans la figure",
-              "Ground truth vs generated — frames 11–36 with annotations within the figure"
-            ],
-            "alt": [
-              "Réel vs généré — frames 11–36 et scores affichés dans la figure",
-              "Ground truth vs generated — frames 11–36 with annotations within the figure"
-            ],
-            "wide": true
-          },
-          {
-            "src": "images/flow/forecast-mse-grid.png",
-            "width": 1664,
-            "height": 173,
-            "caption": [
-              "Autre séquence : référence, prédiction et erreurs par frame",
-              "Another sequence: ground truth, prediction and frame-level errors"
-            ],
-            "alt": [
-              "Autre séquence : référence, prédiction et erreurs par frame",
-              "Another sequence: ground truth, prediction and frame-level errors"
-            ],
-            "wide": true
-          }
+        "blocks": [
+          [
+            "Les tests réservés distinguent dates futures et vues inédites, avec différences appariées et bootstrap par journée. Une reconstruction VQGAN réussie ou un faible LPIPS ne suffisent pas à démontrer une prévision fidèle.",
+            "Held-out tests distinguish future dates and unseen views, with paired differences and day-clustered bootstrap. Good VQGAN reconstruction or low LPIPS alone does not establish faithful forecasting."
+          ],
+          [
+            "Masques CLIPSeg estimés, une seule initialisation VQGAN et peu de journées de validation limitent les conclusions. La portée est la prévision visuelle 2D, pas la mesure d’émissions ou de concentration.",
+            "Estimated CLIPSeg masks, one VQGAN initialization and limited validation days constrain conclusions. Scope is 2D visual forecasting, not emissions or concentration measurement."
+          ]
         ],
-        "blocks": []
-      },
-      {
-        "title": [
-          "Méthodes alternatives et limites",
-          "Alternative methods and limitations"
-        ],
-        "body": [
-          "Approches examinées en équipe : RAFT avec déformation (warping) pour transporter les pixels existants ; ConvLSTM pour prédire des frames par mémoire spatio-temporelle ; VQGAN + Flow Matching pour générer de nouveaux latents. Dans la présentation, Flow Matching semblait le plus prometteur, mais la comparaison ne constitue pas un benchmark complet contrôlé et reste sensible au drift temporel.",
-          "Approaches explored by the team: RAFT with warping to transport existing pixels; ConvLSTM for recurrent spatiotemporal frame prediction; VQGAN + Flow Matching to synthesise new latents. The presentation considered Flow Matching the most promising, but this was not a fully controlled benchmark and temporal drift remains a limitation."
-        ],
-        "media": [
-          {
-            "src": "images/flow/alternative-methods.svg",
-            "width": 1400,
-            "height": 620,
-            "caption": [
-              "Résumé des trois approches et de leurs limites — schéma de synthèse",
-              "Summary of three methods and their limitations — explanatory chart"
-            ],
-            "alt": [
-              "Résumé des trois approches et de leurs limites — schéma de synthèse",
-              "Summary of three methods and their limitations — explanatory chart"
-            ],
-            "wide": true
-          }
-        ],
-        "blocks": []
+        "media": []
       }
     ],
     "annex": [
       {
         "label": [
-          "Présentation technique complète (synthèse web illustrée)",
-          "Full technical walkthrough (illustrated web summary)"
+          "Protocole",
+          "Protocol"
         ],
-        "href": [
-          "presentation-panaches.html",
-          "presentation-panaches-en.html"
-        ]
+        "href": "https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/SCIENTIFIC_PROTOCOL.md"
       },
       {
         "label": [
-          "Préparation des frames et matting",
-          "Frame preparation and matting"
+          "Architecture",
+          "Architecture"
         ],
-        "href": "https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/prepare_data/prepare_dataset.py"
+        "href": "https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/ARCHITECTURE.md"
       },
       {
         "label": [
-          "Échantillonnage, champ vectoriel et génération ODE",
-          "Sampling, vector field and ODE generation"
+          "Apprentissage et courbes",
+          "Training and chart guide"
         ],
-        "href": "https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/model/model.py"
+        "href": "https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/TRAINING_DESIGN.md"
       },
       {
         "label": [
-          "Configuration 64 × 64 / latents 8 × 8",
-          "64 × 64 / 8 × 8 latent configuration"
+          "Guide d’exécution",
+          "Execution guide"
         ],
-        "href": "https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/configs/smoke_dataset_vqgan.yaml"
-      },
-      {
-        "label": [
-          "Documentation détaillée du pipeline",
-          "Detailed pipeline documentation"
-        ],
-        "href": "https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/SMOKE_FLOW_MATCHING_PIPELINE.md"
+        "href": "https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/SCIENTIFIC_RUNBOOK.md"
       }
     ]
   },
