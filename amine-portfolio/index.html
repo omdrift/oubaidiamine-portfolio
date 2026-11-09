@@ -1,61 +1,104 @@
 <!doctype html>
 <html lang="fr">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Amine Oubaidi — Ingénieur IA junior · Deep Learning</title>
-<meta name="description" content="Amine Oubaidi, ingénieur IA junior en Île-de-France. Projets PyTorch, Computer Vision et FastAPI, expériences L3i et Enedis, CV et résultats.">
-<meta name="theme-color" content="#f5f1e9">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%231d2b25'/%3E%3Ctext x='32' y='42' fill='%23fff9f0' text-anchor='middle' font-family='Georgia,serif' font-size='28'%3EAO%3C/text%3E%3C/svg%3E">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Amine Oubaidi — Ingénieur IA</title>
+<meta name="description" content="Amine Oubaidi, ingénieur IA junior. Recherche en vision et prévision vidéo, expérience au L3i et chez Enedis, projets, CV et recommandations.">
+<meta name="theme-color" content="#fcfaf6">
 <link rel="stylesheet" href="style.css">
-<script defer src="data.js"></script><script defer src="studies.js"></script><script defer src="case-studies.js"></script><script defer src="app.js"></script>
+<script>try { if (localStorage.getItem('ao-theme') === 'dark') document.documentElement.classList.add('dark'); } catch {}</script>
+<script defer src="data.js"></script>
+<script defer src="studies.js"></script>
+<script defer src="app.js"></script>
 </head>
-<body>
-<a class="skip" href="#main">Aller au contenu / Skip to content</a>
-<header class="header">
-  <a class="brand" href="#top" aria-label="Amine Oubaidi"><span class="brand-mark" aria-hidden="true">AO<span>.</span></span><span class="brand-name">Amine Oubaidi</span></a>
-  <nav class="nav" aria-label="Navigation"></nav>
-  <div class="header-controls">
-    <a id="header-cv" class="header-cv" href="documents/CV_Amine_Oubaidi.pdf" download="CV_Amine_Oubaidi.pdf" aria-label="Télécharger mon CV">CV <span class="cv-file" aria-hidden="true">↓</span></a>
-    <div class="language" aria-label="Language"><button id="fr" aria-pressed="true" aria-label="Français">FR</button><button id="en" aria-pressed="false" aria-label="English">EN</button></div>
-    <button id="theme" class="icon-button" aria-label="Changer le thème">◐</button>
-    <button id="menu" class="icon-button menu-button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Ouvrir la navigation">☰</button>
+<body data-page="home">
+<a class="skip" href="#main" data-copy="skip">Aller au contenu</a>
+<header class="site-header wrap">
+  <a class="site-name" href="#top">Amine Oubaidi</a>
+  <nav class="site-nav" aria-label="Navigation">
+    <a href="#projects" data-copy="projects">Projets</a>
+    <a href="#experience" data-copy="experience">Parcours</a>
+    <a href="#references" data-copy="references">Recommandations</a>
+    <a href="#expertise" data-copy="skills">Compétences</a>
+  </nav>
+  <div class="site-tools">
+    <a href="documents/CV_Amine_Oubaidi.pdf" type="application/pdf" hreflang="fr" download="CV_Amine_Oubaidi.pdf">CV <span aria-hidden="true">↓</span></a>
+    <button type="button" id="language" aria-label="Read in English">EN</button>
+    <button type="button" id="theme" aria-label="Changer le thème" aria-pressed="false">◐</button>
   </div>
-  <nav id="mobile-nav" class="mobile-nav" hidden aria-label="Navigation mobile"></nav>
 </header>
-<main id="main">
-<section id="top" class="hero wrap">
-  <div class="hero-copy">
-    <p class="eyebrow" data-t="heroEyebrow"></p>
-    <h1 id="hero-title" tabindex="-1" data-html="hero"></h1>
-    <p class="hero-intro" data-t="intro"></p>
-    <div class="hero-actions">
-      <a class="button primary" href="#projects"><span data-t="explore"></span><span aria-hidden="true">↓</span></a>
-      <a class="button secondary" href="documents/CV_Amine_Oubaidi.pdf" download="CV_Amine_Oubaidi.pdf"><span data-t="cvDownload"></span><span aria-hidden="true">↓</span></a>
+
+<main id="main" class="wrap">
+  <section id="top" class="intro" aria-labelledby="name">
+    <div>
+      <h1 id="name">Amine Oubaidi</h1>
+      <p class="intro-role" data-copy="role">Ingénieur IA junior · Vision et deep learning</p>
+      <p class="intro-bio" data-copy="bio">Je travaille sur l’analyse vidéo et l’évaluation des modèles. Au L3i, j’ai adapté un détecteur de points anatomiques pour suivre des souris en vidéo. Chez Enedis, j’ai automatisé le contrôle de documents.</p>
+      <ul class="inline-links">
+        <li><a href="mailto:amine.oubaidi010@gmail.com" data-copy="email">Email</a></li>
+        <li><a href="https://github.com/omdrift">GitHub</a></li>
+        <li><a href="https://fr.linkedin.com/in/amine-oubaidi-600315233">LinkedIn</a></li>
+      </ul>
     </div>
-    <p class="availability"><span class="status-dot" aria-hidden="true"></span><span data-t="availability"></span></p>
-  </div>
-  <aside class="research-feature" aria-labelledby="research-title">
-    <div class="research-index"><span data-t="focus"></span><span aria-hidden="true">01 / 2026</span></div>
-    <figure class="research-frame">
-      <img src="images/flow/dataset-frame.png" width="180" height="180" alt="Panache au-dessus d’un site industriel" data-alt="focusAlt" fetchpriority="high">
-      <figcaption><span data-t="focusReal"></span><span>RISE #6 / 180 × 180</span></figcaption>
-    </figure>
-    <h2 id="research-title" data-t="focusTitle"></h2>
-    <p data-t="focusBody"></p>
-    <a id="featured-study" class="research-link" href="presentation-panaches.html"><span data-t="focusLink"></span><span aria-hidden="true">→</span></a>
-  </aside>
-  <dl class="profile-facts" id="hero-facts"></dl>
-</section>
-<section id="projects" class="section wrap"><div class="section-heading"><div><p class="kicker" data-t="projectKicker"></p><h2 data-html="projectTitle"></h2></div><p class="section-description" data-t="projectIntro"></p></div><div class="project-tools"><label class="search-box"><span data-t="searchLabel"></span><input id="search" type="search" autocomplete="off"></label><div class="project-result"><span id="result-count" aria-live="polite"></span><button id="reset" class="text-button" data-t="reset"></button></div></div><div id="filters" class="filters" role="group"></div><nav id="project-pagination-top" class="project-pagination pagination-top" hidden></nav><div id="project-grid" class="project-grid"></div><nav id="project-pagination-bottom" class="project-pagination pagination-bottom" hidden></nav><div class="project-more"><button id="show-projects" class="button secondary" aria-controls="project-grid" aria-expanded="false" data-t="showAllProjects"></button></div><div id="empty" class="empty" hidden><p data-t="empty"></p><button id="empty-reset" class="button secondary" data-t="filterReset"></button></div></section>
-<section id="expertise" class="expertise-section"><div class="wrap section"><div class="section-heading"><div><p class="kicker" data-t="skillsKicker"></p><h2 data-html="skillsTitle"></h2></div><p class="section-description" data-t="skillsIntro"></p></div><div id="skills" class="skills-grid"></div><div id="practice" class="practice"></div></div></section>
-<section id="experience" class="section wrap"><div class="section-heading"><div><p class="kicker" data-t="experienceKicker"></p><h2 data-html="experienceTitle"></h2></div><p class="section-description" data-t="experienceIntro"></p></div><div class="experience-layout"><div id="timeline" class="timeline"></div><aside class="credentials"><div><h3 data-t="educationTitle"></h3><div id="education"></div></div><div><h3 data-t="certTitle"></h3><ul id="certifications"></ul></div><div><h3 data-t="languagesTitle"></h3><p data-t="languageBody"></p></div></aside></div></section>
-<section id="references" class="section wrap" aria-labelledby="references-title">
-  <div class="section-heading"><div><p class="kicker" data-t="referencesKicker"></p><h2 id="references-title" data-t="referencesTitle"></h2></div><p class="section-description" data-t="referencesIntro"></p></div>
-  <ul id="references-list" class="references-list"></ul>
-</section>
-<section id="contact" class="contact-section"><div class="wrap contact-content"><div><p class="kicker" data-t="contactKicker"></p><h2 data-html="contactTitle"></h2><p data-t="contactBody"></p></div><div class="contact-actions"><a class="button primary" href="mailto:amine.oubaidi010@gmail.com" data-t="emailButton"></a><a class="contact-email" href="mailto:amine.oubaidi010@gmail.com">amine.oubaidi010@gmail.com</a><a class="text-button" href="documents/CV_Amine_Oubaidi.pdf" download="CV_Amine_Oubaidi.pdf" data-t="cvDownload"></a><a class="text-button" href="https://fr.linkedin.com/in/amine-oubaidi-600315233" target="_blank" rel="noopener" data-t="linkedin"></a><a class="text-button" href="https://github.com/omdrift" target="_blank" rel="noopener" data-t="github"></a></div></div></section>
+    <dl class="intro-meta" id="profile-meta">
+      <div><dt>Formation</dt><dd>Master Ingénierie des Données · La Rochelle Université, 2026</dd></div>
+      <div><dt>Disponibilité</dt><dd>Île-de-France · CDI junior ou doctorat en deep learning</dd></div>
+    </dl>
+  </section>
+
+  <section id="projects" class="reading-section" aria-labelledby="projects-title">
+    <h2 id="projects-title" data-copy="projects">Projets</h2>
+    <article id="project-flow" class="feature">
+      <div>
+        <p class="entry-meta" data-copy="flowMeta">Projet de recherche · Master 2, 2026</p>
+        <h3><a id="flow-link" href="presentation-panaches.html" data-copy="flowTitle">Prévision de panaches industriels</a></h3>
+        <p data-copy="flowLead">Je pars de cinq images d’un panache pour prévoir les quinze suivantes. L’étude compare plusieurs représentations VQGAN et mesure si celles qui reconstruisent bien les images aident aussi à prévoir leur évolution.</p>
+        <p class="feature-note" data-copy="flowStatus">Protocole et vérifications publiés. Le comparatif final de prévision reste à établir.</p>
+        <ul class="inline-links">
+          <li><a id="flow-method" href="presentation-panaches.html#flow" data-copy="flowDiagrams">Méthode et schémas</a></li>
+          <li><a href="https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching" data-copy="source">Code source</a></li>
+        </ul>
+      </div>
+      <figure>
+        <img src="images/flow/dataset-frame.png" width="180" height="180" alt="Panache au-dessus d’un site industriel" data-alt="flowAlt">
+        <figcaption data-copy="flowCaption">Image source · clip RISE nº 6</figcaption>
+      </figure>
+    </article>
+    <div class="project-directory">
+      <div class="directory-heading">
+        <h3 data-copy="otherProjects">Autres projets</h3>
+        <label class="search"><span data-copy="search">Filtrer par titre ou outil</span><input id="search" type="search" autocomplete="off" placeholder="Ex. PyTorch, RAG…"></label>
+      </div>
+      <p id="search-result" class="search-result" aria-live="polite" hidden></p>
+      <ul id="project-list" class="project-list"></ul>
+    </div>
+  </section>
+
+  <section id="experience" class="reading-section" aria-labelledby="experience-title">
+    <h2 id="experience-title" data-copy="experience">Parcours</h2>
+    <div id="experience-list"></div>
+    <div id="education" class="education"></div>
+  </section>
+
+  <section id="references" class="reading-section" aria-labelledby="references-title">
+    <h2 id="references-title" data-copy="references">Recommandations</h2>
+    <ul id="references-list" class="reference-list">
+      <li><a href="documents/recommandation-l3i-2025.pdf">Jean-Christophe Burie · PDF</a></li>
+      <li><a href="documents/recommandation-damien-muselet-2026.pdf">Damien Muselet · PDF</a></li>
+    </ul>
+  </section>
+
+  <section id="expertise" class="reading-section" aria-labelledby="skills-title">
+    <h2 id="skills-title" data-copy="skills">Compétences</h2>
+    <dl id="skills-list" class="skills-list"></dl>
+  </section>
 </main>
-<footer class="wrap"><span>Amine Oubaidi · 2026</span></footer>
-<a id="back-to-top" class="back-to-top" href="#top" hidden><span class="back-to-top-icon" aria-hidden="true">↑</span><span data-t="backTop"></span></a>
-<dialog id="project-dialog" class="project-dialog" aria-labelledby="project-title"></dialog><dialog id="study-dialog" class="study-dialog" aria-labelledby="study-title" aria-describedby="study-intro"></dialog>
-</body></html>
+
+<footer id="contact" class="site-footer wrap">
+  <span>Amine Oubaidi</span>
+  <a href="mailto:amine.oubaidi010@gmail.com">amine.oubaidi010@gmail.com</a>
+  <a href="#top" data-copy="top">Haut de page ↑</a>
+</footer>
+</body>
+</html>

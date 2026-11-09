@@ -1,164 +1,255 @@
 (() => {
   const data = window.portfolio;
+  const studies = window.portfolioStudies;
+  const byId = new Map(data.projects.map(project => [project.id, project]));
   const $ = id => document.getElementById(id);
-  const sections = ['projects', 'expertise', 'experience', 'references', 'contact'];
-  const flagship = data.projects.find(p => p.id === 'flow');
-  const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const home = document.body.dataset.page === 'home';
+  const params = new URLSearchParams(location.search);
+  const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  })[char]);
   const normalise = value => String(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-  const state = {lang:'fr', category:0, query:'', project:null, trigger:null, dark:false, showAll:false, page:1};
-  const pageSize=4;
-  try {state.lang=localStorage.getItem('ao-lang')==='en'?'en':'fr';state.dark=localStorage.getItem('ao-theme')==='dark';} catch {}
-  const i = () => state.lang==='fr'?0:1;
-  const t = () => data[state.lang];
-  const text = value => Array.isArray(value)?value[i()]:value;
-  const tags = items => `<div class="tags">${items.map(s=>`<span>${esc(text(s))}</span>`).join('')}</div>`;
-  const facts = items => items?.length?`<dl class="project-facts">${items.map(f=>`<div><dt>${esc(text(f.label))}</dt><dd>${esc(f.value)}</dd></div>`).join('')}</dl>`:'';
-  function documents(items=[]) {
-    return items.length?`<div class="document-links">${items.filter(x=>x.href).map(x=>`<a class="document-link" href="${esc(text(x.href))}" target="_blank" rel="noopener"><span>${esc(text(x.label)||t().documentLabels[x.kind])}</span><span>${esc(x.format||'PDF')} →</span>${x.caption?`<small>${esc(text(x.caption))}</small>`:''}</a>`).join('')}</div>`:'';
-  }
-  function graphic(p) {
-    if (p === flagship) return `<span class="flow-window">
-      <span class="graphic-caption">${esc(t().flowTaskLabel)}</span>
-      <span class="flow-scale" aria-hidden="true">5 <span>→</span> 15</span>
-      <span class="forecast-track" aria-hidden="true"><span></span><span></span></span>
-      <span class="forecast-labels"><span>5 ${esc(t().flowObserved)}</span><span>15 ${esc(t().flowFuture)}</span></span>
-      <span class="flow-representation">${esc(t().flowRepresentation)}</span>
-    </span>`;
-    const cover = p.id==='face'
-      ? {src:'images/face/face-app.png',alt:['Interface du projet MLOps : filtres et images par attribut','MLOps project interface: attribute filters and images'],width:1280,height:672}
-      : p.id==='mice'
-        ? {src:'images/mice/mice-tracking.png',alt:['Détection des points anatomiques de deux souris','Keypoint detections on two mice'],width:887,height:774}
-        : window.portfolioStudies[p.id]?.cover;
-    if(cover)return `<span class="project-image"><img src="${esc(cover.src)}" alt="${esc(text(cover.alt))}" width="${cover.width}" height="${cover.height}" loading="lazy" decoding="async"></span>`;
-    if(p.id==='rag'||p.id==='cv-matcher') {
-      const steps=p.id==='rag'
-        ? [['Corpus PDF','PDF corpus'],['Index vectoriel','Vector index'],['LLM + API','LLM + API']]
-        : [['Profil & offres','Profile & jobs'],['RAG & agents','RAG & agents'],['Candidatures','Applications']];
-      return `<span class="project-graphic pipeline-graphic"><span class="graphic-caption">${esc(p.id==='rag'?t().ragDiagram:t().careerDiagram)}</span><span class="pipeline-nodes">${steps.map((label,n)=>`<span class="pipeline-node ${n===1?'node-accent':''}"><span class="node-number">0${n+1}</span><span>${esc(text(label))}</span></span>${n<2?'<span class="pipeline-arrow" aria-hidden="true">→</span>':''}`).join('')}</span><span class="pipeline-note">${esc(p.id==='rag'?t().ragDiagramNote:t().careerDiagramNote)}</span></span>`;
+  const copy = {
+    fr: {
+      skip: 'Aller au contenu',
+      role: 'Ingénieur IA junior · Vision et deep learning',
+      bio: 'Je travaille sur l’analyse vidéo et l’évaluation des modèles. Au L3i, j’ai adapté un détecteur de points anatomiques pour suivre des souris en vidéo. Chez Enedis, j’ai automatisé le contrôle de documents.',
+      email: 'Email',
+      projects: 'Projets',
+      experience: 'Parcours',
+      references: 'Recommandations',
+      skills: 'Compétences',
+      education: 'Formation',
+      availability: 'Disponibilité',
+      degree: 'Master Ingénierie des Données · La Rochelle Université, 2026',
+      location: 'Île-de-France · CDI junior ou doctorat en deep learning',
+      flowMeta: 'Projet de recherche · Master 2, 2026',
+      flowTitle: 'Prévision de panaches industriels',
+      flowLead: 'Je pars de cinq images d’un panache pour prévoir les quinze suivantes. L’étude compare plusieurs représentations VQGAN et mesure si celles qui reconstruisent bien les images aident aussi à prévoir leur évolution.',
+      flowStatus: 'Protocole et vérifications publiés. Le comparatif final de prévision reste à établir.',
+      flowDiagrams: 'Méthode et schémas',
+      flowAlt: 'Panache au-dessus d’un site industriel dans le clip RISE nº 6',
+      flowCaption: 'Image source · clip RISE nº 6',
+      source: 'Code source',
+      otherProjects: 'Autres projets',
+      search: 'Filtrer par titre ou outil',
+      searchPlaceholder: 'Ex. PyTorch, RAG…',
+      results: 'projets',
+      top: 'Haut de page ↑',
+      backProjects: 'Tous les projets',
+      backExperience: 'Retour au parcours',
+      figures: 'Méthodes et visuels',
+      documents: 'Documents et liens',
+      missing: 'Projet introuvable',
+    },
+    en: {
+      skip: 'Skip to content',
+      role: 'Junior AI engineer · Computer vision and deep learning',
+      bio: 'I work on video analysis and model evaluation. At L3i, I adapted a keypoint detector to track mice in video. At Enedis, I automated document checks.',
+      email: 'Email',
+      projects: 'Projects',
+      experience: 'Experience',
+      references: 'References',
+      skills: 'Skills',
+      education: 'Education',
+      availability: 'Availability',
+      degree: 'MSc in Data Engineering · La Rochelle Université, 2026',
+      location: 'Paris region · Junior permanent role or deep learning PhD',
+      flowMeta: 'MSc research project · 2026',
+      flowTitle: 'Industrial Plume Forecasting',
+      flowLead: 'I start with five frames of a plume and forecast the next fifteen. The study compares VQGAN representations to see whether those that reconstruct images well also help predict what happens next.',
+      flowStatus: 'Protocol and verification published. The final forecasting benchmark is pending.',
+      flowDiagrams: 'Method and diagrams',
+      flowAlt: 'Smoke above an industrial site in RISE clip 6',
+      flowCaption: 'Source frame · RISE clip 6',
+      source: 'Source code',
+      otherProjects: 'Other projects',
+      search: 'Filter by title or tool',
+      searchPlaceholder: 'E.g. PyTorch, RAG…',
+      results: 'projects',
+      top: 'Back to top ↑',
+      backProjects: 'All projects',
+      backExperience: 'Back to experience',
+      figures: 'Methods and figures',
+      documents: 'Documents and links',
+      missing: 'Project not found',
     }
-    const labels = {
-      maritime:[['Vidéo + IMU','Video + IMU'],['CNN / LSTM'],['Estimation du mouvement','Motion estimation']],
-      hackathon:[['Texte & images','Text & images'],['VLM + LLM'],['XML structuré','Structured XML']],
-      pdf:[['Annotations PDF'],['Extraction & contexte','Extraction & context'],['JSON / CSV']],
-      xiatech:[['Événements','Events'],['Relations & provenance','Relations & provenance'],['Visualisation','Visualisation']]
-    };
-    return `<span class="project-graphic"><span class="graphic-caption">${esc(t().pipelineLabel)}</span><span class="graphic-nodes">${(labels[p.id]||[['API'],['Services'],['Data']]).map((x,n)=>`<span class="graphic-node ${n===1?'node-accent':''}">${esc(x[i()]||x[0])}</span>`).join('')}</span></span>`;
+  };
+
+  let lang = 'fr';
+  let dark = false;
+  try {
+    lang = localStorage.getItem('ao-lang') === 'en' ? 'en' : 'fr';
+    dark = localStorage.getItem('ao-theme') === 'dark';
+  } catch {}
+  const ui = () => copy[lang];
+  const labels = () => data[lang];
+  const local = value => Array.isArray(value) ? value[lang === 'fr' ? 0 : 1] : value;
+  const phrase = value => escape(local(value));
+  const projectHref = project => local(project.presentation) || `projet.html?id=${encodeURIComponent(project.id)}`;
+  const experienceHref = id => `projet.html?experience=${encodeURIComponent(id)}`;
+  const projectLink = project => `<a href="${escape(projectHref(project))}">${phrase(project.title)}</a>`;
+
+  function documentLinks(items = []) {
+    const unique = new Map(items.filter(item => item.href).map(item => [local(item.href), item]));
+    if (!unique.size) return '';
+    return `<ul class="inline-links document-links" aria-label="${escape(ui().documents)}">${Array.from(unique, ([href, item]) => {
+      const label = local(item.label) || labels().documentLabels[item.kind];
+      const format = item.format || (href.endsWith('.pdf') ? 'PDF' : '');
+      const suffix = format && !label.toUpperCase().includes(format.toUpperCase()) ? ` <small>${escape(format)}</small>` : '';
+      return `<li><a href="${escape(href)}">${escape(label)}${suffix}</a></li>`;
+    }).join('')}</ul>`;
   }
-  function card(p) {
-    const code = p.repo ? `<a class="text-button project-source" href="${esc(p.repo)}" target="_blank" rel="noopener">${esc(p.repoType==='report'?t().reportShort:t().codeLink)} <span aria-hidden="true">→</span></a>` : '';
-    const details = p.presentation
-      ? `<a class="project-details" href="${esc(text(p.presentation))}">${esc(t().focusLink)} <span aria-hidden="true">→</span></a>`
-      : `<button class="project-details" data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(t().details)} <span aria-hidden="true">→</span></button>`;
-    const caption=p.id==='flow'?t().flowStillCaption:p.id==='face'?t().interfaceCaption:p.id==='mice'?t().trackingCaption:window.portfolioStudies[p.id]?.cover?t().projectVisualCaption:t().diagramCaption;
-    return `<article class="project-card ${p.id==='flow'?'is-flagship':''}" id="project-${esc(p.id)}" data-id="${esc(p.id)}"><div class="project-media project-media--${esc(p.id)}"><button class="project-cover" data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog" aria-label="${esc(t().details+' · '+text(p.title))}">${graphic(p)}</button><div class="media-toolbar"><span class="media-caption">${esc(caption)}</span></div></div><div class="project-card-body"><div class="project-meta"><span>${esc(text(p.context))}</span><span>${esc(p.year)}</span></div><p class="project-kind">${esc(p.id==='flow'?t().flagshipLabel:t().filters[p.cats[0]])}</p><h3><button data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(text(p.title))}</button></h3><p class="project-summary">${esc(text(p.summary))}</p>${tags((p.cardTags||p.stack).slice(0,3))}<div class="project-actions">${details}${code}</div></div></article>`;
-  }
-  function renderPagination(pageCount) {
-    const controls=`<button class="page-direction" data-project-page="${state.page-1}" aria-controls="project-grid" ${state.page===1?'disabled':''}><span aria-hidden="true">←</span><span>${esc(t().previousPage)}</span></button><div class="page-numbers">${Array.from({length:pageCount},(_,n)=>`<button data-project-page="${n+1}" aria-controls="project-grid" aria-label="${esc(t().pageLabel+' '+(n+1))}" ${state.page===n+1?'aria-current="page"':''}>${n+1}</button>`).join('')}</div><button class="page-direction" data-project-page="${state.page+1}" aria-controls="project-grid" ${state.page===pageCount?'disabled':''}><span>${esc(t().nextPage)}</span><span aria-hidden="true">→</span></button>`;
-    for(const id of ['project-pagination-top','project-pagination-bottom']){
-      const pager=$(id);pager.hidden=pageCount<2;pager.setAttribute('aria-label',t().paginationLabel);
-      pager.innerHTML=pageCount>1?controls:'';
+
+  function searchProjects() {
+    const query = normalise($('search').value.trim());
+    let matches = 0;
+    for (const row of $('project-list').children) {
+      row.hidden = !row.dataset.search.includes(query);
+      if (!row.hidden) matches++;
     }
+    $('search-result').hidden = !query;
+    $('search-result').textContent = matches ? `${matches} ${ui().results}` : labels().empty;
   }
-  function filterProjects() {
-    const query=normalise(state.query.trim());
-    const filtering=Boolean(state.category||query);
-    const curated=!filtering&&!state.showAll;
-    const matching=data.projects.filter(p=>{
-      const corpus=normalise([p.title,p.summary,p.problem,p.contribution,p.detail,p.stack,p.context,...(p.sections||[]).flatMap(s=>[s.title,...s.items])].flat(Infinity).join(' '));
-      return (!state.category||p.cats.includes(state.category))&&(!query||corpus.includes(query));
-    });
-    const results=curated?matching.filter(p=>data.featuredProjects.includes(p.id)):matching;
-    const pageCount=curated?1:Math.max(1,Math.ceil(results.length/pageSize));
-    state.page=Math.max(1,Math.min(state.page,pageCount));
-    const offset=curated?0:(state.page-1)*pageSize;
-    const visible=curated?results:results.slice(offset,offset+pageSize);
-    const shown=new Set(visible.map(p=>p.id));
-    for(const p of data.projects)$('project-'+p.id).hidden=!shown.has(p.id);
-    $('project-grid').classList.toggle('featured-view',curated);
-    $('result-count').textContent=curated?`${results.length} / ${data.projects.length} ${t().count}`:results.length?`${offset+1}–${offset+visible.length} ${t().rangeOf} ${results.length} ${t().count}`:`0 ${t().count}`;
-    renderPagination(pageCount);
-    $('empty').hidden=results.length>0;
-    $('reset').hidden=!filtering;
-    $('show-projects').hidden=filtering;
-    $('show-projects').setAttribute('aria-expanded',String(state.showAll));
-    $('show-projects').textContent=(state.showAll?t().showFeaturedProjects:t().showAllProjects).replace('{count}',data.projects.length);
-    document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.filter)===state.category)));
-  }
-  function focusResults() {
-    const target=$('project-pagination-top').hidden?$('project-grid'):$('project-pagination-top');
-    target.scrollIntoView({block:'start',behavior:window.matchMedia?.('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
-    document.querySelector('.project-card:not([hidden]) h3 button')?.focus({preventScroll:true});
-  }
-  function updateBackToTop() {
-    $('back-to-top').hidden=(window.scrollY||document.documentElement.scrollTop||0)<Math.max(320,(window.innerHeight||700)*.55);
-  }
-  function renderProjectDialog() {
-    const p=data.projects.find(p=>p.id===state.project);if(!p)return;
-    $('project-dialog').innerHTML=`<div class="project-dialog-shell"><header class="project-dialog-header"><div><p class="kicker">${esc(text(p.context))} / ${esc(p.year)}</p><h2 id="project-title">${esc(text(p.title))}</h2><p class="dialog-intro">${esc(text(p.summary))}</p>${p.deployment?`<p class="deployment-chip"><span class="status-dot"></span>${esc(text(p.deployment))}</p>`:''}</div><button class="dialog-close" data-project-close aria-label="${esc(t().projectClose)}" autofocus>×</button></header><div class="project-dialog-layout"><aside class="project-sidebar"><h3>${esc(t().tools)}</h3>${tags(p.stack)}${facts(p.facts)}${documents(p.documents)}${p.repo?`<a class="resource-link" href="${esc(p.repo)}" target="_blank" rel="noopener">${esc(p.repoType==='report'?t().report:t().repo)} →</a>`:''}${window.portfolioStudies[p.id]?`<button class="button secondary" data-open-study="${esc(p.id)}">${esc(t().studyOpen)} →</button>`:''}</aside><div class="project-story"><section><h3>${esc(t().projectOverview)}</h3><p>${esc(text(p.problem)||text(p.summary))}</p></section><section><h3>${esc(t().contribution)}</h3><p>${esc(text(p.contribution))}</p><p>${esc(text(p.detail))}</p></section>${(p.sections||[]).map((s,n)=>`<section class="story-section">${p.id==='cv-matcher'?'':`<p class="story-index">${String(n+1).padStart(2,'0')}</p>`}<h3>${esc(text(s.title))}</h3>${s.items.map(x=>`<p>${esc(text(x))}</p>`).join('')}</section>`).join('')}</div></div></div>`;
-  }
-  function openProject(id,trigger) {
-    state.project=id;state.trigger=trigger;renderProjectDialog();$('project-dialog').showModal();$('project-dialog').scrollTop=0;document.body.classList.add('project-open');
-  }
-  function renderExperience() {
-    $('timeline').innerHTML=t().experience.map(x=>{
-      const work=data.experienceWork[x[5]];
-      return `<article class="timeline-item" id="experience-${esc(x[5])}"><span class="timeline-year">${esc(x[0])}</span><div><h3>${esc(x[1])}</h3><p class="timeline-role">${esc(x[2])}</p><p class="timeline-location">${esc(x[3])}</p><p>${esc(x[4])}</p>${documents(work.documents)}<details class="experience-details"><summary>${esc(t().experienceDetails)}</summary>${work.items.map(p=>`<section class="experience-achievement"><h4>${esc(text(p.title))}</h4><p>${esc(text(p.contribution))}</p><p>${esc(text(p.detail))}</p>${tags(p.stack)}${p.repo?`<a class="resource-link" href="${esc(p.repo)}" target="_blank" rel="noopener">${esc(p.repoType==='report'?t().report:t().repo)} →</a>`:''}</section>`).join('')}</details>${window.caseStudies.preview(x[5],state.lang)}</div></article>`;
+
+  function renderHome() {
+    const flow = byId.get('flow');
+    $('flow-link').href = projectHref(flow);
+    $('flow-method').href = `${projectHref(flow)}#flow`;
+    $('profile-meta').innerHTML = [[ui().education, ui().degree], [ui().availability, ui().location]]
+      .map(([label, value]) => `<div><dt>${escape(label)}</dt><dd>${escape(value)}</dd></div>`).join('');
+    const featured = data.featuredProjects.filter(id => id !== 'flow');
+    const order = ['mice', ...featured.filter(id => id !== 'mice')];
+    const others = [...order.map(id => byId.get(id)), ...data.projects.filter(p => p.id !== 'flow' && !order.includes(p.id))];
+    $('project-list').innerHTML = others.map(project => {
+      const title = `<h4>${projectLink(project)}</h4>`;
+      const searchText = normalise([project.title, project.summary, project.context, project.stack, project.sections?.flatMap(section => section.items)].flat(Infinity).join(' '));
+      return `<li class="project-row" id="project-${escape(project.id)}" data-search="${escape(searchText)}">
+        <div>${title}<p>${phrase(project.summary)}</p></div>
+        <span class="entry-meta">${phrase(project.context)} · ${escape(project.year)}</span>
+      </li>`;
     }).join('');
+    $('search').placeholder = ui().searchPlaceholder;
+    searchProjects();
+
+    $('experience-list').innerHTML = labels().experience.map(([year, name, role, place, summary, id]) => `
+      <article class="experience-entry" id="experience-${escape(id)}">
+        <p class="entry-meta">${escape(year)}</p>
+        <div><h3><a href="${experienceHref(id)}">${escape(role)}</a></h3>
+        <p class="entry-meta">${escape(name)} · ${escape(place)}</p>
+        <p>${escape(summary)}</p>${documentLinks(data.experienceWork[id].documents)}</div>
+      </article>`).join('');
+    $('education').innerHTML = `<h3>${escape(ui().education)}</h3><ul>${labels().education.map(([date, degree, institution, description]) => `<li><strong>${escape(degree)}</strong><span>${escape(institution)} · ${escape(date)}</span><span>${escape(description)}</span></li>`).join('')}</ul>`;
+    $('references-list').innerHTML = data.recommendations.map(letter => `
+      <li><div><h3><a href="${escape(letter.href)}" type="application/pdf" hreflang="fr">${escape(letter.author)} <small>PDF</small></a></h3>
+      <p>${phrase(letter.context)}</p></div><time class="entry-meta" datetime="${escape(letter.date)}">${phrase(letter.displayDate)}</time></li>`).join('');
+    $('skills-list').innerHTML = data.skills.map(skill => `
+      <div><dt>${phrase(skill.title)}</dt><dd><p>${phrase(skill.note)}</p>
+      <p class="skill-tools">${skill.items.map(phrase).join(' · ')}</p>
+      <ul class="inline-links">${skill.projects.map(id => `<li>${projectLink(byId.get(id))}</li>`).join('')}</ul></dd></div>`).join('') + `
+      <div><dt>${escape(labels().certTitle)}</dt><dd>${data.certs.map(escape).join(' · ')}</dd></div>
+      <div><dt>${escape(labels().languagesTitle)}</dt><dd>${escape(labels().languageBody)}</dd></div>`;
   }
-  function renderReferences() {
-    $('references-list').innerHTML = data.recommendations.map(letter => `<li>
-      <a class="reference-link" href="${esc(letter.href)}" target="_blank" rel="noopener" hreflang="fr" type="application/pdf">
-        <span class="reference-name"><strong>${esc(letter.author)}</strong><span>${esc(text(letter.role))}</span></span>
-        <span class="reference-context"><span>${esc(text(letter.context))}</span><time datetime="${esc(letter.date)}">${esc(text(letter.displayDate))}</time></span>
-        <span class="reference-format">PDF · FR <span aria-hidden="true">→</span></span>
-      </a>
-    </li>`).join('');
+
+  function mediaFigure(media) {
+    const src = escape(media.src);
+    const description = phrase(media.alt || media.caption);
+    const dimensions = `width="${escape(media.width)}" height="${escape(media.height)}"`;
+    const content = media.type === 'video'
+      ? `<video controls playsinline preload="none" poster="${escape(media.poster)}" ${dimensions} aria-label="${description}"><source src="${src}" type="video/mp4"></video>`
+      : `<a href="${src}"><img src="${src}" ${dimensions} alt="${description}" loading="lazy" decoding="async"></a>`;
+    return `<figure>${content}<figcaption>${phrase(media.caption)}</figcaption></figure>`;
   }
-  function updateTheme() {
-    document.body.classList.toggle('dark',state.dark);document.body.classList.toggle('light',!state.dark);
-    $('theme').setAttribute('aria-pressed',String(state.dark));$('theme').setAttribute('aria-label',t().switchTheme);
-    document.querySelector('meta[name="theme-color"]').content=state.dark?'#19231f':'#f5f1e9';
+
+  function studySections(study) {
+    if (!study) return '';
+    return `<section class="detail-section" id="figures"><h2>${escape(ui().figures)}</h2>
+      ${study.steps.map(step => `<section class="detail-step"><h3>${phrase(step.title)}</h3>
+        <p>${phrase(step.body)}</p>
+        ${step.blocks?.length ? `<ul>${step.blocks.map(block => `<li>${phrase(block)}</li>`).join('')}</ul>` : ''}
+        ${step.media?.length ? `<div class="detail-media">${step.media.map(mediaFigure).join('')}</div>` : ''}
+      </section>`).join('')}
+      </section>`;
   }
+
+  function stack(items) {
+    return items?.length ? `<p class="detail-tools">${items.map(phrase).join(' · ')}</p>` : '';
+  }
+
+  function facts(items) {
+    return items?.length ? `<dl class="detail-facts">${items.map(item => `<div><dt>${phrase(item.label)}</dt><dd>${escape(item.value)}</dd></div>`).join('')}</dl>` : '';
+  }
+
+  function projectDetail(project) {
+    const study = studies[project.id];
+    const docs = [...(project.documents || []), ...(study?.annex || [])];
+    if (project.repo) docs.unshift({href: project.repo, label: project.repoType === 'report' ? labels().report : ui().source});
+    if (project.presentation) docs.unshift({href: project.presentation, label: ui().flowDiagrams});
+    return `
+      <p class="detail-back"><a href="index.html#project-${escape(project.id)}">← ${escape(ui().backProjects)}</a></p>
+      <header class="detail-intro"><p class="entry-meta">${phrase(project.context)} · ${escape(project.year)}</p>
+      <h1>${phrase(project.title)}</h1><p class="detail-lead">${phrase(project.summary)}</p>${stack(project.stack)}${facts(project.facts || study?.stats)}
+      ${documentLinks(docs)}</header>
+      <section class="detail-section"><h2>${escape(labels().contribution)}</h2><p>${phrase(project.contribution)}</p><p>${phrase(project.detail)}</p></section>
+      ${project.problem ? `<section class="detail-section"><h2>${escape(labels().projectOverview)}</h2><p>${phrase(project.problem)}</p></section>` : ''}
+      ${(project.sections || []).map(section => `<section class="detail-section"><h2>${phrase(section.title)}</h2>${section.items.map(item => `<p>${phrase(item)}</p>`).join('')}</section>`).join('')}
+      ${studySections(study)}`;
+  }
+
+  function experienceDetail([year, name, role, place, summary, id]) {
+    const work = data.experienceWork[id];
+    const study = studies[id];
+    return `
+      <p class="detail-back"><a href="index.html#experience-${escape(id)}">← ${escape(ui().backExperience)}</a></p>
+      <header class="detail-intro"><p class="entry-meta">${escape(name)} · ${escape(place)} · ${escape(year)}</p>
+      <h1>${escape(role)}</h1><p class="detail-lead">${escape(summary)}</p>${facts(study?.stats)}
+      ${documentLinks([...(work.documents || []), ...(study?.annex || [])])}</header>
+      ${work.items.map(item => `<section class="detail-section"><h2>${phrase(item.title)}</h2>
+        <p>${phrase(item.contribution)}</p><p>${phrase(item.detail)}</p>${stack(item.stack)}
+        ${item.repo ? documentLinks([{href:item.repo,label:item.repoType === 'report' ? labels().report : ui().source}]) : ''}</section>`).join('')}
+      ${studySections(study)}`;
+  }
+
+  function renderDetail() {
+    const project = byId.get(params.get('id'));
+    const experience = labels().experience.find(entry => entry[5] === params.get('experience'));
+    $('detail-content').innerHTML = project ? projectDetail(project) : experience ? experienceDetail(experience)
+      : `<h1>${escape(ui().missing)}</h1><p><a href="index.html#projects">${escape(ui().backProjects)}</a></p>`;
+    document.title = `${project ? local(project.title) : experience?.[2] || ui().missing} — Amine Oubaidi`;
+  }
+
+  function applyTheme() {
+    document.documentElement.classList.toggle('dark', dark);
+    $('theme').setAttribute('aria-pressed', String(dark));
+    $('theme').setAttribute('aria-label', labels().switchTheme);
+    document.querySelector('meta[name="theme-color"]').content = dark ? '#1e2323' : '#fcfaf6';
+  }
+
   function render() {
-    document.documentElement.lang=state.lang;document.title='Amine Oubaidi — '+(state.lang==='fr'?'Ingénieur IA junior · Deep Learning':'Junior AI Engineer · Deep Learning');
-    document.querySelectorAll('[data-t]').forEach(el=>el.textContent=t()[el.dataset.t]);
-    document.querySelectorAll('[data-html]').forEach(el=>el.innerHTML=t()[el.dataset.html]);
-    document.querySelectorAll('[data-alt]').forEach(el=>el.alt=t()[el.dataset.alt]);
-    ['fr','en'].forEach(l=>$(l).setAttribute('aria-pressed',String(l===state.lang)));
-    const nav=sections.map((id,n)=>`<a href="#${id}" data-section="${id}">${esc(t().nav[n])}</a>`).join('');document.querySelector('.nav').innerHTML=nav;$('mobile-nav').innerHTML=nav;
-    $('header-cv').setAttribute('aria-label',t().cvDownload);
-    $('featured-study').href = text(flagship.presentation);
-    $('menu').setAttribute('aria-label',$('mobile-nav').hidden?t().menu:t().closeMenu);$('search').placeholder=t().searchPlaceholder;
-    $('filters').setAttribute('aria-label',state.lang==='fr'?'Filtrer les projets':'Filter projects');$('filters').innerHTML=t().filters.map((label,n)=>`<button data-filter="${n}" aria-pressed="${n===state.category}">${esc(label)}</button>`).join('');
-    $('hero-facts').innerHTML=t().heroFacts.map(x=>`<div><dt>${esc(x[0])}</dt><dd>${esc(x[1])}</dd></div>`).join('');
-    $('project-grid').innerHTML=data.projects.map(card).join('');filterProjects();
-    $('skills').innerHTML=data.skills.map((s,n)=>`<article class="skill-card"><div class="skill-heading"><span class="skill-index">${String(n+1).padStart(2,'0')}</span><h3>${esc(text(s.title))}</h3></div><p>${esc(text(s.note))}</p>${tags(s.items)}<div class="skill-evidence"><span>${esc(t().skillsEvidence)}</span>${s.projects.map(id=>{const p=data.projects.find(p=>p.id===id);return `<button data-project="${esc(id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(text(p.title))} →</button>`;}).join('')}</div></article>`).join('');
-    $('practice').innerHTML=t().practice.map(x=>`<span>${esc(x)}</span>`).join('');renderExperience();renderReferences();
-    $('education').innerHTML=t().education.map(x=>`<article class="education-item"><span>${esc(x[0])}</span><h4>${esc(x[1])}</h4><p>${esc(x[2])}</p><p>${esc(x[3])}</p></article>`).join('');$('certifications').innerHTML=data.certs.map(x=>`<li>${esc(x)}</li>`).join('');
-    updateTheme();updateBackToTop();if($('project-dialog').open)renderProjectDialog();window.caseStudies.refresh();
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-copy]').forEach(node => { node.textContent = ui()[node.dataset.copy]; });
+    document.querySelectorAll('[data-alt]').forEach(node => { node.alt = ui()[node.dataset.alt]; });
+    $('language').textContent = lang === 'fr' ? 'EN' : 'FR';
+    $('language').setAttribute('aria-label', lang === 'fr' ? 'Read in English' : 'Lire en français');
+    if (home) {
+      document.title = lang === 'fr' ? 'Amine Oubaidi — Ingénieur IA' : 'Amine Oubaidi — AI Engineer';
+      renderHome();
+    } else {
+      renderDetail();
+    }
+    applyTheme();
   }
-  function reset(){state.category=0;state.query='';state.page=1;$('search').value='';filterProjects();}
-  function closeMenu(){$('mobile-nav').hidden=true;$('menu').setAttribute('aria-expanded','false');$('menu').setAttribute('aria-label',t().menu);}
-  document.addEventListener('click',event=>{
-    const p=event.target.closest('[data-project]');if(p)openProject(p.dataset.project,p);
-    const filter=event.target.closest('[data-filter]');if(filter){state.category=Number(filter.dataset.filter);state.page=1;filterProjects();}
-    const page=event.target.closest('[data-project-page]');if(page&&!page.disabled){state.page=Number(page.dataset.projectPage);filterProjects();focusResults();}
-    if(event.target.closest('[data-project-close]'))$('project-dialog').close();
-    const study=event.target.closest('[data-open-study]');if(study){const trigger=state.trigger;$('project-dialog').close();window.caseStudies.open(study.dataset.openStudy,trigger);}
-    if(event.target.closest('#mobile-nav a'))closeMenu();
-    if(!event.target.closest('.header'))closeMenu();
+
+  $('language').addEventListener('click', () => {
+    lang = lang === 'fr' ? 'en' : 'fr';
+    try { localStorage.setItem('ao-lang', lang); } catch {}
+    render();
   });
-  $('project-dialog').addEventListener('close',()=>{document.body.classList.remove('project-open');if(state.trigger?.isConnected)state.trigger.focus({preventScroll:true});});
-  $('project-dialog').addEventListener('click',event=>{if(event.target===$('project-dialog')){const r=$('project-dialog').getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)$('project-dialog').close();}});
-  $('show-projects').addEventListener('click',()=>{state.showAll=!state.showAll;state.page=1;filterProjects();focusResults();});
-  $('search').addEventListener('input',e=>{state.query=e.target.value;state.page=1;filterProjects();});$('reset').addEventListener('click',reset);$('empty-reset').addEventListener('click',reset);
-  $('back-to-top').addEventListener('click',event=>{event.preventDefault();window.scrollTo({top:0,behavior:window.matchMedia?.('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});$('hero-title').focus({preventScroll:true});});
-  window.addEventListener('scroll',updateBackToTop,{passive:true});
-  window.addEventListener('resize',updateBackToTop);
-  ['fr','en'].forEach(l=>$(l).addEventListener('click',()=>{state.lang=l;try{localStorage.setItem('ao-lang',l);}catch{}render();}));
-  $('theme').addEventListener('click',()=>{state.dark=!state.dark;try{localStorage.setItem('ao-theme',state.dark?'dark':'light');}catch{}updateTheme();});
-  $('menu').addEventListener('click',()=>{const open=$('mobile-nav').hidden;$('mobile-nav').hidden=!open;$('menu').setAttribute('aria-expanded',String(open));$('menu').setAttribute('aria-label',open?t().closeMenu:t().menu);});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
-  if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting)document.querySelectorAll('[data-section]').forEach(a=>{const active=a.dataset.section===entry.target.id;a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});},{rootMargin:'-15% 0px -65% 0px'});sections.forEach(id=>observer.observe($(id)));}
+  $('theme').addEventListener('click', () => {
+    dark = !dark;
+    try { localStorage.setItem('ao-theme', dark ? 'dark' : 'light'); } catch {}
+    applyTheme();
+  });
+  if (home) $('search').addEventListener('input', searchProjects);
   render();
 })();

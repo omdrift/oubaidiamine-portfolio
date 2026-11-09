@@ -1,17 +1,15 @@
 # Amine Oubaidi · AI engineering portfolio
 
-Bilingual French/English static portfolio: five featured projects, research and industry experience, project media, reports and a downloadable CV.
+Bilingual French/English portfolio for Amine Oubaidi, with research and industry projects, reports, academic references and a downloadable CV.
 
-The homepage opens with a research note on industrial plume forecasting. A curated project grid, linked skills and experience come next. The references section links to the two signed academic letters, with the author, project and issue date. The full project list and filtered results use four projects per page, with synchronized pagination above and below the cards. Cards use three technology tags and link to case studies and supporting material. The header keeps the CV accessible on mobile.
-
-Visual case studies keep their close control and previous/next navigation outside the scrolling content. A step selector provides direct access to every step, including on mobile.
+The homepage presents the profile, the plume case study, a browsable project index, experience, references and skills. Each project title opens a standalone page with links, contributions and figures. A text filter narrows the project index. The references section gives both signed letters, with the author, context and issue date. The navigation and CV link remain visible in the mobile header.
 
 ## Project structure
 
-- `amine-portfolio/index.html`: page structure and contact / CV links.
+- `amine-portfolio/index.html`: homepage, project index and supporting documents.
 - `amine-portfolio/data.js`: translated copy, project descriptions and skills.
-- `amine-portfolio/app.js`: rendering, search, filters, featured-project toggle and project dialogs.
-- `amine-portfolio/studies.js` and `case-studies.js`: visual case studies.
+- `amine-portfolio/projet.html` and `app.js`: project and experience pages, translations and index filtering.
+- `amine-portfolio/studies.js`: figure metadata and case study walkthroughs.
 - `amine-portfolio/style.css`: responsive light / dark styling.
 - `amine-portfolio/presentation-panaches*.html` and `plume.css`: bilingual plume case study, diagrams and method details.
 - `amine-portfolio/documents/` and `images/`: published supporting documents and media.
@@ -32,17 +30,17 @@ From the repository root:
 python3 -m http.server 8000 --directory amine-portfolio
 ```
 
-Open <http://localhost:8000/>. Check both languages, mobile layouts, project filters, dialogs, theme switching and CV downloads after changes.
+Open <http://localhost:8000/>. Check both languages, mobile navigation, the project index, project pages, theme switching and PDF links after changes.
 
 ## Content maintenance
 
 Descriptions distinguish implemented features from planned work. The CareerPilot card and case study present the documented final product vision, explicitly labelled as a target version in development in both languages. They describe the intended user journey, architecture and acceptance criteria rather than the current MVP. Source documents: `README.md`, `docs/PLAN_PROJET.md` and `docs/PLAN_PREMIER_DEPLOIEMENT.md` from the application’s `feature/production-onboarding` branch at `f7dee66314efa3d8d682d3ccd5c3c1b413fb7460`. Its application repository remains private. Do not turn target capabilities into delivered claims or add unverified performance results. Update the downloadable CV and the corresponding text together when the professional profile changes.
 
-`featuredProjects` controls the curated selection; optional `cardTags` chooses the three homepage tags without shortening the detailed stack. Keep image captions accurate when replacing project media.
+`featuredProjects` controls which entries are listed first after the plume case study. Keep image captions accurate when replacing project media.
 
 ## Master’s multi-object tracking project
 
-The `multi-object-tracking` entry appears in the full project list and the Vision & video filter, outside the curated five. Its French/English case study describes adaptive-background segmentation, morphology, Kalman prediction and Hungarian assignment. The original 13-page presentation is published as `amine-portfolio/documents/presentation-master-multi-object-tracking.pdf`; `images/multi-object-tracking/tracking-result.jpeg` is extracted unchanged from page 11. The visual walkthrough explicitly distinguishes this static output from a temporal evaluation. No source code, full video, tracking accuracy or speed benchmark is claimed. Re-identification, MOG2 and optical-flow fusion remain proposed improvements. The exact academic year is not established by the slides; the date field is labelled “Master”.
+The `multi-object-tracking` entry appears in the project index. Its French/English case study describes adaptive-background segmentation, morphology, Kalman prediction and Hungarian assignment. The 13-page presentation is published as `amine-portfolio/documents/presentation-master-multi-object-tracking.pdf`. The static output at `images/multi-object-tracking/tracking-result.jpeg` comes from page 11. Re-identification, MOG2 and optical-flow fusion remain proposed improvements. The date field is labelled “Master” because the slides give no academic year.
 
 ## Industrial Plume Forecasting
 
