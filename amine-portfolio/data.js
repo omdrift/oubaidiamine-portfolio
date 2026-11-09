@@ -4,21 +4,19 @@ window.portfolio={
       "Projets",
       "Compétences",
       "Parcours",
+      "Recommandations",
       "Contact"
     ],
     "role": "Ingénieur IA · Data Scientist",
     "availability": "Disponible · CDI junior · Île-de-France",
-    "hero": "Du modèle à<br><em>l’application IA.</em>",
-    "intro": "Je construis des modèles de vision et des services Python. Deux stages de recherche au L3i, un stage chez Enedis et un Master en Ingénierie des Données : un parcours entre expérimentation et applications métier.",
+    "hero": "Vision, vidéo<br><em>et deep learning.</em>",
+    "intro": "Je développe des modèles de vision et les outils Python pour les évaluer et les intégrer. Du suivi multi-souris au L3i à l’automatisation documentaire chez Enedis.",
     "explore": "Voir mes projets",
     "github": "Mon GitHub",
-    "focus": "FOCUS RECHERCHE",
-    "focusTitle": "Industrial Plume Forecasting",
-    "focusBody": "CLIPSeg → VQGAN → Flow Matching ; cinq observations, quinze futurs et un protocole vérifiable.",
-    "focusInput": "Image de contexte",
-    "focusLatent": "Espace latent",
-    "focusOutput": "Images futures",
-    "focusLink": "Voir les étapes",
+    "focus": "CARNET DE RECHERCHE",
+    "focusTitle": "Prévision de panaches industriels",
+    "focusBody": "Cinq images observées pour en prévoir quinze, avec un modèle génératif en espace latent.",
+    "focusLink": "Lire l’étude illustrée",
     "ribbon": [
       "PyTorch",
       "Computer Vision",
@@ -26,9 +24,9 @@ window.portfolio={
       "FastAPI",
       "MLOps & AWS S3"
     ],
-    "projectKicker": "LES PROJETS",
-    "projectTitle": "Projets sélectionnés.",
-    "projectIntro": "Cinq projets, du modèle génératif au service documentaire. Ouvrez une étude pour voir mon rôle, la méthode et les livrables.",
+    "projectKicker": "01 / PROJETS",
+    "projectTitle": "Projets à explorer",
+    "projectIntro": "Chaque étude détaille ma contribution, les choix techniques et ce que montrent les livrables.",
     "searchLabel": "Rechercher un projet",
     "searchPlaceholder": "Projet, outil, domaine…",
     "filters": [
@@ -59,17 +57,17 @@ window.portfolio={
     },
     "repo": "Code sur GitHub",
     "report": "Rapport sur GitHub",
-    "skillsKicker": "COMPÉTENCES",
-    "skillsTitle": "Un socle ML.<br>Une approche ingénieur.",
-    "skillsIntro": "Des compétences organisées par usage : apprendre des représentations, exploiter les données et construire les services qui les rendent utiles.",
-    "experienceKicker": "LE PARCOURS",
+    "skillsKicker": "02 / COMPÉTENCES",
+    "skillsTitle": "De l’expérience au code",
+    "skillsIntro": "Les outils que j’utilise et les projets où les voir à l’œuvre.",
+    "experienceKicker": "03 / PARCOURS",
     "experienceTitle": "Recherche & industrie.",
     "experienceIntro": "Du laboratoire L3i aux outils métier chez Enedis : recherche appliquée, expérimentation et automatisation.",
     "educationTitle": "Formation",
     "certTitle": "Certifications",
     "languagesTitle": "Langues",
     "languageBody": "Français bilingue · Anglais C1",
-    "contactKicker": "LA SUITE",
+    "contactKicker": "05 / CONTACT",
     "contactTitle": "Construire une IA utile.<br>Avec la bonne équipe.",
     "contactBody": "Disponible pour un CDI junior en AI / ML Engineering ou Computer Vision en Île-de-France. Également ouvert aux doctorats en Deep Learning.",
     "emailButton": "Écrivez-moi",
@@ -136,7 +134,8 @@ window.portfolio={
     "studyAnnex": "Code & ressources",
     "studyStep": "Étape",
     "studyZoom": "Ouvrir le visuel",
-    "focusReal": "Frame source",
+    "focusReal": "IMAGE SOURCE",
+    "focusAlt": "Panache au-dessus d’un site industriel, image du clip RISE nº 6",
     "focusReconstruction": "Reconstruction VQGAN",
     "skillsEvidence": "Voir en contexte",
     "projectOverview": "Le problème",
@@ -149,15 +148,15 @@ window.portfolio={
     "heroFacts": [
       [
         "Formation",
-        "Master Informatique · La Rochelle"
+        "Master Ingénierie des Données · 2026"
       ],
       [
         "Recherche",
-        "2 stages R&D · Laboratoire L3i"
+        "L3i · Vision et suivi vidéo"
       ],
       [
         "Industrie",
-        "Data & automatisation · Enedis"
+        "Enedis · Data et automatisation"
       ]
     ],
     "cvDownload": "Télécharger mon CV",
@@ -169,11 +168,9 @@ window.portfolio={
     "proofLabel": "Ce que j’ai construit",
     "codeLink": "Code",
     "resourcesLink": "Résultats & ressources",
-    "profileTitle": "Recherche & industrie.",
-    "recommendationLink": "Recommandation L3i · PDF",
     "flagshipLabel": "PROJET PRINCIPAL · PRÉVISION VIDÉO",
     "reportShort": "Rapport",
-    "flowStillCaption": "Source RISE et protocole de prévision",
+    "flowStillCaption": "Schéma du protocole de prévision 5 → 15",
     "interfaceCaption": "Interface du projet · capture",
     "trackingCaption": "Points anatomiques détectés · sortie du modèle",
     "diagramCaption": "Schéma du pipeline",
@@ -188,28 +185,33 @@ window.portfolio={
     "previousPage": "Précédente",
     "nextPage": "Suivante",
     "rangeOf": "sur",
-    "studyJump": "Aller à une étape"
+    "studyJump": "Aller à une étape",
+    "referencesKicker": "04 / RECOMMANDATIONS",
+    "referencesTitle": "Deux regards du L3i",
+    "referencesIntro": "Les lettres de mes encadrants de stage et de projet de recherche à La Rochelle Université.",
+    "flowObserved": "Observations",
+    "flowFuture": "Images à prévoir",
+    "flowTaskLabel": "FENÊTRE DE PRÉVISION",
+    "flowRepresentation": "Latents continus · 8 × 8 × D"
   },
   "en": {
     "nav": [
       "Projects",
       "Skills",
       "Experience",
+      "References",
       "Contact"
     ],
     "role": "AI Engineer · Data Scientist",
     "availability": "Available · Junior permanent role · Paris region",
-    "hero": "From the model<br><em>to the application.</em>",
-    "intro": "I build vision models and Python services. Two research internships at L3i, an internship at Enedis and a Master’s in Data Engineering: experience spanning experiments and business applications.",
+    "hero": "Computer vision<br><em>and deep learning.</em>",
+    "intro": "I build vision models and the Python tools to evaluate and integrate them. My work ranges from multi-mouse tracking at L3i to document automation at Enedis.",
     "explore": "Explore my projects",
     "github": "My GitHub",
-    "focus": "RESEARCH FOCUS",
+    "focus": "RESEARCH NOTE",
     "focusTitle": "Industrial Plume Forecasting",
-    "focusBody": "CLIPSeg → VQGAN → Flow Matching; five observations, fifteen future frames and a verifiable protocol.",
-    "focusInput": "Context image",
-    "focusLatent": "Latent space",
-    "focusOutput": "Future images",
-    "focusLink": "View the steps",
+    "focusBody": "Five observed frames to forecast the next fifteen with a generative model in latent space.",
+    "focusLink": "Read the illustrated case study",
     "ribbon": [
       "PyTorch",
       "Computer Vision",
@@ -217,9 +219,9 @@ window.portfolio={
       "FastAPI",
       "MLOps & AWS S3"
     ],
-    "projectKicker": "THE PROJECTS",
-    "projectTitle": "Selected work.",
-    "projectIntro": "Five projects, from generative models to document services. Open a case study to explore my role, methods and deliverables.",
+    "projectKicker": "01 / PROJECTS",
+    "projectTitle": "Projects to explore",
+    "projectIntro": "Each case study covers my contribution, the technical choices and the evidence behind them.",
     "searchLabel": "Search projects",
     "searchPlaceholder": "Project, tool, topic…",
     "filters": [
@@ -250,17 +252,17 @@ window.portfolio={
     },
     "repo": "Code on GitHub",
     "report": "Report on GitHub",
-    "skillsKicker": "SKILLS",
-    "skillsTitle": "ML foundations.<br>An engineering approach.",
-    "skillsIntro": "Skills organised around their purpose: learning representations, working with data and building services that make them useful.",
-    "experienceKicker": "CAREER",
+    "skillsKicker": "02 / SKILLS",
+    "skillsTitle": "From experiments to code",
+    "skillsIntro": "The tools I use and the projects that show how I use them.",
+    "experienceKicker": "03 / EXPERIENCE",
     "experienceTitle": "Research & industry.",
     "experienceIntro": "From L3i research to business tools at Enedis: applied research, experimentation and automation.",
     "educationTitle": "Education",
     "certTitle": "Certifications",
     "languagesTitle": "Languages",
     "languageBody": "Bilingual French · C1 English",
-    "contactKicker": "WHAT’S NEXT",
+    "contactKicker": "05 / CONTACT",
     "contactTitle": "Build useful AI.<br>With the right team.",
     "contactBody": "Available for a junior permanent role in AI / ML Engineering or Computer Vision in the Paris region. Also open to Deep Learning PhD opportunities.",
     "emailButton": "Get in touch",
@@ -327,7 +329,8 @@ window.portfolio={
     "studyAnnex": "Code & resources",
     "studyStep": "Step",
     "studyZoom": "Open image",
-    "focusReal": "Source frame",
+    "focusReal": "SOURCE FRAME",
+    "focusAlt": "Smoke above an industrial site in RISE clip 6",
     "focusReconstruction": "VQGAN reconstruction",
     "skillsEvidence": "See it in context",
     "projectOverview": "The problem",
@@ -340,15 +343,15 @@ window.portfolio={
     "heroFacts": [
       [
         "Education",
-        "MSc in Computer Science · La Rochelle"
+        "MSc in Data Engineering · 2026"
       ],
       [
         "Research",
-        "2 R&D internships · L3i laboratory"
+        "L3i · Computer vision and tracking"
       ],
       [
         "Industry",
-        "Data & automation · Enedis"
+        "Enedis · Data and automation"
       ]
     ],
     "cvDownload": "Download my CV (FR)",
@@ -360,11 +363,9 @@ window.portfolio={
     "proofLabel": "What I built",
     "codeLink": "Code",
     "resourcesLink": "Results & resources",
-    "profileTitle": "Research & industry.",
-    "recommendationLink": "L3i recommendation · PDF",
     "flagshipLabel": "MAIN PROJECT · GENERATIVE AI",
     "reportShort": "Report",
-    "flowStillCaption": "RISE source and forecasting protocol",
+    "flowStillCaption": "Diagram of the 5 → 15 forecasting protocol",
     "interfaceCaption": "Project interface · screenshot",
     "trackingCaption": "Detected anatomical keypoints · model output",
     "diagramCaption": "Pipeline diagram",
@@ -379,7 +380,14 @@ window.portfolio={
     "previousPage": "Previous",
     "nextPage": "Next",
     "rangeOf": "of",
-    "studyJump": "Jump to a step"
+    "studyJump": "Jump to a step",
+    "referencesKicker": "04 / REFERENCES",
+    "referencesTitle": "Two perspectives from L3i",
+    "referencesIntro": "Letters from my internship and research project supervisors at La Rochelle Université.",
+    "flowObserved": "Observed frames",
+    "flowFuture": "Frames to predict",
+    "flowTaskLabel": "FORECAST WINDOW",
+    "flowRepresentation": "Continuous latents · 8 × 8 × D"
   },
   "projects": [
     {
@@ -395,11 +403,19 @@ window.portfolio={
         },
         {
           "label": [
-            "Architecture et vérification",
-            "Architecture and verification"
+            "Vérifications et pilotes",
+            "Verification and pilot runs"
           ],
-          "href": "https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/ENGINEERING.md",
+          "href": "https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/VERIFICATION.md",
           "format": "DOC"
+        },
+        {
+          "kind": "recommendation",
+          "label": [
+            "Recommandation · Damien Muselet",
+            "Recommendation · Damien Muselet"
+          ],
+          "href": "documents/recommandation-damien-muselet-2026.pdf"
         }
       ],
       "cats": [
@@ -412,20 +428,20 @@ window.portfolio={
         "MSc project"
       ],
       "title": [
-        "Industrial Plume Forecasting",
+        "Prévision de panaches industriels",
         "Industrial Plume Forecasting"
       ],
       "summary": [
-        "Prévision vidéo de fumée : CLIPSeg, VQGAN et Flow Matching, avec protocole reproductible, références comparables et suivi des erreurs.",
-        "Smoke video forecasting with CLIPSeg, VQGAN and Flow Matching, a reproducible protocol, comparable baselines and error diagnostics."
+        "Cinq images observées pour prévoir les quinze suivantes. Le pipeline combine extraction de la fumée, représentation VQGAN et prévision par Flow Matching conditionnel.",
+        "Five observed frames to forecast the next fifteen. The pipeline combines smoke extraction, a VQGAN representation and conditional Flow Matching."
       ],
       "contribution": [
-        "Projet de Master en équipe. Travail sur la préparation des séquences RISE et le pipeline VQGAN / Flow Matching ; structuration du protocole, de la reprise des entraînements, du monitoring et des vérifications logicielles.",
-        "Team MSc project. Work on RISE sequence preparation and the VQGAN / Flow Matching pipeline, with structured experimental design, recoverable training, monitoring and software verification."
+        "Projet de Master en équipe. J’ai travaillé sur la préparation des séquences RISE, le pipeline VQGAN et Flow Matching, puis sur le protocole de comparaison, les diagnostics et la reprise des entraînements.",
+        "Team MSc project. I worked on RISE sequence preparation, the VQGAN and Flow Matching pipeline, the comparison protocol, diagnostics and recoverable training."
       ],
       "detail": [
-        "Les clips conservent 36 images. La tâche de référence observe cinq images et en prédit quinze à 64 × 64. CLIPSeg et un raffinement spatial produisent des masques estimés ; un VQGAN commun est figé avant les prédicteurs latents. Une commande enchaîne les étapes et W&B suit la qualité, les régions fumée/fond et les checkpoints.",
-        "Clips retain 36 frames. The reference task observes five frames and predicts fifteen at 64 × 64. CLIPSeg and spatial refinement provide estimated masks; a common VQGAN is frozen for the latent predictors. One command orchestrates the stages while W&B tracks quality, smoke/background regions and checkpoint selection."
+        "L’étude sépare le choix de la représentation, le réglage du Flow sur validation et l’évaluation finale sur des dates et vues réservées.",
+        "The study separates representation selection, Flow tuning on validation and final evaluation on held-out dates and views."
       ],
       "stack": [
         "Python",
@@ -438,8 +454,8 @@ window.portfolio={
       ],
       "repo": "https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching",
       "problem": [
-        "Comment comparer une prévision de panache aux références, tout en maîtrisant les fuites temporelles, les erreurs de segmentation et la reproductibilité des entraînements ?",
-        "How can plume forecasts be compared against baselines while controlling temporal leakage, segmentation error and training reproducibility?"
+        "Les pixels de fumée occupent parfois une petite partie de l’image. Comment mesurer la qualité d’une prévision à plusieurs horizons quand le fond domine et que les conditions changent d’une date ou d’une caméra à l’autre ?",
+        "Smoke may occupy a small fraction of each frame. How can multi-step forecasts be evaluated when the background dominates and conditions vary by date or camera view?"
       ],
       "sections": [
         {
@@ -465,12 +481,12 @@ window.portfolio={
           ],
           "items": [
             [
-              "VQGAN commun : latents 8 × 8 × 256 et 1 024 codes. Flow Matching uniforme et pondéré par alpha sont comparés à la persistance, au flot optique de Farnebäck et à un SimVP compact.",
-              "Common VQGAN: 8 × 8 × 256 latents and 1,024 codes. Uniform and alpha-weighted Flow Matching are compared with persistence, Farnebäck optical flow and compact SimVP."
+              "Le VQGAN compare trois grilles 8 × 8 × D avec D = 4, 8 ou 256 et 1 024 codes. Trois Flow courts départagent les dimensions par leur LPIPS de prévision sur validation.",
+              "The VQGAN compares three 8 × 8 × D grids with D = 4, 8 or 256 and 1,024 codes. Three short Flow runs rank dimensions by validation forecast LPIPS."
             ],
             [
-              "Évaluation de cinq observations vers quinze futurs ; trois graines de prédicteurs, quatre réalisations par prévision stochastique et moyenne de toutes les réalisations. La LPIPS de validation sélectionne le checkpoint.",
-              "Five observed frames to fifteen future frames; three predictor seeds, four realizations per stochastic forecast and averaging over every realization. Validation LPIPS selects the checkpoint."
+              "Deux Flow, uniforme et pondéré par la couverture de fumée estimée, partagent le même VQGAN. Le test final prévoit aussi la persistance et le flot optique de Farnebäck.",
+              "Uniform Flow and Flow weighted by estimated smoke coverage share the same VQGAN. The final test also includes persistence and Farnebäck optical flow."
             ]
           ]
         },
@@ -497,12 +513,12 @@ window.portfolio={
           ],
           "items": [
             [
-              "Le code, le protocole, les tests et la matrice sont publiés. Aucun gain prédictif consolidé ni meilleur LR calibré n’est revendiqué ; les essais comparables doivent produire ces preuves.",
-              "Code, protocol, tests and the experiment matrix are published. No consolidated forecasting improvement or calibrated optimal LR is claimed; controlled runs must provide that evidence."
+              "Le dépôt documente les tests CPU, la préparation pilote de six clips RISE et des mesures de ressources sur données synthétiques. Le comparatif de prévision consolidé du protocole actuel reste à établir.",
+              "The repository documents CPU tests, preparation of six pilot RISE clips and resource measurements on synthetic data. A consolidated forecasting benchmark for the current protocol is still pending."
             ],
             [
-              "Les tests réservés distinguent dates futures et vues inédites, avec différences appariées et bootstrap par journée. Une reconstruction VQGAN réussie ou un faible LPIPS ne suffisent pas à démontrer une prévision fidèle.",
-              "Held-out tests distinguish future dates and unseen views, with paired differences and day-clustered bootstrap. Good VQGAN reconstruction or low LPIPS alone does not establish faithful forecasting."
+              "La qualité est mesurée sur les mêmes fenêtres, par horizon et par région. Les tests distinguent dates futures sur vues connues et dates futures sur vues réservées.",
+              "Quality is measured on the same windows, by horizon and region. Tests distinguish future dates on known views from future dates on held-out views."
             ]
           ]
         }
@@ -523,10 +539,10 @@ window.portfolio={
           ]
         },
         {
-          "value": "5",
+          "value": "4",
           "label": [
-            "Méthodes comparées",
-            "Comparison methods"
+            "Méthodes prévues au test",
+            "Methods planned for test"
           ]
         }
       ],
@@ -538,6 +554,10 @@ window.portfolio={
         "CLIPSeg",
         "VQGAN",
         "Flow Matching"
+      ],
+      "presentation": [
+        "presentation-panaches.html",
+        "presentation-panaches-en.html"
       ]
     },
     {
@@ -1895,167 +1915,133 @@ window.portfolio={
   "skills": [
     {
       "title": [
-        "Machine Learning & Deep Learning",
-        "Machine Learning & Deep Learning"
+        "Apprentissage profond",
+        "Deep learning"
       ],
       "note": [
-        "Concevoir, entraîner et évaluer des modèles ; analyser les erreurs et ajuster le protocole expérimental.",
-        "Design, train and evaluate models; analyse errors and refine the experimental protocol."
+        "Entraîner un modèle génératif vidéo ou un CNN multi-tâches, puis analyser les erreurs et les limites du protocole.",
+        "Train a generative video model or a multi-task CNN, then analyse errors and the limits of the protocol."
       ],
       "items": [
         "Python",
         "PyTorch",
-        "Scikit-learn",
-        "TensorFlow / Keras",
-        "CNN · RNN · Transformers",
-        "Fine-tuning",
+        "VQGAN",
+        "Flow Matching",
         [
-          "Optimisation & régularisation",
-          "Optimisation & regularisation"
+          "CNN multi-tâches",
+          "Multi-task CNN"
         ]
       ],
       "projects": [
         "flow",
-        "face",
-        "process"
-      ]
-    },
-    {
-      "title": [
-        "Computer Vision & multimodal",
-        "Computer Vision & multimodal"
-      ],
-      "note": [
-        "Détection, segmentation, estimation de pose et suivi ; fusion de données visuelles et temporelles.",
-        "Detection, segmentation, pose estimation and tracking; visual and temporal data fusion."
-      ],
-      "items": [
-        "CNN / R-CNN",
-        "OpenCV",
-        [
-          "Détection & segmentation",
-          "Detection & segmentation"
-        ],
-        "Pose estimation & tracking",
-        "OCR",
-        "Fusion multimodale",
-        [
-          "Quantification & pruning",
-          "Quantisation & pruning"
-        ]
-      ],
-      "projects": [
-        "maritime",
-        "hackathon",
         "face"
       ]
     },
     {
       "title": [
-        "GenAI, NLP & RAG",
-        "GenAI, NLP & RAG"
+        "Vision par ordinateur",
+        "Computer vision"
       ],
       "note": [
-        "Représentations, retrieval et génération conditionnée ; relier les réponses à leurs sources.",
-        "Representations, retrieval and conditional generation; connect answers to their sources."
+        "Adapter un détecteur de points anatomiques, conserver les identités dans le temps et inspecter les trajectoires.",
+        "Adapt a keypoint detector, preserve identities over time and inspect trajectories."
       ],
       "items": [
-        "LLM / VLM",
-        "Hugging Face",
-        "Embeddings & vector search",
+        "Keypoint R-CNN",
+        "OpenCV",
+        "DeepSORT",
+        "Kalman / UKF",
+        "CLIPSeg"
+      ],
+      "projects": [
+        "mice",
+        "multi-object-tracking"
+      ]
+    },
+    {
+      "title": [
+        "NLP, RAG et multimodal",
+        "NLP, RAG and multimodal"
+      ],
+      "note": [
+        "Extraire le contenu de PDF, indexer leurs représentations et relier la recherche aux documents sources.",
+        "Extract content from PDFs, index their representations and connect retrieval to source documents."
+      ],
+      "items": [
         "LangChain / LangGraph",
-        "Qdrant",
-        "Prompt engineering",
-        "VQGAN / Flow Matching"
+        "Embeddings",
+        "RAG",
+        "LLM / VLM"
       ],
       "projects": [
-        "cv-matcher",
         "rag",
-        "flow"
+        "hackathon"
       ]
     },
     {
       "title": [
-        "Data Science & évaluation",
-        "Data Science & evaluation"
+        "Protocole et mesure",
+        "Experimental design and evaluation"
       ],
       "note": [
-        "Préparer des données fiables, construire les features et choisir des métriques adaptées au problème.",
-        "Prepare reliable data, engineer features and choose metrics that fit the problem."
+        "Séparer les données par date et par vue, suivre l’erreur par horizon et comparer à des références explicites.",
+        "Split data by date and camera view, track error by horizon and compare against explicit baselines."
       ],
       "items": [
-        "SQL",
-        "Pandas / NumPy",
-        [
-          "Statistiques",
-          "Statistics"
-        ],
-        [
-          "Prétraitement & qualité",
-          "Preprocessing & quality"
-        ],
+        "LPIPS / SSIM",
         "Precision / Recall / F1 / mAP",
-        "Optuna / Hyperopt",
-        "Power BI / DAX"
-      ],
-      "projects": [
-        "process",
-        "face",
-        "pdf"
-      ]
-    },
-    {
-      "title": [
-        "MLOps, cloud & reproductibilité",
-        "MLOps, cloud & reproducibility"
-      ],
-      "note": [
-        "Versionner données et modèles, suivre les expériences et assembler des pipelines reproductibles.",
-        "Version data and models, track experiments and assemble reproducible pipelines."
-      ],
-      "items": [
-        "Docker / Docker Compose",
-        "AWS S3",
-        "MLflow / Weights & Biases",
-        "DVC",
-        "Airflow",
-        "GitHub Actions / CI-CD",
-        "Git / Linux"
-      ],
-      "projects": [
-        "face",
-        "rag",
-        "flow"
-      ]
-    },
-    {
-      "title": [
-        "Software Engineering pour l’IA",
-        "Software Engineering for AI"
-      ],
-      "note": [
-        "Structurer les services, exposer les modèles par API et tester les comportements métier.",
-        "Structure services, expose models through APIs and test business behaviour."
-      ],
-      "items": [
-        "FastAPI / Pydantic",
-        "API REST",
-        "SQLAlchemy / PostgreSQL",
+        "Optuna",
         [
-          "Architecture en couches",
-          "Layered architecture"
-        ],
-        "pytest / Playwright",
-        "React / TypeScript",
-        [
-          "Automatisation Python",
-          "Python automation"
+          "Bootstrap par journée",
+          "Day-clustered bootstrap"
         ]
       ],
       "projects": [
-        "cv-matcher",
-        "loan",
-        "xiatech"
+        "flow",
+        "process"
+      ]
+    },
+    {
+      "title": [
+        "Pipelines ML et reproductibilité",
+        "ML pipelines and reproducibility"
+      ],
+      "note": [
+        "Versionner les données, suivre les entraînements et reprendre une expérience à partir d’un état vérifié.",
+        "Version data, track training and resume experiments from a verified state."
+      ],
+      "items": [
+        "DVC",
+        "MLflow",
+        "Weights & Biases",
+        "Docker",
+        "Airflow",
+        "GitHub Actions"
+      ],
+      "projects": [
+        "face",
+        "flow"
+      ]
+    },
+    {
+      "title": [
+        "Services Python et automatisation",
+        "Python services and automation"
+      ],
+      "note": [
+        "Exposer une inférence par API et structurer les informations extraites de documents métier.",
+        "Serve inference through an API and structure information extracted from business documents."
+      ],
+      "items": [
+        "FastAPI / Pydantic",
+        "SQL",
+        "pytest",
+        "OCR",
+        "JSON / CSV"
+      ],
+      "projects": [
+        "face",
+        "pdf"
       ]
     }
   ],
@@ -2071,5 +2057,41 @@ window.portfolio={
     "face",
     "cv-matcher",
     "mice"
+  ],
+  "recommendations": [
+    {
+      "author": "Jean-Christophe Burie",
+      "role": [
+        "Professeur des universités · L3i",
+        "Professor · L3i"
+      ],
+      "context": [
+        "Stage M1 · Suivi multi-souris en laboratoire",
+        "MSc internship · Laboratory multi-mouse tracking"
+      ],
+      "date": "2026-10-23",
+      "displayDate": [
+        "23 octobre 2026",
+        "23 October 2026"
+      ],
+      "href": "documents/recommandation-l3i-2025.pdf"
+    },
+    {
+      "author": "Damien Muselet",
+      "role": [
+        "Professeur en informatique · L3i",
+        "Professor of Computer Science · L3i"
+      ],
+      "context": [
+        "Projet M2 · Prévision de panaches par Flow Matching",
+        "MSc research project · Plume forecasting with Flow Matching"
+      ],
+      "date": "2026-11-06",
+      "displayDate": [
+        "6 novembre 2026",
+        "6 November 2026"
+      ],
+      "href": "documents/recommandation-damien-muselet-2026.pdf"
+    }
   ]
 };

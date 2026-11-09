@@ -1,6 +1,8 @@
 (() => {
   const data = window.portfolio;
   const $ = id => document.getElementById(id);
+  const sections = ['projects', 'expertise', 'experience', 'references', 'contact'];
+  const flagship = data.projects.find(p => p.id === 'flow');
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const normalise = value => String(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   const state = {lang:'fr', category:0, query:'', project:null, trigger:null, dark:false, showAll:false, page:1};
@@ -15,10 +17,13 @@
     return items.length?`<div class="document-links">${items.filter(x=>x.href).map(x=>`<a class="document-link" href="${esc(text(x.href))}" target="_blank" rel="noopener"><span>${esc(text(x.label)||t().documentLabels[x.kind])}</span><span>${esc(x.format||'PDF')} ↗</span>${x.caption?`<small>${esc(text(x.caption))}</small>`:''}</a>`).join('')}</div>`:'';
   }
   function graphic(p) {
-    if(p.id==='flow')return `<span class="flow-comparison">${[
-      {src:'dataset-frame.png',label:['Source RISE','RISE source']},
-      {src:'plume-forecasting-pipeline.svg',label:['Protocole 5 → 15','5 → 15 protocol']}
-    ].map(s=>`<span class="flow-sample"><span class="sample-label">${esc(text(s.label))}</span><img src="images/flow/${esc(s.src)}" alt="${esc(text(s.label))}" width="267" height="267" decoding="async"></span>`).join('')}</span>`;
+    if (p === flagship) return `<span class="flow-window">
+      <span class="graphic-caption">${esc(t().flowTaskLabel)}</span>
+      <span class="flow-scale" aria-hidden="true">5 <span>→</span> 15</span>
+      <span class="forecast-track" aria-hidden="true"><span></span><span></span></span>
+      <span class="forecast-labels"><span>5 ${esc(t().flowObserved)}</span><span>15 ${esc(t().flowFuture)}</span></span>
+      <span class="flow-representation">${esc(t().flowRepresentation)}</span>
+    </span>`;
     const cover = p.id==='face'
       ? {src:'images/face/face-app.png',alt:['Interface du projet MLOps : filtres et images par attribut','MLOps project interface: attribute filters and images'],width:1280,height:672}
       : p.id==='mice'
@@ -41,8 +46,11 @@
   }
   function card(p) {
     const code = p.repo ? `<a class="text-button project-source" href="${esc(p.repo)}" target="_blank" rel="noopener">${esc(p.repoType==='report'?t().reportShort:t().codeLink)} <span aria-hidden="true">↗</span></a>` : '';
+    const details = p.presentation
+      ? `<a class="project-details" href="${esc(text(p.presentation))}">${esc(t().focusLink)} <span aria-hidden="true">↗</span></a>`
+      : `<button class="project-details" data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(t().details)} <span aria-hidden="true">↗</span></button>`;
     const caption=p.id==='flow'?t().flowStillCaption:p.id==='face'?t().interfaceCaption:p.id==='mice'?t().trackingCaption:window.portfolioStudies[p.id]?.cover?t().projectVisualCaption:t().diagramCaption;
-    return `<article class="project-card ${p.id==='flow'?'is-flagship':''}" id="project-${esc(p.id)}" data-id="${esc(p.id)}"><div class="project-media project-media--${esc(p.id)}"><button class="project-cover" data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog" aria-label="${esc(t().details+' : '+text(p.title))}">${graphic(p)}</button><div class="media-toolbar"><span class="media-caption" ${p.id==='flow'?'id="flow-caption"':''}>${esc(caption)}</span></div></div><div class="project-card-body"><div class="project-meta"><span>${esc(text(p.context))}</span><span>${esc(p.year)}</span></div><p class="project-kind">${esc(p.id==='flow'?t().flagshipLabel:t().filters[p.cats[0]])}</p><h3><button data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(text(p.title))}</button></h3><p class="project-summary">${esc(text(p.summary))}</p>${tags((p.cardTags||p.stack).slice(0,3))}<div class="project-actions"><button class="project-details" data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(t().details)} <span aria-hidden="true">↗</span></button>${code}</div></div></article>`;
+    return `<article class="project-card ${p.id==='flow'?'is-flagship':''}" id="project-${esc(p.id)}" data-id="${esc(p.id)}"><div class="project-media project-media--${esc(p.id)}"><button class="project-cover" data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog" aria-label="${esc(t().details+' · '+text(p.title))}">${graphic(p)}</button><div class="media-toolbar"><span class="media-caption">${esc(caption)}</span></div></div><div class="project-card-body"><div class="project-meta"><span>${esc(text(p.context))}</span><span>${esc(p.year)}</span></div><p class="project-kind">${esc(p.id==='flow'?t().flagshipLabel:t().filters[p.cats[0]])}</p><h3><button data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(text(p.title))}</button></h3><p class="project-summary">${esc(text(p.summary))}</p>${tags((p.cardTags||p.stack).slice(0,3))}<div class="project-actions">${details}${code}</div></div></article>`;
   }
   function renderPagination(pageCount) {
     const controls=`<button class="page-direction" data-project-page="${state.page-1}" aria-controls="project-grid" ${state.page===1?'disabled':''}><span aria-hidden="true">←</span><span>${esc(t().previousPage)}</span></button><div class="page-numbers">${Array.from({length:pageCount},(_,n)=>`<button data-project-page="${n+1}" aria-controls="project-grid" aria-label="${esc(t().pageLabel+' '+(n+1))}" ${state.page===n+1?'aria-current="page"':''}>${n+1}</button>`).join('')}</div><button class="page-direction" data-project-page="${state.page+1}" aria-controls="project-grid" ${state.page===pageCount?'disabled':''}><span>${esc(t().nextPage)}</span><span aria-hidden="true">→</span></button>`;
@@ -97,24 +105,35 @@
       return `<article class="timeline-item" id="experience-${esc(x[5])}"><span class="timeline-year">${esc(x[0])}</span><div><h3>${esc(x[1])}</h3><p class="timeline-role">${esc(x[2])}</p><p class="timeline-location">${esc(x[3])}</p><p>${esc(x[4])}</p>${documents(work.documents)}<details class="experience-details"><summary>${esc(t().experienceDetails)}</summary>${work.items.map(p=>`<section class="experience-achievement"><h4>${esc(text(p.title))}</h4><p>${esc(text(p.contribution))}</p><p>${esc(text(p.detail))}</p>${tags(p.stack)}${p.repo?`<a class="resource-link" href="${esc(p.repo)}" target="_blank" rel="noopener">${esc(p.repoType==='report'?t().report:t().repo)} ↗</a>`:''}</section>`).join('')}</details>${window.caseStudies.preview(x[5],state.lang)}</div></article>`;
     }).join('');
   }
+  function renderReferences() {
+    $('references-list').innerHTML = data.recommendations.map(letter => `<li>
+      <a class="reference-link" href="${esc(letter.href)}" target="_blank" rel="noopener" hreflang="fr" type="application/pdf">
+        <span class="reference-name"><strong>${esc(letter.author)}</strong><span>${esc(text(letter.role))}</span></span>
+        <span class="reference-context"><span>${esc(text(letter.context))}</span><time datetime="${esc(letter.date)}">${esc(text(letter.displayDate))}</time></span>
+        <span class="reference-format">PDF · FR <span aria-hidden="true">↗</span></span>
+      </a>
+    </li>`).join('');
+  }
   function updateTheme() {
     document.body.classList.toggle('dark',state.dark);document.body.classList.toggle('light',!state.dark);
     $('theme').setAttribute('aria-pressed',String(state.dark));$('theme').setAttribute('aria-label',t().switchTheme);
-    document.querySelector('meta[name="theme-color"]').content=state.dark?'#101b2b':'#f6f7fa';
+    document.querySelector('meta[name="theme-color"]').content=state.dark?'#19231f':'#f5f1e9';
   }
   function render() {
     document.documentElement.lang=state.lang;document.title='Amine Oubaidi — '+(state.lang==='fr'?'Ingénieur IA junior · Deep Learning':'Junior AI Engineer · Deep Learning');
     document.querySelectorAll('[data-t]').forEach(el=>el.textContent=t()[el.dataset.t]);
     document.querySelectorAll('[data-html]').forEach(el=>el.innerHTML=t()[el.dataset.html]);
+    document.querySelectorAll('[data-alt]').forEach(el=>el.alt=t()[el.dataset.alt]);
     ['fr','en'].forEach(l=>$(l).setAttribute('aria-pressed',String(l===state.lang)));
-    const nav=['projects','expertise','experience','contact'].map((id,n)=>`<a href="#${id}" data-section="${id}">${esc(t().nav[n])}</a>`).join('');document.querySelector('.nav').innerHTML=nav;$('mobile-nav').innerHTML=nav;
+    const nav=sections.map((id,n)=>`<a href="#${id}" data-section="${id}">${esc(t().nav[n])}</a>`).join('');document.querySelector('.nav').innerHTML=nav;$('mobile-nav').innerHTML=nav;
     $('header-cv').setAttribute('aria-label',t().cvDownload);
+    $('featured-study').href = text(flagship.presentation);
     $('menu').setAttribute('aria-label',$('mobile-nav').hidden?t().menu:t().closeMenu);$('search').placeholder=t().searchPlaceholder;
     $('filters').setAttribute('aria-label',state.lang==='fr'?'Filtrer les projets':'Filter projects');$('filters').innerHTML=t().filters.map((label,n)=>`<button data-filter="${n}" aria-pressed="${n===state.category}">${esc(label)}</button>`).join('');
     $('hero-facts').innerHTML=t().heroFacts.map(x=>`<div><dt>${esc(x[0])}</dt><dd>${esc(x[1])}</dd></div>`).join('');
     $('project-grid').innerHTML=data.projects.map(card).join('');filterProjects();
     $('skills').innerHTML=data.skills.map((s,n)=>`<article class="skill-card"><div class="skill-heading"><span class="skill-index">${String(n+1).padStart(2,'0')}</span><h3>${esc(text(s.title))}</h3></div><p>${esc(text(s.note))}</p>${tags(s.items)}<div class="skill-evidence"><span>${esc(t().skillsEvidence)}</span>${s.projects.map(id=>{const p=data.projects.find(p=>p.id===id);return `<button data-project="${esc(id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(text(p.title))} ↗</button>`;}).join('')}</div></article>`).join('');
-    $('practice').innerHTML=t().practice.map(x=>`<span>${esc(x)}</span>`).join('');renderExperience();
+    $('practice').innerHTML=t().practice.map(x=>`<span>${esc(x)}</span>`).join('');renderExperience();renderReferences();
     $('education').innerHTML=t().education.map(x=>`<article class="education-item"><span>${esc(x[0])}</span><h4>${esc(x[1])}</h4><p>${esc(x[2])}</p><p>${esc(x[3])}</p></article>`).join('');$('certifications').innerHTML=data.certs.map(x=>`<li>${esc(x)}</li>`).join('');
     updateTheme();updateBackToTop();if($('project-dialog').open)renderProjectDialog();window.caseStudies.refresh();
   }
@@ -140,6 +159,6 @@
   $('theme').addEventListener('click',()=>{state.dark=!state.dark;try{localStorage.setItem('ao-theme',state.dark?'dark':'light');}catch{}updateTheme();});
   $('menu').addEventListener('click',()=>{const open=$('mobile-nav').hidden;$('mobile-nav').hidden=!open;$('menu').setAttribute('aria-expanded',String(open));$('menu').setAttribute('aria-label',open?t().closeMenu:t().menu);});
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
-  if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting)document.querySelectorAll('[data-section]').forEach(a=>{const active=a.dataset.section===entry.target.id;a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});},{rootMargin:'-15% 0px -65% 0px'});['projects','expertise','experience','contact'].forEach(id=>observer.observe($(id)));}
+  if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting)document.querySelectorAll('[data-section]').forEach(a=>{const active=a.dataset.section===entry.target.id;a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});},{rootMargin:'-15% 0px -65% 0px'});sections.forEach(id=>observer.observe($(id)));}
   render();
 })();

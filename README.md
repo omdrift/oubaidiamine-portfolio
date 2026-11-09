@@ -2,7 +2,7 @@
 
 Bilingual French/English static portfolio: five featured projects, research and industry experience, project media, reports and a downloadable CV.
 
-The homepage pairs a full-width flagship project with four complementary case studies. The full project list and filtered results use four projects per page, with synchronized pagination above and below the cards. Cards use three technology tags and keep the detailed contribution, methodology and resources in dialogs. Existing screenshots and model outputs are distinguished from pipeline diagrams. The plume card presents a RISE source frame and the current forecasting protocol. The header keeps the CV accessible on mobile, and a floating return-to-top control appears after scrolling.
+The homepage opens with a research note on industrial plume forecasting. A curated project grid, linked skills and experience come next. The references section links to the two signed academic letters, with the author, project and issue date. The full project list and filtered results use four projects per page, with synchronized pagination above and below the cards. Cards use three technology tags and link to case studies and supporting material. The header keeps the CV accessible on mobile.
 
 Visual case studies keep their close control and previous/next navigation outside the scrolling content. A step selector provides direct access to every step, including on mobile.
 
@@ -13,6 +13,7 @@ Visual case studies keep their close control and previous/next navigation outsid
 - `amine-portfolio/app.js`: rendering, search, filters, featured-project toggle and project dialogs.
 - `amine-portfolio/studies.js` and `case-studies.js`: visual case studies.
 - `amine-portfolio/style.css`: responsive light / dark styling.
+- `amine-portfolio/presentation-panaches*.html` and `plume.css`: bilingual plume case study, diagrams and method details.
 - `amine-portfolio/documents/` and `images/`: published supporting documents and media.
 
 ## Deployment
@@ -45,4 +46,9 @@ The `multi-object-tracking` entry appears in the full project list and the Visio
 
 ## Industrial Plume Forecasting
 
-The plume project and its French/English pages describe the implemented 36-frame, 5-observation / 15-future protocol: per-frame CLIPSeg with spatial refinement, common VQGAN, uniform and alpha-weighted Flow Matching, persistence, Farnebäck optical flow and compact SimVP. The case study links to the published protocol, architecture, training guide and software verification. Consolidated forecasting gains, calibrated optimal hyperparameters and physical emissions measurements are not claimed. Unmatched legacy result figures are excluded from the current study.
+The plume project and its French/English pages describe the 36-frame, 5-observation / 15-future protocol. The illustrated walkthrough covers per-frame CLIPSeg, the D4 / D8 / D256 VQGAN comparison, autoregressive generation, and evaluation of uniform Flow, weighted Flow, persistence and Farnebäck optical flow. The two held-out splits separate new dates from new views. The case study links to the protocol, experiment matrix and recorded software verification. The consolidated forecasting benchmark is pending. The source still is the first frame of RISE clip 6, which is included as a CC0 source-video example.
+
+## Academic recommendations
+
+- Jean-Christophe Burie, 23 October 2026, for the 2025 multi-mouse tracking internship. The existing `documents/recommandation-l3i-2025.pdf` URL refers to the internship year.
+- Damien Muselet, 6 November 2026, for the Master's research project on plume forecasting. The letter is at `documents/recommandation-damien-muselet-2026.pdf`.

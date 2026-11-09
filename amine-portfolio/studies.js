@@ -1,12 +1,12 @@
 window.portfolioStudies={
   "flow": {
     "title": [
-      "Industrial Plume Forecasting",
+      "Prévision de panaches industriels",
       "Industrial Plume Forecasting"
     ],
     "intro": [
-      "Prévision vidéo de fumée : CLIPSeg, VQGAN et Flow Matching, avec protocole reproductible, références comparables et suivi des erreurs.",
-      "Smoke video forecasting with CLIPSeg, VQGAN and Flow Matching, a reproducible protocol, comparable baselines and error diagnostics."
+      "Cinq images observées pour prévoir les quinze suivantes. Le pipeline combine extraction de la fumée, représentation VQGAN et prévision par Flow Matching conditionnel.",
+      "Five observed frames to forecast the next fifteen. The pipeline combines smoke extraction, a VQGAN representation and conditional Flow Matching."
     ],
     "cover": {
       "src": "images/flow/dataset-frame.png",
@@ -14,8 +14,8 @@ window.portfolioStudies={
         "Image source d’un clip industriel RISE.",
         "Source frame from an industrial RISE clip."
       ],
-      "width": 1280,
-      "height": 720
+      "width": 180,
+      "height": 180
     },
     "stats": [
       {
@@ -33,10 +33,10 @@ window.portfolioStudies={
         ]
       },
       {
-        "value": "5",
+        "value": "4",
         "label": [
-          "Méthodes comparées",
-          "Comparison methods"
+          "Méthodes prévues au test",
+          "Methods planned for test"
         ]
       }
     ],
@@ -47,23 +47,23 @@ window.portfolioStudies={
           "A defined forecasting task"
         ],
         "body": [
-          "Chaque clip conserve 36 images consécutives. Cinq observations servent à prévoir quinze images ; les images futures réelles sont réservées aux pertes et à la mesure, jamais à l’entrée de génération.",
-          "Each clip retains 36 consecutive frames. Five observations support fifteen predictions; true future frames are used for losses and measurement, never as generation input."
+          "Un clip conserve 36 images à 64 × 64. Une fenêtre d’évaluation donne cinq observations au modèle et réserve les quinze suivantes à la mesure de la prévision.",
+          "A clip retains 36 frames at 64 × 64. An evaluation window gives the model five observations and holds back the next fifteen to measure forecasting quality."
         ],
         "media": [
           {
             "type": "image",
             "src": "images/flow/plume-forecasting-pipeline.svg",
             "caption": [
-              "Architecture du protocole implémenté ; aucun résultat de prévision représenté.",
-              "Implemented protocol architecture; this diagram depicts no forecasting result."
+              "Du clip RISE à la fenêtre de prévision. Schéma de méthode.",
+              "From the RISE clip to the forecast window. Method diagram."
             ],
             "alt": [
-              "Chaîne RISE, CLIPSeg, NPZ, VQGAN, modèles comparés et tests réservés.",
-              "RISE, CLIPSeg, NPZ, VQGAN, comparison methods and held-out tests."
+              "RISE à 180 × 180, CLIPSeg image par image, clips masqués à 64 × 64 puis VQGAN et Flow Matching. Cinq observations précèdent quinze images à prévoir.",
+              "180 × 180 RISE, per-frame CLIPSeg, 64 × 64 masked clips, then VQGAN and Flow Matching. Five observations precede fifteen frames to predict."
             ],
-            "width": 1200,
-            "height": 500,
+            "width": 960,
+            "height": 454,
             "wide": true
           }
         ]
@@ -87,7 +87,23 @@ window.portfolioStudies={
             "Manifests retain dates, cameras, views, indices, timestamps and checksums. Automatic checks read the arrays and detect invalid masks, missing clips and partition overlap."
           ]
         ],
-        "media": []
+        "media": [
+          {
+            "type": "video",
+            "src": "images/flow/dataset-clip.mp4",
+            "poster": "images/flow/dataset-frame.png",
+            "width": 180,
+            "height": 180,
+            "caption": [
+              "Clip source RISE avant extraction de la fumée.",
+              "RISE source clip before smoke extraction."
+            ],
+            "alt": [
+              "Vidéo source RISE avec un panache industriel.",
+              "RISE source video showing an industrial plume."
+            ]
+          }
+        ]
       },
       {
         "title": [
@@ -95,17 +111,17 @@ window.portfolioStudies={
           "Representation and models"
         ],
         "body": [
-          "VQGAN commun : latents 8 × 8 × 256 et 1 024 codes. Flow Matching uniforme et pondéré par alpha sont comparés à la persistance, au flot optique de Farnebäck et à un SimVP compact.",
-          "Common VQGAN: 8 × 8 × 256 latents and 1,024 codes. Uniform and alpha-weighted Flow Matching are compared with persistence, Farnebäck optical flow and compact SimVP."
+          "Le VQGAN compare trois grilles 8 × 8 × D avec D = 4, 8 ou 256 et 1 024 codes. Trois Flow courts départagent les dimensions par leur LPIPS de prévision sur validation.",
+          "The VQGAN compares three 8 × 8 × D grids with D = 4, 8 or 256 and 1,024 codes. Three short Flow runs rank dimensions by validation forecast LPIPS."
         ],
         "blocks": [
           [
-            "Évaluation de cinq observations vers quinze futurs ; trois graines de prédicteurs, quatre réalisations par prévision stochastique et moyenne de toutes les réalisations. La LPIPS de validation sélectionne le checkpoint.",
-            "Five observed frames to fifteen future frames; three predictor seeds, four realizations per stochastic forecast and averaging over every realization. Validation LPIPS selects the checkpoint."
+            "Le Flow apprend à transporter du bruit vers un latent futur continu. À l’inférence, chaque latent prédit rejoint l’historique. Le codebook intervient au décodage RGB.",
+            "Flow learns to transport noise toward a future continuous latent. At inference, each predicted latent joins the history. The codebook is applied during RGB decoding."
           ],
           [
-            "Les cibles d’apprentissage RIVER sont tirées dans le clip complet avec une référence précédente et une condition antérieure. Le scénario 5 → 15 est la tâche d’évaluation.",
-            "RIVER training targets are sampled across the full clip with a preceding reference and an earlier condition. The 5 → 15 scenario defines evaluation."
+            "Deux Flow, uniforme et pondéré par la couverture de fumée estimée, partagent le même VQGAN. Le test final prévoit aussi la persistance et le flot optique de Farnebäck.",
+            "Uniform Flow and Flow weighted by estimated smoke coverage share the same VQGAN. The final test also includes persistence and Farnebäck optical flow."
           ]
         ],
         "media": []
@@ -137,8 +153,8 @@ window.portfolioStudies={
           "Evaluate without overclaiming"
         ],
         "body": [
-          "Le code, le protocole, les tests et la matrice sont publiés. Aucun gain prédictif consolidé ni meilleur LR calibré n’est revendiqué ; les essais comparables doivent produire ces preuves.",
-          "Code, protocol, tests and the experiment matrix are published. No consolidated forecasting improvement or calibrated optimal LR is claimed; controlled runs must provide that evidence."
+          "Le dépôt documente les tests CPU, la préparation pilote de six clips RISE et des mesures de ressources sur données synthétiques. Le comparatif de prévision consolidé du protocole actuel reste à établir.",
+          "The repository documents CPU tests, preparation of six pilot RISE clips and resource measurements on synthetic data. A consolidated forecasting benchmark for the current protocol is still pending."
         ],
         "blocks": [
           [
@@ -146,14 +162,24 @@ window.portfolioStudies={
             "Held-out tests distinguish future dates and unseen views, with paired differences and day-clustered bootstrap. Good VQGAN reconstruction or low LPIPS alone does not establish faithful forecasting."
           ],
           [
-            "Masques CLIPSeg estimés, une seule initialisation VQGAN et peu de journées de validation limitent les conclusions. La portée est la prévision visuelle 2D, pas la mesure d’émissions ou de concentration.",
-            "Estimated CLIPSeg masks, one VQGAN initialization and limited validation days constrain conclusions. Scope is 2D visual forecasting, not emissions or concentration measurement."
+            "Les masques CLIPSeg sont des estimations. L’évaluation porte sur la prévision de l’apparence du panache dans des images 2D. Quatre tirages par prévision Flow contribuent au score moyen.",
+            "CLIPSeg masks are estimates. The evaluation measures how well the appearance of the plume is forecast in 2D images. Four draws per Flow forecast contribute to the average score."
           ]
         ],
         "media": []
       }
     ],
     "annex": [
+      {
+        "label": [
+          "Étude illustrée",
+          "Illustrated case study"
+        ],
+        "href": [
+          "presentation-panaches.html",
+          "presentation-panaches-en.html"
+        ]
+      },
       {
         "label": [
           "Protocole",
@@ -170,10 +196,10 @@ window.portfolioStudies={
       },
       {
         "label": [
-          "Apprentissage et courbes",
-          "Training and chart guide"
+          "Vérifications et pilotes",
+          "Verification and pilot runs"
         ],
-        "href": "https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/TRAINING_DESIGN.md"
+        "href": "https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/VERIFICATION.md"
       },
       {
         "label": [

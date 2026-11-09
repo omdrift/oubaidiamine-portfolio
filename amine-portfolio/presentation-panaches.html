@@ -1,53 +1,164 @@
 <!doctype html>
-<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Industrial Plume Forecasting — Amine Oubaidi</title><meta name="description" content="Prévision vidéo de fumée : CLIPSeg, VQGAN et Flow Matching, avec protocole reproductible, références comparables et suivi des erreurs.">
-<style>
-:root{color-scheme:dark;--bg:#091320;--panel:#13243a;--line:#355070;--txt:#f1f6ff;--sub:#afc0da;--accent:#6ce0d1}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.75 system-ui,-apple-system,Segoe UI,sans-serif}
-a{color:var(--accent)}a:hover{text-decoration:none}header,main,footer{max-width:1140px;padding:24px;margin:auto}
-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);gap:15px}
-.brand{font-weight:700;text-decoration:none;font-size:18px}.back{font-size:14px}
-.hero{padding:65px 0 40px}h1{font-size:clamp(32px,5.5vw,65px);line-height:1.15;max-width:1000px;letter-spacing:-.045em}h2{font-size:clamp(26px,3vw,38px);line-height:1.25;letter-spacing:-.025em}h3{font-size:21px}
-.lead{font-size:20px;max-width:850px;color:var(--sub)}.eyebrow{color:var(--accent);font-size:13px;font-weight:700;letter-spacing:.13em;text-transform:uppercase}
-.meta{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}.chip{border:1px solid var(--line);padding:5px 12px;border-radius:28px;font-size:13px;color:var(--sub)}
-nav.toc{background:var(--panel);padding:20px 25px;border-radius:16px;margin-bottom:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:9px}nav.toc a{padding:8px}
-section{padding:60px 0;border-top:1px solid var(--line);scroll-margin-top:25px}p{max-width:930px;color:var(--sub)}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:25px 0}.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:21px;min-width:0}
-.card strong{display:block;font-size:19px}.card p{margin:8px 0 0}.figure{margin:22px 0 32px}.figure img{display:block;width:100%;height:auto;max-height:580px;object-fit:contain;background:#0a1320;border:1px solid var(--line);border-radius:13px}
-.figure figcaption{font-size:13px;color:var(--sub);margin:10px 1px}
-.metric{font-size:25px;font-weight:700;color:var(--txt)}.small{font-size:13px;color:var(--sub)}
-.warning{background:#1b2c42;border-left:4px solid var(--accent);padding:17px 20px;border-radius:7px}
-.links{display:flex;flex-wrap:wrap;gap:14px}.links a{border:1px solid var(--line);padding:12px 17px;border-radius:10px;text-decoration:none}
-footer{border-top:1px solid var(--line);font-size:14px;color:var(--sub);margin-top:30px}
-@media(max-width:750px){header{padding:17px}main{padding:18px}nav.toc,.grid{grid-template-columns:1fr}section{padding:40px 0}.hero{padding:30px 0}}
-</style></head><body>
-<header><a class="brand" href="index.html#project-flow">Amine Oubaidi · Portfolio</a><a class="back" href="index.html#projects">← Retour aux projets</a></header><main><article>
-<div class="hero"><p class="eyebrow">Prévision vidéo de fumée industrielle</p><h1>Industrial Plume Forecasting</h1><p class="lead">Prévision vidéo de fumée : CLIPSeg, VQGAN et Flow Matching, avec protocole reproductible, références comparables et suivi des erreurs.</p><div class="meta"><span class="chip">36 frames</span><span class="chip">5 → 15</span><span class="chip">CLIPSeg</span><span class="chip">VQGAN</span><span class="chip">Flow Matching</span></div></div>
-<nav class="toc" aria-label="Sommaire"><a href="#probleme">01 · Tâche de prévision</a><a href="#donnees">02 · Données et extraction</a><a href="#alternatives">03 · Modèles de référence</a><a href="#vqgan">04 · Représentation VQGAN</a><a href="#flow">05 · Suivi et reproductibilité</a><a href="#resultats">06 · Évaluation et limites</a></nav>
-<section id="probleme"><p class="eyebrow">01 / Industrial Plume Forecasting</p><h2>Tâche de prévision</h2>
-<p>Comment comparer une prévision de panache aux références, tout en maîtrisant les fuites temporelles, les erreurs de segmentation et la reproductibilité des entraînements ?</p>
-<p>Les clips conservent 36 images. La tâche de référence observe cinq images et en prédit quinze à 64 × 64. CLIPSeg et un raffinement spatial produisent des masques estimés ; un VQGAN commun est figé avant les prédicteurs latents. Une commande enchaîne les étapes et W&amp;B suit la qualité, les régions fumée/fond et les checkpoints.</p>
-<figure class="figure"><img src="images/flow/plume-forecasting-pipeline.svg" width="1200" height="500" alt="Architecture du protocole implémenté. Ce schéma ne représente pas un résultat de prévision."><figcaption>Architecture du protocole implémenté. Ce schéma ne représente pas un résultat de prévision.</figcaption></figure>
-</section>
-<section id="donnees"><p class="eyebrow">02 / Industrial Plume Forecasting</p><h2>Données et extraction</h2>
-<p>RISE : clips de 36 acquisitions, RGB 64 × 64 et masques souples. Les partitions sont séparées par dates et vues ; les identifiants et empreintes sont conservés.</p>
-<p>CLIPSeg traite chaque image indépendamment, suivi d’un filtre guidé spatial. Les masques sont des estimations sémantiques, sans opacité physique ni vérité terrain dense revendiquée.</p>
-<figure class="figure"><img loading="lazy" src="images/flow/dataset-frame.png" alt="Image source RISE, avant segmentation."><figcaption>Exemple de source vidéo ; aucune précision de segmentation n’est revendiquée à partir de cette image.</figcaption></figure>
-</section>
-<section id="alternatives"><p class="eyebrow">03 / Industrial Plume Forecasting</p><h2>Modèles de référence</h2>
-<p>VQGAN commun : latents 8 × 8 × 256 et 1 024 codes. Flow Matching uniforme et pondéré par alpha sont comparés à la persistance, au flot optique de Farnebäck et à un SimVP compact.</p>
-<p>Évaluation de cinq observations vers quinze futurs ; trois graines de prédicteurs, quatre réalisations par prévision stochastique et moyenne de toutes les réalisations. La LPIPS de validation sélectionne le checkpoint.</p>
-</section>
-<section id="vqgan"><p class="eyebrow">04 / Industrial Plume Forecasting</p><h2>Représentation VQGAN</h2>
-<p>Le VQGAN apprend une représentation latente 8 × 8 × 256 à partir du RGB 64 × 64. Le codebook contient 1 024 entrées. Les poids sélectionnés sur validation sont figés pour les deux prédicteurs latents. La réduction spatiale ne représente pas une diminution du nombre brut de coefficients.</p>
-</section>
-<section id="flow"><p class="eyebrow">05 / Industrial Plume Forecasting</p><h2>Suivi et reproductibilité</h2>
-<p>Panels train / validation fixes, erreurs fumée et fond, résultats par date et vue, utilisation du codebook, gradients, temps et mémoire. Les courbes précisent leur sens et leurs limites.</p>
-<p>Écriture atomique des checkpoints, conservation des deux derniers états et du meilleur modèle, sauvegarde des RNG et contrôle de provenance. Les NPZ finalisés restent réutilisables sans les MP4 sources.</p>
-</section>
-<section id="resultats"><p class="eyebrow">06 / Industrial Plume Forecasting</p><h2>Évaluation et limites</h2>
-<p>Le code, le protocole, les tests et la matrice sont publiés. Aucun gain prédictif consolidé ni meilleur LR calibré n’est revendiqué ; les essais comparables doivent produire ces preuves.</p>
-<p>Les tests réservés distinguent dates futures et vues inédites, avec différences appariées et bootstrap par journée. Une reconstruction VQGAN réussie ou un faible LPIPS ne suffisent pas à démontrer une prévision fidèle.</p>
-</section>
-<section><h2>Ressources</h2><div class="links"><a href="https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/SCIENTIFIC_PROTOCOL.md" target="_blank" rel="noopener">Protocole ↗</a><a href="https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/ARCHITECTURE.md" target="_blank" rel="noopener">Architecture ↗</a><a href="https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/TRAINING_DESIGN.md" target="_blank" rel="noopener">Apprentissage et monitoring ↗</a><a href="https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/ENGINEERING.md" target="_blank" rel="noopener">Vérification logicielle ↗</a></div>
-<p class="small">Projet de Master en équipe : Amine Oubaidi, Jérémy Botella et Iskander Hadi. La portée est une prévision visuelle 2D ; les mesures physiques demanderaient une validation indépendante.</p></section></article></main><footer>© 2026 · Amine Oubaidi — <a href="index.html">Portfolio</a></footer></body></html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prévision de panaches industriels · Amine Oubaidi</title>
+<meta name="description" content="Étude de cas de prévision vidéo de fumée industrielle. Données RISE, CLIPSeg, VQGAN, Flow Matching conditionnel et protocole d’évaluation.">
+<link rel="alternate" hreflang="en" href="presentation-panaches-en.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="plume.css">
+<script>try { if (localStorage.getItem('ao-theme') === 'dark') document.documentElement.classList.add('dark'); } catch {}</script>
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+<header class="case-header wrap">
+  <a class="brand" href="index.html" aria-label="Amine Oubaidi · Portfolio"><span class="brand-mark" aria-hidden="true">AO<span>.</span></span><span class="brand-name">Amine Oubaidi</span></a>
+  <nav aria-label="Navigation"><a href="index.html#project-flow">← Portfolio</a><a href="presentation-panaches-en.html" hreflang="en" lang="en">English ↗</a></nav>
+</header>
+<main id="main" class="wrap">
+  <article>
+    <header class="case-hero">
+      <div>
+        <p class="eyebrow">CARNET DE RECHERCHE / 01</p>
+        <h1>Prévision de panaches industriels</h1>
+        <p class="case-lead">À partir de cinq images d’un panache, peut-on prévoir les quinze suivantes ? Un projet de recherche en équipe sur la prévision vidéo par Flow Matching conditionnel.</p>
+        <p class="case-meta">MASTER 2 · PROTOCOLE V2.0 · RISE</p>
+      </div>
+      <figure class="case-task">
+        <span class="graphic-caption">UNE FENÊTRE D’ÉVALUATION</span>
+        <span class="flow-scale" aria-hidden="true">5 <span>→</span> 15</span>
+        <div class="forecast-track" aria-hidden="true"><span></span><span></span></div>
+        <div class="forecast-labels"><span>5 images observées</span><span>15 images à prévoir</span></div>
+        <figcaption>Fenêtre de 20 images dans un clip de 36. Chaque barre représente une image. Les 15 images réelles à venir servent à calculer les scores.</figcaption>
+      </figure>
+    </header>
+    <nav class="case-toc" aria-label="Sommaire">
+      <a href="#probleme"><span>01</span> Tâche et rôle</a>
+      <a href="#donnees"><span>02</span> Données</a>
+      <a href="#vqgan"><span>03</span> VQGAN</a>
+      <a href="#flow"><span>04</span> Flow Matching</a>
+      <a href="#alternatives"><span>05</span> Comparaison</a>
+      <a href="#resultats"><span>06</span> Évaluation</a>
+    </nav>
+
+    <section id="probleme" class="case-section">
+      <div><p class="kicker">01 / QUESTION</p><h2>Suivre la fumée quand le fond domine</h2></div>
+      <div class="case-copy">
+        <p>La fumée peut n’occuper qu’une petite partie de l’image. Une erreur moyenne sur tous les pixels peut donc masquer une prévision médiocre dans le panache. Le protocole suit la qualité visuelle à chaque horizon et l’erreur dans les régions de fumée et de fond.</p>
+        <h3>Ma contribution</h3>
+        <p>J’ai travaillé sur la préparation des séquences RISE et le pipeline VQGAN / Flow Matching, puis sur la comparaison des modèles, les diagnostics et la reprise des entraînements. Projet mené avec Jérémy Botella et Iskander Hadi.</p>
+        <p><a href="documents/recommandation-damien-muselet-2026.pdf" type="application/pdf">Recommandation de Damien Muselet · PDF ↗</a></p>
+      </div>
+    </section>
+
+    <section id="donnees" class="case-section">
+      <div><p class="kicker">02 / DONNÉES</p><h2>De la vidéo au RGB masqué</h2></div>
+      <div class="case-copy">
+        <figure>
+          <ol class="case-pipeline">
+            <li><span>ENTRÉE</span><b>Clip RISE</b><small>36 images RGB natives à 180 × 180</small></li>
+            <li><span>EXTRACTION</span><b>CLIPSeg</b><small>Score de fumée par image, puis raffinement spatial</small></li>
+            <li><span>SORTIE</span><b>NPZ vérifié</b><small>RGB brut, RGB masqué et couverture alpha à 64 × 64</small></li>
+          </ol>
+          <figcaption>Le raffinement traite chaque image indépendamment. Le manifeste conserve l’identité du clip, sa date, sa vue et ses empreintes.</figcaption>
+        </figure>
+        <p>Le support estimé conserve les couleurs observées de la fumée et adoucit les contours. Alpha décrit la couverture de ce support. La précision de segmentation demanderait des annotations de référence indépendantes.</p>
+        <figure class="case-media">
+          <video controls playsinline preload="none" width="180" height="180" poster="images/flow/dataset-frame.png" aria-label="Vidéo source RISE du clip 6"><source src="images/flow/dataset-clip.mp4" type="video/mp4"></video>
+          <figcaption>Clip source RISE nº 6, avant extraction de la fumée. <a href="https://github.com/CMU-CREATE-Lab/deep-smoke-machine#dataset">Jeu de données RISE · CREATE Lab, CC0 ↗</a></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="vqgan" class="case-section">
+      <div><p class="kicker">03 / REPRÉSENTATION</p><h2>Combien de dimensions faut-il au Flow ?</h2></div>
+      <div class="case-copy">
+        <p>Le VQGAN encode chaque image en une grille 8 × 8 × D. Son dictionnaire contient 1 024 vecteurs de dimension D. Chaque cellule prend le code le plus proche pour la reconstruction RGB.</p>
+        <dl class="case-dimensions">
+          <div><dt>D = 4</dt><dd>Représentation compacte</dd></div>
+          <div><dt>D = 8</dt><dd>Représentation compacte</dd></div>
+          <div><dt>D = 256</dt><dd>Représentation de référence</dd></div>
+        </dl>
+        <ol class="case-phases">
+          <li><strong>Choisir la recette.</strong> Comparer quatre combinaisons de tirage des images et de perte de reconstruction à D = 8.</li>
+          <li><strong>Choisir la dimension.</strong> Appliquer la recette retenue à D = 4 et D = 256, puis comparer trois Flow courts selon leur LPIPS de prévision sur validation.</li>
+          <li><strong>Confirmer et figer.</strong> Réentraîner uniquement le VQGAN retenu sur trois graines. Les deux variantes finales du Flow partagent le VQGAN confirmé de graine 42.</li>
+        </ol>
+        <p>Cette séparation permet de vérifier si une représentation qui reconstruit bien les images aide aussi à prévoir les suivantes. <a href="https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/EXPERIMENT_MATRIX.csv">Matrice des expériences ↗</a></p>
+      </div>
+    </section>
+
+    <section id="flow" class="case-section">
+      <div><p class="kicker">04 / GÉNÉRATION</p><h2>Du bruit à l’image suivante</h2></div>
+      <div class="case-copy">
+        <p>Le Flow apprend un champ de vitesse qui transforme un bruit gaussien en latent futur. Il reçoit la dernière image encodée, une condition plus ancienne et la distance entre leurs indices.</p>
+        <figure class="case-loop">
+          <ol>
+            <li>Encoder<span>Historique latent continu des cinq observations.</span></li>
+            <li>Intégrer<span>Bruit initial et champ conditionnel, intégrés avec RK4.</span></li>
+            <li>Prédire<span>Un latent futur continu, de taille 8 × 8 × D.</span></li>
+          </ol>
+          <div class="case-branches"><span><b>↺ Boucle</b>Ajouter le latent à l’historique pour le pas suivant.</span><span><b>↘ Sortie</b>Quantifier et décoder la séquence en RGB.</span></div>
+          <figcaption>Le Flow répète le transport 15 fois, avec 17 points d’intégration RK4 par latent.</figcaption>
+        </figure>
+        <details class="case-math">
+          <summary>Voir l’objectif de Flow Matching</summary>
+          <p>Pour une cible latente <i>z</i><sub>1</sub>, un bruit gaussien ε et un temps de transport <i>t</i> entre 0 et 1, le modèle régresse la dérivée du chemin suivant.</p>
+          <code>z(t) = [1 − (1 − σ)t] ε + t z₁<br>u(t) = z₁ − (1 − σ) ε</code>
+          <p>Le protocole fixe σ à 0,001. Pendant l’apprentissage, la cible, sa référence précédente et une condition plus ancienne sont tirées dans un clip. En génération, l’historique part des cinq images observées et se complète avec ses propres prédictions.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="alternatives" class="case-section">
+      <div><p class="kicker">05 / COMPARAISON</p><h2>Quatre méthodes, les mêmes fenêtres</h2></div>
+      <div class="case-copy">
+        <p>Les deux variantes du Flow partagent le VQGAN, le réglage et le plan de graines. La pondération spatiale de la perte isole l’effet de l’accent mis sur la fumée.</p>
+        <table class="case-methods">
+          <thead><tr><th scope="col">Méthode</th><th scope="col">Principe</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Persistance</th><td>Répète la dernière image observée.</td></tr>
+            <tr><th scope="row">Farnebäck</th><td>Extrapole le mouvement estimé par flot optique.</td></tr>
+            <tr><th scope="row">Flow uniforme</th><td>Régression de vitesse latente à poids uniformes.</td></tr>
+            <tr><th scope="row">Flow pondéré</th><td>La couverture alpha donne jusqu’à cinq fois plus de poids aux cellules de fumée qu’au fond, avant normalisation par image.</td></tr>
+          </tbody>
+        </table>
+        <p>Pour chaque prévision stochastique, le score moyenne quatre tirages. Les deux références déterministes ont un seul résultat par fenêtre.</p>
+      </div>
+    </section>
+
+    <section id="resultats" class="case-section">
+      <div><p class="kicker">06 / ÉVALUATION</p><h2>Tester le temps et le changement de vue</h2></div>
+      <div class="case-copy">
+        <p>Les poids et réglages sont sélectionnés sur validation. Le gel de la sélection précède la préparation des deux ensembles de test.</p>
+        <dl class="case-splits">
+          <div><dt>Test dates</dt><dd>Dix dates futures sur des vues déjà rencontrées à l’entraînement.</dd></div>
+          <div><dt>Test vues</dt><dd>Les mêmes dates futures sur des vues réservées.</dd></div>
+        </dl>
+        <p class="case-evaluation-note">Le LPIPS mesure l’écart perceptuel avec les images réelles. L’erreur par horizon et les erreurs fumée/fond complètent ce score. Les écarts entre méthodes sont appariés par fenêtre avec bootstrap par journée.</p>
+        <aside class="case-status" aria-label="État des preuves">
+          <h3>Vérifié à ce stade</h3>
+          <p>Le dépôt documente 538 tests CPU, la préparation de six clips RISE et des pilotes de ressources sur données synthétiques. Le comparatif de qualité prédictive du protocole actuel reste à établir. <a href="https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/VERIFICATION.md">Détail des vérifications ↗</a></p>
+        </aside>
+        <p>Le périmètre est la prévision de l’apparence du panache en 2D. Une mesure d’émissions ou de concentration demanderait des observations et une validation physiques.</p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div><p class="kicker">RESSOURCES</p><h2>Code et protocole</h2></div>
+      <div class="case-copy">
+        <p>Le dépôt fournit la préparation des données, l’entraînement, les contrôles de reprise et le suivi des expériences avec Weights &amp; Biases.</p>
+        <ul class="case-resources">
+          <li><a href="https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching">Code source ↗</a></li>
+          <li><a href="https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/SCIENTIFIC_PROTOCOL.md">Protocole expérimental ↗</a></li>
+          <li><a href="https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/ARCHITECTURE.md">Architecture ↗</a></li>
+          <li><a href="https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/SCIENTIFIC_RUNBOOK.md">Guide d’exécution ↗</a></li>
+        </ul>
+      </div>
+    </section>
+  </article>
+</main>
+<footer class="wrap"><span>Amine Oubaidi · 2026</span><a href="index.html#projects">Tous les projets ↗</a></footer>
+</body>
+</html>
