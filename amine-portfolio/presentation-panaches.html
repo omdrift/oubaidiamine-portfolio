@@ -14,7 +14,7 @@
 <a class="skip" href="#main">Aller au contenu</a>
 <header class="case-header wrap">
   <a class="brand" href="index.html" aria-label="Amine Oubaidi · Portfolio"><span class="brand-mark" aria-hidden="true">AO<span>.</span></span><span class="brand-name">Amine Oubaidi</span></a>
-  <nav aria-label="Navigation"><a href="index.html#project-flow">← Portfolio</a><a href="presentation-panaches-en.html" hreflang="en" lang="en">English ↗</a></nav>
+  <nav aria-label="Navigation"><a href="index.html#project-flow">← Portfolio</a><a href="presentation-panaches-en.html" hreflang="en" lang="en">English →</a></nav>
 </header>
 <main id="main" class="wrap">
   <article>
@@ -48,7 +48,7 @@
         <p>La fumée peut n’occuper qu’une petite partie de l’image. Une erreur moyenne sur tous les pixels peut donc masquer une prévision médiocre dans le panache. Le protocole suit la qualité visuelle à chaque horizon et l’erreur dans les régions de fumée et de fond.</p>
         <h3>Ma contribution</h3>
         <p>J’ai travaillé sur la préparation des séquences RISE et le pipeline VQGAN / Flow Matching, puis sur la comparaison des modèles, les diagnostics et la reprise des entraînements. Projet mené avec Jérémy Botella et Iskander Hadi.</p>
-        <p><a href="documents/recommandation-damien-muselet-2026.pdf" type="application/pdf">Recommandation de Damien Muselet · PDF ↗</a></p>
+        <p><a href="documents/recommandation-damien-muselet-2026.pdf" type="application/pdf">Recommandation de Damien Muselet · PDF →</a></p>
       </div>
     </section>
 
@@ -66,7 +66,7 @@
         <p>Le support estimé conserve les couleurs observées de la fumée et adoucit les contours. Alpha décrit la couverture de ce support. La précision de segmentation demanderait des annotations de référence indépendantes.</p>
         <figure class="case-media">
           <video controls playsinline preload="none" width="180" height="180" poster="images/flow/dataset-frame.png" aria-label="Vidéo source RISE du clip 6"><source src="images/flow/dataset-clip.mp4" type="video/mp4"></video>
-          <figcaption>Clip source RISE nº 6, avant extraction de la fumée. <a href="https://github.com/CMU-CREATE-Lab/deep-smoke-machine#dataset">Jeu de données RISE · CREATE Lab, CC0 ↗</a></figcaption>
+          <figcaption>Clip source RISE nº 6, avant extraction de la fumée. <a href="https://github.com/CMU-CREATE-Lab/deep-smoke-machine#dataset">Jeu de données RISE · CREATE Lab, CC0 →</a></figcaption>
         </figure>
       </div>
     </section>
@@ -85,7 +85,7 @@
           <li><strong>Choisir la dimension.</strong> Appliquer la recette retenue à D = 4 et D = 256, puis comparer trois Flow courts selon leur LPIPS de prévision sur validation.</li>
           <li><strong>Confirmer et figer.</strong> Réentraîner uniquement le VQGAN retenu sur trois graines. Les deux variantes finales du Flow partagent le VQGAN confirmé de graine 42.</li>
         </ol>
-        <p>Cette séparation permet de vérifier si une représentation qui reconstruit bien les images aide aussi à prévoir les suivantes. <a href="https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/EXPERIMENT_MATRIX.csv">Matrice des expériences ↗</a></p>
+        <p>Cette séparation permet de vérifier si une représentation qui reconstruit bien les images aide aussi à prévoir les suivantes. <a href="https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/EXPERIMENT_MATRIX.csv">Matrice des expériences →</a></p>
       </div>
     </section>
 
@@ -99,7 +99,7 @@
             <li>Intégrer<span>Bruit initial et champ conditionnel, intégrés avec RK4.</span></li>
             <li>Prédire<span>Un latent futur continu, de taille 8 × 8 × D.</span></li>
           </ol>
-          <div class="case-branches"><span><b>↺ Boucle</b>Ajouter le latent à l’historique pour le pas suivant.</span><span><b>↘ Sortie</b>Quantifier et décoder la séquence en RGB.</span></div>
+          <div class="case-branches"><span><b>Boucle</b>Ajouter le latent à l’historique pour le pas suivant.</span><span><b>Sortie</b>Quantifier et décoder la séquence en RGB.</span></div>
           <figcaption>Le Flow répète le transport 15 fois, avec 17 points d’intégration RK4 par latent.</figcaption>
         </figure>
         <details class="case-math">
@@ -139,7 +139,7 @@
         <p class="case-evaluation-note">Le LPIPS mesure l’écart perceptuel avec les images réelles. L’erreur par horizon et les erreurs fumée/fond complètent ce score. Les écarts entre méthodes sont appariés par fenêtre avec bootstrap par journée.</p>
         <aside class="case-status" aria-label="État des preuves">
           <h3>Vérifié à ce stade</h3>
-          <p>Le dépôt documente 538 tests CPU, la préparation de six clips RISE et des pilotes de ressources sur données synthétiques. Le comparatif de qualité prédictive du protocole actuel reste à établir. <a href="https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/VERIFICATION.md">Détail des vérifications ↗</a></p>
+          <p>Le dépôt documente 538 tests CPU, la préparation de six clips RISE et des pilotes de ressources sur données synthétiques. Le comparatif de qualité prédictive du protocole actuel reste à établir. <a href="https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/VERIFICATION.md">Détail des vérifications →</a></p>
         </aside>
         <p>Le périmètre est la prévision de l’apparence du panache en 2D. Une mesure d’émissions ou de concentration demanderait des observations et une validation physiques.</p>
       </div>
@@ -150,15 +150,15 @@
       <div class="case-copy">
         <p>Le dépôt fournit la préparation des données, l’entraînement, les contrôles de reprise et le suivi des expériences avec Weights &amp; Biases.</p>
         <ul class="case-resources">
-          <li><a href="https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching">Code source ↗</a></li>
-          <li><a href="https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/SCIENTIFIC_PROTOCOL.md">Protocole expérimental ↗</a></li>
-          <li><a href="https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/ARCHITECTURE.md">Architecture ↗</a></li>
-          <li><a href="https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/SCIENTIFIC_RUNBOOK.md">Guide d’exécution ↗</a></li>
+          <li><a href="https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching">Code source →</a></li>
+          <li><a href="https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/SCIENTIFIC_PROTOCOL.md">Protocole expérimental →</a></li>
+          <li><a href="https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/ARCHITECTURE.md">Architecture →</a></li>
+          <li><a href="https://github.com/omdrift/Modelisation-panaches-de-fum-es-industrielles-par-Flow-Matching/blob/main/doc/SCIENTIFIC_RUNBOOK.md">Guide d’exécution →</a></li>
         </ul>
       </div>
     </section>
   </article>
 </main>
-<footer class="wrap"><span>Amine Oubaidi · 2026</span><a href="index.html#projects">Tous les projets ↗</a></footer>
+<footer class="wrap"><span>Amine Oubaidi · 2026</span><a href="index.html#projects">Tous les projets →</a></footer>
 </body>
 </html>

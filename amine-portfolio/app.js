@@ -14,7 +14,7 @@
   const tags = items => `<div class="tags">${items.map(s=>`<span>${esc(text(s))}</span>`).join('')}</div>`;
   const facts = items => items?.length?`<dl class="project-facts">${items.map(f=>`<div><dt>${esc(text(f.label))}</dt><dd>${esc(f.value)}</dd></div>`).join('')}</dl>`:'';
   function documents(items=[]) {
-    return items.length?`<div class="document-links">${items.filter(x=>x.href).map(x=>`<a class="document-link" href="${esc(text(x.href))}" target="_blank" rel="noopener"><span>${esc(text(x.label)||t().documentLabels[x.kind])}</span><span>${esc(x.format||'PDF')} ↗</span>${x.caption?`<small>${esc(text(x.caption))}</small>`:''}</a>`).join('')}</div>`:'';
+    return items.length?`<div class="document-links">${items.filter(x=>x.href).map(x=>`<a class="document-link" href="${esc(text(x.href))}" target="_blank" rel="noopener"><span>${esc(text(x.label)||t().documentLabels[x.kind])}</span><span>${esc(x.format||'PDF')} →</span>${x.caption?`<small>${esc(text(x.caption))}</small>`:''}</a>`).join('')}</div>`:'';
   }
   function graphic(p) {
     if (p === flagship) return `<span class="flow-window">
@@ -45,10 +45,10 @@
     return `<span class="project-graphic"><span class="graphic-caption">${esc(t().pipelineLabel)}</span><span class="graphic-nodes">${(labels[p.id]||[['API'],['Services'],['Data']]).map((x,n)=>`<span class="graphic-node ${n===1?'node-accent':''}">${esc(x[i()]||x[0])}</span>`).join('')}</span></span>`;
   }
   function card(p) {
-    const code = p.repo ? `<a class="text-button project-source" href="${esc(p.repo)}" target="_blank" rel="noopener">${esc(p.repoType==='report'?t().reportShort:t().codeLink)} <span aria-hidden="true">↗</span></a>` : '';
+    const code = p.repo ? `<a class="text-button project-source" href="${esc(p.repo)}" target="_blank" rel="noopener">${esc(p.repoType==='report'?t().reportShort:t().codeLink)} <span aria-hidden="true">→</span></a>` : '';
     const details = p.presentation
-      ? `<a class="project-details" href="${esc(text(p.presentation))}">${esc(t().focusLink)} <span aria-hidden="true">↗</span></a>`
-      : `<button class="project-details" data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(t().details)} <span aria-hidden="true">↗</span></button>`;
+      ? `<a class="project-details" href="${esc(text(p.presentation))}">${esc(t().focusLink)} <span aria-hidden="true">→</span></a>`
+      : `<button class="project-details" data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(t().details)} <span aria-hidden="true">→</span></button>`;
     const caption=p.id==='flow'?t().flowStillCaption:p.id==='face'?t().interfaceCaption:p.id==='mice'?t().trackingCaption:window.portfolioStudies[p.id]?.cover?t().projectVisualCaption:t().diagramCaption;
     return `<article class="project-card ${p.id==='flow'?'is-flagship':''}" id="project-${esc(p.id)}" data-id="${esc(p.id)}"><div class="project-media project-media--${esc(p.id)}"><button class="project-cover" data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog" aria-label="${esc(t().details+' · '+text(p.title))}">${graphic(p)}</button><div class="media-toolbar"><span class="media-caption">${esc(caption)}</span></div></div><div class="project-card-body"><div class="project-meta"><span>${esc(text(p.context))}</span><span>${esc(p.year)}</span></div><p class="project-kind">${esc(p.id==='flow'?t().flagshipLabel:t().filters[p.cats[0]])}</p><h3><button data-project="${esc(p.id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(text(p.title))}</button></h3><p class="project-summary">${esc(text(p.summary))}</p>${tags((p.cardTags||p.stack).slice(0,3))}<div class="project-actions">${details}${code}</div></div></article>`;
   }
@@ -94,7 +94,7 @@
   }
   function renderProjectDialog() {
     const p=data.projects.find(p=>p.id===state.project);if(!p)return;
-    $('project-dialog').innerHTML=`<div class="project-dialog-shell"><header class="project-dialog-header"><div><p class="kicker">${esc(text(p.context))} / ${esc(p.year)}</p><h2 id="project-title">${esc(text(p.title))}</h2><p class="dialog-intro">${esc(text(p.summary))}</p>${p.deployment?`<p class="deployment-chip"><span class="status-dot"></span>${esc(text(p.deployment))}</p>`:''}</div><button class="dialog-close" data-project-close aria-label="${esc(t().projectClose)}" autofocus>×</button></header><div class="project-dialog-layout"><aside class="project-sidebar"><h3>${esc(t().tools)}</h3>${tags(p.stack)}${facts(p.facts)}${documents(p.documents)}${p.repo?`<a class="resource-link" href="${esc(p.repo)}" target="_blank" rel="noopener">${esc(p.repoType==='report'?t().report:t().repo)} ↗</a>`:''}${window.portfolioStudies[p.id]?`<button class="button secondary" data-open-study="${esc(p.id)}">${esc(t().studyOpen)} ↗</button>`:''}</aside><div class="project-story"><section><h3>${esc(t().projectOverview)}</h3><p>${esc(text(p.problem)||text(p.summary))}</p></section><section><h3>${esc(t().contribution)}</h3><p>${esc(text(p.contribution))}</p><p>${esc(text(p.detail))}</p></section>${(p.sections||[]).map((s,n)=>`<section class="story-section">${p.id==='cv-matcher'?'':`<p class="story-index">${String(n+1).padStart(2,'0')}</p>`}<h3>${esc(text(s.title))}</h3>${s.items.map(x=>`<p>${esc(text(x))}</p>`).join('')}</section>`).join('')}</div></div></div>`;
+    $('project-dialog').innerHTML=`<div class="project-dialog-shell"><header class="project-dialog-header"><div><p class="kicker">${esc(text(p.context))} / ${esc(p.year)}</p><h2 id="project-title">${esc(text(p.title))}</h2><p class="dialog-intro">${esc(text(p.summary))}</p>${p.deployment?`<p class="deployment-chip"><span class="status-dot"></span>${esc(text(p.deployment))}</p>`:''}</div><button class="dialog-close" data-project-close aria-label="${esc(t().projectClose)}" autofocus>×</button></header><div class="project-dialog-layout"><aside class="project-sidebar"><h3>${esc(t().tools)}</h3>${tags(p.stack)}${facts(p.facts)}${documents(p.documents)}${p.repo?`<a class="resource-link" href="${esc(p.repo)}" target="_blank" rel="noopener">${esc(p.repoType==='report'?t().report:t().repo)} →</a>`:''}${window.portfolioStudies[p.id]?`<button class="button secondary" data-open-study="${esc(p.id)}">${esc(t().studyOpen)} →</button>`:''}</aside><div class="project-story"><section><h3>${esc(t().projectOverview)}</h3><p>${esc(text(p.problem)||text(p.summary))}</p></section><section><h3>${esc(t().contribution)}</h3><p>${esc(text(p.contribution))}</p><p>${esc(text(p.detail))}</p></section>${(p.sections||[]).map((s,n)=>`<section class="story-section">${p.id==='cv-matcher'?'':`<p class="story-index">${String(n+1).padStart(2,'0')}</p>`}<h3>${esc(text(s.title))}</h3>${s.items.map(x=>`<p>${esc(text(x))}</p>`).join('')}</section>`).join('')}</div></div></div>`;
   }
   function openProject(id,trigger) {
     state.project=id;state.trigger=trigger;renderProjectDialog();$('project-dialog').showModal();$('project-dialog').scrollTop=0;document.body.classList.add('project-open');
@@ -102,7 +102,7 @@
   function renderExperience() {
     $('timeline').innerHTML=t().experience.map(x=>{
       const work=data.experienceWork[x[5]];
-      return `<article class="timeline-item" id="experience-${esc(x[5])}"><span class="timeline-year">${esc(x[0])}</span><div><h3>${esc(x[1])}</h3><p class="timeline-role">${esc(x[2])}</p><p class="timeline-location">${esc(x[3])}</p><p>${esc(x[4])}</p>${documents(work.documents)}<details class="experience-details"><summary>${esc(t().experienceDetails)}</summary>${work.items.map(p=>`<section class="experience-achievement"><h4>${esc(text(p.title))}</h4><p>${esc(text(p.contribution))}</p><p>${esc(text(p.detail))}</p>${tags(p.stack)}${p.repo?`<a class="resource-link" href="${esc(p.repo)}" target="_blank" rel="noopener">${esc(p.repoType==='report'?t().report:t().repo)} ↗</a>`:''}</section>`).join('')}</details>${window.caseStudies.preview(x[5],state.lang)}</div></article>`;
+      return `<article class="timeline-item" id="experience-${esc(x[5])}"><span class="timeline-year">${esc(x[0])}</span><div><h3>${esc(x[1])}</h3><p class="timeline-role">${esc(x[2])}</p><p class="timeline-location">${esc(x[3])}</p><p>${esc(x[4])}</p>${documents(work.documents)}<details class="experience-details"><summary>${esc(t().experienceDetails)}</summary>${work.items.map(p=>`<section class="experience-achievement"><h4>${esc(text(p.title))}</h4><p>${esc(text(p.contribution))}</p><p>${esc(text(p.detail))}</p>${tags(p.stack)}${p.repo?`<a class="resource-link" href="${esc(p.repo)}" target="_blank" rel="noopener">${esc(p.repoType==='report'?t().report:t().repo)} →</a>`:''}</section>`).join('')}</details>${window.caseStudies.preview(x[5],state.lang)}</div></article>`;
     }).join('');
   }
   function renderReferences() {
@@ -110,7 +110,7 @@
       <a class="reference-link" href="${esc(letter.href)}" target="_blank" rel="noopener" hreflang="fr" type="application/pdf">
         <span class="reference-name"><strong>${esc(letter.author)}</strong><span>${esc(text(letter.role))}</span></span>
         <span class="reference-context"><span>${esc(text(letter.context))}</span><time datetime="${esc(letter.date)}">${esc(text(letter.displayDate))}</time></span>
-        <span class="reference-format">PDF · FR <span aria-hidden="true">↗</span></span>
+        <span class="reference-format">PDF · FR <span aria-hidden="true">→</span></span>
       </a>
     </li>`).join('');
   }
@@ -132,7 +132,7 @@
     $('filters').setAttribute('aria-label',state.lang==='fr'?'Filtrer les projets':'Filter projects');$('filters').innerHTML=t().filters.map((label,n)=>`<button data-filter="${n}" aria-pressed="${n===state.category}">${esc(label)}</button>`).join('');
     $('hero-facts').innerHTML=t().heroFacts.map(x=>`<div><dt>${esc(x[0])}</dt><dd>${esc(x[1])}</dd></div>`).join('');
     $('project-grid').innerHTML=data.projects.map(card).join('');filterProjects();
-    $('skills').innerHTML=data.skills.map((s,n)=>`<article class="skill-card"><div class="skill-heading"><span class="skill-index">${String(n+1).padStart(2,'0')}</span><h3>${esc(text(s.title))}</h3></div><p>${esc(text(s.note))}</p>${tags(s.items)}<div class="skill-evidence"><span>${esc(t().skillsEvidence)}</span>${s.projects.map(id=>{const p=data.projects.find(p=>p.id===id);return `<button data-project="${esc(id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(text(p.title))} ↗</button>`;}).join('')}</div></article>`).join('');
+    $('skills').innerHTML=data.skills.map((s,n)=>`<article class="skill-card"><div class="skill-heading"><span class="skill-index">${String(n+1).padStart(2,'0')}</span><h3>${esc(text(s.title))}</h3></div><p>${esc(text(s.note))}</p>${tags(s.items)}<div class="skill-evidence"><span>${esc(t().skillsEvidence)}</span>${s.projects.map(id=>{const p=data.projects.find(p=>p.id===id);return `<button data-project="${esc(id)}" aria-haspopup="dialog" aria-controls="project-dialog">${esc(text(p.title))} →</button>`;}).join('')}</div></article>`).join('');
     $('practice').innerHTML=t().practice.map(x=>`<span>${esc(x)}</span>`).join('');renderExperience();renderReferences();
     $('education').innerHTML=t().education.map(x=>`<article class="education-item"><span>${esc(x[0])}</span><h4>${esc(x[1])}</h4><p>${esc(x[2])}</p><p>${esc(x[3])}</p></article>`).join('');$('certifications').innerHTML=data.certs.map(x=>`<li>${esc(x)}</li>`).join('');
     updateTheme();updateBackToTop();if($('project-dialog').open)renderProjectDialog();window.caseStudies.refresh();

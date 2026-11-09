@@ -958,8 +958,8 @@ window.portfolio={
           "href": "documents/recommandation-l3i-2025.pdf",
           "format": "PDF",
           "caption": [
-            "Jean-Christophe Burie · Professeur des universités, L3i · 2 octobre 2025",
-            "Jean-Christophe Burie · Professor, L3i · 2 October 2025"
+            "Jean-Christophe Burie · Professeur des universités, L3i · 23 octobre 2026",
+            "Jean-Christophe Burie · Professor, L3i · 23 October 2026"
           ]
         },
         {
@@ -1842,8 +1842,8 @@ window.portfolio={
           "href": "documents/recommandation-l3i-2025.pdf",
           "format": "PDF",
           "caption": [
-            "Jean-Christophe Burie · Professeur des universités, L3i · 2 octobre 2025",
-            "Jean-Christophe Burie · Professor, L3i · 2 October 2025"
+            "Jean-Christophe Burie · Professeur des universités, L3i · 23 octobre 2026",
+            "Jean-Christophe Burie · Professor, L3i · 23 October 2026"
           ]
         },
         {
